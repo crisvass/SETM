@@ -12,7 +12,7 @@ namespace DataAccessLayer
     public class ConnectionClass
     {
         public dbTradersMarketplaceEntities Entity { get; set; }
-        public DbTransaction Transaction { get; set; }
+        public DbContextTransaction Transaction { get; set; }
 
         public ConnectionClass()
         {
