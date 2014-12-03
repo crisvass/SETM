@@ -16,14 +16,14 @@ namespace Common
     {
         public User()
         {
+            this.CreditCardDetails = new HashSet<CreditCardDetail>();
             this.Orders = new HashSet<Order>();
             this.ShoppingCarts = new HashSet<ShoppingCart>();
             this.Roles = new HashSet<Role>();
-            this.CreditCardDetails = new HashSet<CreditCardDetail>();
         }
     
         public string Username { get; set; }
-        public string Password { get; set; }
+        public byte[] Password { get; set; }
         public string Email { get; set; }
         public string ContactNumber { get; set; }
         public string Name { get; set; }
@@ -34,10 +34,10 @@ namespace Common
         public string PostCode { get; set; }
         public string Country { get; set; }
     
+        public virtual ICollection<CreditCardDetail> CreditCardDetails { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual Seller Seller { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
-        public virtual ICollection<CreditCardDetail> CreditCardDetails { get; set; }
-        public virtual Seller Seller { get; set; }
     }
 }

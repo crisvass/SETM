@@ -17,11 +17,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Trader's Marketplace", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @foreach (Common.Views.MenusView men in ViewBag.Menus)
+                    {
+                        <li>
+                            @Html.ActionLink(@men.Title, @men.Action, @men.Url)
+                        @if (men.HasSubmenus)
+                        {
+                            <ul class="submenu">
+                                @foreach (Common.Views.MenusView sub in men.Submenus)
+                                {
+                                    <li>@Html.ActionLink(@sub.Title, @sub.Action, @sub.Url)</li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                    }                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

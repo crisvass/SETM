@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,6 +181,16 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CreditCardsServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MenusServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\UsersServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -219,9 +230,47 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\CreditCardsServiceClient\Common.Views.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreditCardsServiceClient\service.wsdl" />
+    <None Include="Service References\CreditCardsServiceClient\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CreditCardsServiceClient\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\CreditCardsServiceClient\TradersMarketplace.CreditCardsServiceClient.CreditCardTypeView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\MenusServiceClient\Common.Views.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenusServiceClient\service.wsdl" />
+    <None Include="Service References\MenusServiceClient\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MenusServiceClient\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\MenusServiceClient\TradersMarketplace.MenusServiceClient.MenusView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\UsersServiceClient\configuration91.svcinfo" />
     <None Include="Service References\UsersServiceClient\configuration.svcinfo" />
     <None Include="Service References\UsersServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CreditCardsServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\CreditCardsServiceClient\configuration.svcinfo" />
+    <None Include="Service References\CreditCardsServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\MenusServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\MenusServiceClient\configuration.svcinfo" />
+    <None Include="Service References\MenusServiceClient\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -238,7 +287,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Service References\UsersServiceClient\service.wsdl" />
     <None Include="Service References\UsersServiceClient\service.xsd">
       <SubType>Designer</SubType>
@@ -246,12 +294,13 @@
     <None Include="Service References\UsersServiceClient\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Account\_RegisterBuyerPartial.cshtml" />
-    <Content Include="Views\Account\_RegisterSellerPartial.cshtml" />
+    <Content Include="Views\Account\RegisterBuyer.cshtml" />
+    <Content Include="Views\Account\RegisterSeller.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -271,6 +320,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CreditCardsServiceClient\" />
+    <WCFMetadataStorage Include="Service References\MenusServiceClient\" />
     <WCFMetadataStorage Include="Service References\UsersServiceClient\" />
   </ItemGroup>
   <PropertyGroup>

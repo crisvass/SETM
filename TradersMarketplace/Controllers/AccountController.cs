@@ -16,7 +16,7 @@ using System.Web.Security;
 namespace TradersMarketplace.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         [AllowAnonymous]
         public ActionResult Login()
@@ -52,26 +52,34 @@ namespace TradersMarketplace.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
+        [Authorize()]
+        public ActionResult LogOff()
         {
-            RegisterViewModel rm = new RegisterViewModel();
-            rm.RegisterModels = new List<Object>();
-            rm.RegisterModels.Add(new RegisterBuyerViewModel());
-            rm.RegisterModels.Add(new RegisterSellerViewModel());
-            return View(rm);
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
-        // GET: /Account/_RegisterBuyerPartial
+        //
+        // GET: /Account/Register
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    RegisterViewModel rm = new RegisterViewModel();
+        //    rm.RegisterModels = new List<Object>();
+        //    rm.RegisterModels.Add(new RegisterBuyerViewModel());
+        //    rm.RegisterModels.Add(new RegisterSellerViewModel());
+        //    return View(rm);
+        //}
+
+        // GET: /Account/RegisterBuyer
         [AllowAnonymous]
         public ActionResult RegisterBuyer()
         {
-            return PartialView(new RegisterBuyerViewModel());
+            return View(new RegisterBuyerViewModel());
+            //return PartialView(new RegisterBuyerViewModel());
         }
 
-        // POST: /Account/_RegisterBuyerPartial
+        // POST: /Account/RegisterBuyer
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -79,11 +87,11 @@ namespace TradersMarketplace.Controllers
         {
             try
             {
-                new UsersServiceClient.UsersServiceClient().RegisterBuyer(model.Username,
-                    model.Password, model.Email, model.Name, model.Surname, model.Residence,
-                    model.Street, model.Town, model.PostCode, model.Country, model.CreditCardType,
-                    model.CardHolderName, model.Month, model.Year);
-                return RedirectToAction("LogOn", "Account");
+                new UsersServiceClient.UsersServiceClient().RegisterBuyer(model.BuyerUsername,
+                    model.BuyerPassword, model.BuyerEmail, model.BuyerName, model.BuyerSurname, model.BuyerResidence,
+                    model.BuyerStreet, model.BuyerTown, model.BuyerPostCode, model.BuyerCountry, model.BuyerCreditCardType,
+                    model.BuyerCardHolderName, model.BuyerMonth, model.BuyerYear);
+                return RedirectToAction("Login", "Account");
             }
             catch (FaultException ex)
             {
@@ -91,17 +99,17 @@ namespace TradersMarketplace.Controllers
             }
 
             //if an error occurs
-            return PartialView(model);
+            return View(model);
         }
 
-        // GET: /Account/_RegisterSellerPartial
+        // GET: /Account/RegisterSeller
         [AllowAnonymous]
         public ActionResult RegisterSeller()
         {
-            return PartialView(new RegisterSellerViewModel());
+            return View(new RegisterSellerViewModel());
         }
 
-        // POST: /Account/_RegisterSellerPartial
+        // POST: /Account/RegisterSeller
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -109,10 +117,10 @@ namespace TradersMarketplace.Controllers
         {
             try
             {
-                new UsersServiceClient.UsersServiceClient().RegisterSeller(model.Username,
-                    model.Password, model.Email, model.Name, model.Surname, model.Residence,
-                    model.Street, model.Town, model.PostCode, model.Country, model.RequiresDelivery,
-                    model.IbanNumber);
+                new UsersServiceClient.UsersServiceClient().RegisterSeller(model.SellerUsername,
+                    model.SellerPassword, model.SellerEmail, model.SellerName, model.SellerSurname, model.SellerResidence,
+                    model.SellerStreet, model.SellerTown, model.SellerPostCode, model.SellerCountry, model.SellerRequiresDelivery,
+                    model.SellerIbanNumber);
                 return RedirectToAction("LogOn", "Account");
             }
             catch (FaultException ex)
@@ -121,7 +129,7 @@ namespace TradersMarketplace.Controllers
             }
 
             //if an error occurs
-            return PartialView(model);
+            return View(model);
         }
 
     }

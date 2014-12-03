@@ -26,5 +26,10 @@ namespace DataAccessLayer
         {
             return Entity.Roles.SingleOrDefault(r => r.Role1.Trim().ToLower() == "seller");
         }
+
+        public Role GetGuestRole()
+        {
+            return Entity.Roles.SingleOrDefault(r => r.Role1.Trim().ToLower() == "guest");
+        }
     }
 }

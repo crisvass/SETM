@@ -20,7 +20,13 @@ namespace DataAccessLayer
 
         public void AddUser(User u)
         {
-            Entity.Users.Add(u);
+                Entity.Users.Add(u);
+                Entity.SaveChanges();
+        }
+
+        public void AddSeller(User u, Seller s)
+        {
+            u.Seller = s;
             Entity.SaveChanges();
         }
 
@@ -34,7 +40,7 @@ namespace DataAccessLayer
             return Entity.Users.SingleOrDefault(u => u.Email == email) != null;
         }
 
-        public bool IsUserAuthenticated(string username, string password)
+        public bool IsUserAuthenticated(string username, byte[] password)
         {
             if (Entity.Users.SingleOrDefault(u => u.Username == username && u.Password == password) != null)
                 return true;

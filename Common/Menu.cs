@@ -17,13 +17,18 @@ namespace Common
         public Menu()
         {
             this.Roles = new HashSet<Role>();
+            this.Menus1 = new HashSet<Menu>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
         public Nullable<int> Position { get; set; }
+        public string Action { get; set; }
+        public Nullable<int> ParentId { get; set; }
     
         public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Menu> Menus1 { get; set; }
+        public virtual Menu Menu1 { get; set; }
     }
 }
