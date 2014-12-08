@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Common.Views;
 
 namespace TradersMarketplace.Controllers
 {
@@ -10,7 +11,8 @@ namespace TradersMarketplace.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<ProductListView> products = new ProductsServiceClient.ProductsServiceClient().GetLatestProducts(9).ToList();
+            return View("Index", products);
         }
     }
 }

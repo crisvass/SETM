@@ -124,6 +124,8 @@
     <Compile Include="Utilities\GeneralUtitlities.cs" />
     <Compile Include="Views\CreditCardTypeView.cs" />
     <Compile Include="Views\MenusView.cs" />
+    <Compile Include="Views\ProductListView.cs" />
+    <Compile Include="Views\RoleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DatabaseModel.edmx">

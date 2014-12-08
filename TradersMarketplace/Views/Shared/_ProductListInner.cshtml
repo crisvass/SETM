@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Common.Views.ProductListView>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="product col-md-4">
+            <a href="@Url.Action("Details", "Product", new { id = item.Id })">
+                <span class="title">@item.Name</span>
+                @if (item.ImagePath == null)
+                {
+                    <img src="..\..\Images\No_Image_Available.png" alt="No image available" />
+                }
+                else
+                {
+                    <img src="..\..\Images\ProductImages\@item.ImagePath" alt="@item.Name Image" />
+                }
+                <span class="price"><span>&euro;</span>@item.Price</span>
+            </a>
+        </div>
+    }
+</div>
+
