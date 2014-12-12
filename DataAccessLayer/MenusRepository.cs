@@ -12,7 +12,7 @@ namespace DataAccessLayer
     {
         public MenusRepository() : base() { }
 
-        public IEnumerable<MenusView> GetMainMenus(Role r)
+        public IEnumerable<MenusView> GetMainMenus(IdentityRole r)
         {
             IEnumerable<MenusView> menus = r.Menus.Where(m => m.ParentId == null).Select(m => new MenusView()
             {
@@ -47,10 +47,10 @@ namespace DataAccessLayer
 
         public IEnumerable<MenusView> GetMainMenus(string username)
         {
-            IEnumerable<MenusView> menus = (from u in Entity.Users
-                                           from r in u.Roles
+            IEnumerable<MenusView> menus = (from u in Entity.ApplicationUsers
+                                           from r in u.IdentityRoles
                                            from m in r.Menus
-                                           where u.Username == username && m.ParentId == null
+                                           where u.UserName == username && m.ParentId == null
                                            select new MenusView()
                                            {
                                                MenuId = m.Id,

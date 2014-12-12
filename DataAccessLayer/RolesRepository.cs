@@ -14,35 +14,36 @@ namespace DataAccessLayer
 
         public IQueryable<RoleView> GetUserRoles(string username)
         {
-            return (from u in Entity.Users
-                    from r in u.Roles
-                    where u.Username == username
+            return (from u in Entity.ApplicationUsers
+                    from r in u.IdentityRoles
+                    where u.UserName == username
                     select new RoleView()
                     {
-                        RoleId = r.Id,
-                        Role = r.Role1
+                        RoleId = (int)r.Id,
+                        Role = r.Name
                     });
         }
 
-        public void AllocateRole(User u, Role r)
+        public void AllocateRole(ApplicationUser u, IdentityRole r)
         {
-            u.Roles.Add(r);
+            u.IdentityRoles.Add(r);
             Entity.SaveChanges();
         }
 
-        public Role GetBuyerRole()
+        public IdentityRole GetBuyerRole()
         {
-            return Entity.Roles.SingleOrDefault(r => r.Role1.Trim().ToLower() == "buyer");
+            return Entity.IdentityRoles.SingleOrDefault(r => r.Name.Trim().ToLower() == "buyer");
         }
 
-        public Role GetSellerRole()
+        public IdentityRole GetSellerRole()
         {
-            return Entity.Roles.SingleOrDefault(r => r.Role1.Trim().ToLower() == "seller");
+            IdentityRole role = Entity.IdentityRoles.SingleOrDefault(r => r.Name.Trim().ToLower() == "seller");
+            return role;
         }
 
-        public Role GetGuestRole()
+        public IdentityRole GetGuestRole()
         {
-            return Entity.Roles.SingleOrDefault(r => r.Role1.Trim().ToLower() == "guest");
+            return Entity.IdentityRoles.SingleOrDefault(r => r.Name.Trim().ToLower() == "guest");
         }
     }
 }

@@ -9,8 +9,7 @@ using System.Data.Common;
 
 namespace DataAccessLayer
 {
-    public class ConnectionClass
-    {
+    public class ConnectionClass {
         public dbTradersMarketplaceEntities Entity { get; set; }
         public DbContextTransaction Transaction { get; set; }
 

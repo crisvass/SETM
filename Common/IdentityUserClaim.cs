@@ -12,18 +12,14 @@ namespace Common
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class IdentityUserClaim
     {
-        public Role()
-        {
-            this.Menus = new HashSet<Menu>();
-            this.Users = new HashSet<User>();
-        }
-    
         public int Id { get; set; }
-        public string Role1 { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+        public string ApplicationUser_Id { get; set; }
     
-        public virtual ICollection<Menu> Menus { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

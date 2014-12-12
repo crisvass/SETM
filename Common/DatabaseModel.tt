@@ -343,7 +343,7 @@ public class CodeStringGenerator
         
         return string.Format(
             CultureInfo.InvariantCulture,
-            "{0} IEnumerable<{1}> {2}({3})",
+            "{0} IQueryable<{1}> {2}({3})",
             AccessibilityAndVirtual(Accessibility.ForMethod(edmFunction)),
             _typeMapper.GetTypeName(_typeMapper.GetReturnType(edmFunction), modelNamespace),
             _code.Escape(edmFunction),

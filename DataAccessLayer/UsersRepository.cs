@@ -13,18 +13,18 @@ namespace DataAccessLayer
     {
         public UsersRepository() : base() { }
 
-        public User GetUser(string username)
+        public ApplicationUser GetUser(string username)
         {
-            return Entity.Users.SingleOrDefault(u => u.Username == username);
+            return Entity.ApplicationUsers.SingleOrDefault(u => u.UserName == username);
         }
 
-        public void AddUser(User u)
+        public void AddUser(ApplicationUser u)
         {
-                Entity.Users.Add(u);
+                Entity.ApplicationUsers.Add(u);
                 Entity.SaveChanges();
         }
 
-        public void AddSeller(User u, Seller s)
+        public void AddSeller(ApplicationUser u, Seller s)
         {
             u.Seller = s;
             Entity.SaveChanges();
@@ -37,12 +37,12 @@ namespace DataAccessLayer
 
         public bool DoesEmailExist(string email)
         {
-            return Entity.Users.SingleOrDefault(u => u.Email == email) != null;
+            return Entity.ApplicationUsers.SingleOrDefault(u => u.Email == email) != null;
         }
 
-        public bool IsUserAuthenticated(string username, byte[] password)
+        public bool IsUserAuthenticated(string username, string password)//byte[] password)
         {
-            if (Entity.Users.SingleOrDefault(u => u.Username == username && u.Password == password) != null)
+            if (Entity.ApplicationUsers.SingleOrDefault(u => u.UserName == username && u.PasswordHash == password) != null)
                 return true;
             else
             {

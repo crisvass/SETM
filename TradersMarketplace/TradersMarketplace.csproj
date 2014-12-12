@@ -179,8 +179,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ApplicationDbServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\CreditCardsServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,6 +246,25 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\ApplicationDbServiceClient\DataAccessLayer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationDbServiceClient\Microsoft.AspNet.Identity.EntityFramework.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationDbServiceClient\service.wsdl" />
+    <None Include="Service References\ApplicationDbServiceClient\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationDbServiceClient\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationDbServiceClient\System.Data.Entity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\ApplicationDbServiceClient\TradersMarketplace.ApplicationDbServiceClient.ApplicationDbContext.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CreditCardsServiceClient\Common.Views.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -251,6 +274,12 @@
     </None>
     <None Include="Service References\CreditCardsServiceClient\service1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationDbServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\ApplicationDbServiceClient\configuration.svcinfo" />
+    <None Include="Service References\ApplicationDbServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Service References\CreditCardsServiceClient\TradersMarketplace.CreditCardsServiceClient.CreditCardTypeView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -373,6 +402,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ApplicationDbServiceClient\" />
     <WCFMetadataStorage Include="Service References\CreditCardsServiceClient\" />
     <WCFMetadataStorage Include="Service References\MenusServiceClient\" />
     <WCFMetadataStorage Include="Service References\ProductsServiceClient\" />

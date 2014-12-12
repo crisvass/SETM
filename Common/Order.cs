@@ -25,6 +25,5 @@ namespace Common
         public decimal VatRate { get; set; }
     
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual User User { get; set; }
     }
 }

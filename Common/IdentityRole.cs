@@ -10,10 +10,20 @@
 namespace Common
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class IdentityRole
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public IdentityRole()
+        {
+            this.ApplicationUsers = new HashSet<ApplicationUser>();
+            this.Menus = new HashSet<Menu>();
+        }
+    
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
     }
 }

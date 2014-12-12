@@ -21,6 +21,5 @@ namespace Common
         public string Username { get; set; }
     
         public virtual CreditCardType CreditCardType { get; set; }
-        public virtual User User { get; set; }
     }
 }

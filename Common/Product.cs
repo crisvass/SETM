@@ -17,8 +17,8 @@ namespace Common
         public Product()
         {
             this.OrderDetails = new HashSet<OrderDetail>();
-            this.ShoppingCarts = new HashSet<ShoppingCart>();
             this.ProductCommissions = new HashSet<ProductCommission>();
+            this.ShoppingCarts = new HashSet<ShoppingCart>();
         }
     
         public int Id { get; set; }
@@ -30,10 +30,11 @@ namespace Common
         public int QtyAvailable { get; set; }
         public decimal Price { get; set; }
         public string Image { get; set; }
+        public string SellerId { get; set; }
     
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
         public virtual ICollection<ProductCommission> ProductCommissions { get; set; }
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

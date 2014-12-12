@@ -30,20 +30,20 @@ namespace BusinessLayer_WebServices
                 {
                     if (!ur.DoesUsernameExist(username))
                     {
-                        var data = Encoding.UTF8.GetBytes(password);
-                        byte[] hashedPassword;
-                        using (SHA512 shaM = new SHA512Managed())
-                        {
-                            hashedPassword = shaM.ComputeHash(data);
-                        }
+                        //var data = Encoding.UTF8.GetBytes(password);
+                        //byte[] hashedPassword;
+                        //using (SHA512 shaM = new SHA512Managed())
+                        //{
+                        //    hashedPassword = shaM.ComputeHash(data);
+                        //}
 
-                        User u = new User()
+                        ApplicationUser u = new ApplicationUser()
                         {
-                            Username = username,
-                            Password = hashedPassword,
+                            UserName = username,
+                            PasswordHash = password,
                             Email = email,
-                            Name = name,
-                            Surname = surname,
+                            FirstName = name,
+                            LastName = surname,
                             Residence = residence,
                             Street = street,
                             Town = town,
@@ -110,20 +110,20 @@ namespace BusinessLayer_WebServices
                 {
                     if (!ur.DoesUsernameExist(username))
                     {
-                        var data = Encoding.UTF8.GetBytes(password);
-                        byte[] hashedPassword;
-                        using (SHA512 shaM = new SHA512Managed())
-                        {
-                            hashedPassword = shaM.ComputeHash(data);
-                        }
+                        //var data = Encoding.UTF8.GetBytes(password);
+                        //byte[] hashedPassword;
+                        //using (SHA512 shaM = new SHA512Managed())
+                        //{
+                        //    hashedPassword = shaM.ComputeHash(data);
+                        //}
 
-                        User u = new User()
+                        ApplicationUser u = new ApplicationUser()
                         {
-                            Username = username,
-                            Password = hashedPassword,
+                            UserName = username,
+                            PasswordHash = password,
                             Email = email,
-                            Name = name,
-                            Surname = surname,
+                            FirstName = name,
+                            LastName = surname,
                             Residence = residence,
                             Street = street,
                             Town = town,
@@ -172,14 +172,14 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                var data = Encoding.UTF8.GetBytes(password);
-                byte[] hashedPassword;
-                using (SHA512 shaM = new SHA512Managed())
-                {
-                    hashedPassword = shaM.ComputeHash(data);
-                }
+                //var data = Encoding.UTF8.GetBytes(password);
+                //byte[] hashedPassword;
+                //using (SHA512 shaM = new SHA512Managed())
+                //{
+                //    hashedPassword = shaM.ComputeHash(data);
+                //}
 
-                return new UsersRepository().IsUserAuthenticated(username, hashedPassword);
+                return new UsersRepository().IsUserAuthenticated(username, password);
             }
             catch (InvalidUsernameException ex)
             {
