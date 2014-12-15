@@ -25,6 +25,7 @@ namespace Common
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public virtual DbSet<CommissionType> CommissionTypes { get; set; }
         public virtual DbSet<CreditCardDetail> CreditCardDetails { get; set; }
@@ -32,6 +33,7 @@ namespace Common
         public virtual DbSet<IdentityRole> IdentityRoles { get; set; }
         public virtual DbSet<IdentityUserClaim> IdentityUserClaims { get; set; }
         public virtual DbSet<IdentityUserLogin> IdentityUserLogins { get; set; }
+        public virtual DbSet<IdentityUserRole> IdentityUserRoles { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }

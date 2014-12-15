@@ -34,7 +34,8 @@ namespace BusinessLayer_WebServices
                 MenusRepository mr = new MenusRepository();
                 UsersRepository ur = new UsersRepository();
                 mr.Entity = ur.Entity;
-                return mr.GetMainMenus(username);
+                //return mr.GetMainMenus(username);
+                throw new NotImplementedException();
             }
             catch
             {

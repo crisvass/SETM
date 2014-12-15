@@ -133,21 +133,27 @@ namespace TradersMarketplace.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.BuyerUsername, Email = model.BuyerEmail };
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.BuyerUsername,
+                        Email = model.BuyerEmail
+                    };
                     var result = await UserManager.CreateAsync(user, model.BuyerPassword);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        var currentUser = UserManager.FindByName(user.UserName);
 
+                        var roleresult = UserManager.AddToRole(currentUser.Id, "Buyer");
+
+                        new UsersServiceClient.UsersServiceClient().RegisterBuyer(currentUser.Id, model.BuyerName, 
+                            model.BuyerSurname, model.BuyerResidence, model.BuyerStreet, model.BuyerTown, 
+                            model.BuyerPostCode, model.BuyerCountry, model.BuyerCreditCardType, model.BuyerCardHolderName, 
+                            model.BuyerMonth, model.BuyerYear);
+
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToAction("Index", "Home");
                     }
-
                 }
-                new UsersServiceClient.UsersServiceClient().RegisterBuyer(model.BuyerUsername,
-                    model.BuyerPassword, model.BuyerEmail, model.BuyerName, model.BuyerSurname, model.BuyerResidence,
-                    model.BuyerStreet, model.BuyerTown, model.BuyerPostCode, model.BuyerCountry, model.BuyerCreditCardType,
-                    model.BuyerCardHolderName, model.BuyerMonth, model.BuyerYear);
-                return RedirectToAction("Login", "Account");
             }
             catch (FaultException ex)
             {
@@ -175,22 +181,28 @@ namespace TradersMarketplace.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.SellerUsername, Email = model.SellerPassword };
+                    var user = new Common.Models.ApplicationUser
+                    {
+                        UserName = model.SellerUsername,
+                        Email = model.SellerEmail
+                    };
                     var result = await UserManager.CreateAsync(user, model.SellerPassword);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
+                        var currentUser = UserManager.FindByName(user.UserName);
+
+                        var roleresult = UserManager.AddToRole(currentUser.Id, "Seller");
+
+                        new UsersServiceClient.UsersServiceClient().RegisterSeller(currentUser.Id, model.SellerName, 
+                            model.SellerSurname, model.SellerResidence, model.SellerStreet, model.SellerTown, 
+                            model.SellerPostCode, model.SellerCountry, model.SellerRequiresDelivery, model.SellerIbanNumber);
+
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToAction("Index", "Home");
                     }
-
                 }
-
-                new UsersServiceClient.UsersServiceClient().RegisterSeller(model.SellerUsername,
-                    model.SellerPassword, model.SellerEmail, model.SellerName, model.SellerSurname, model.SellerResidence,
-                    model.SellerStreet, model.SellerTown, model.SellerPostCode, model.SellerCountry, model.SellerRequiresDelivery,
-                    model.SellerIbanNumber);
-                return RedirectToAction("LogOn", "Account");
             }
             catch (FaultException ex)
             {
@@ -252,19 +264,19 @@ namespace TradersMarketplace.Controllers
         //        UserId = userId;
         //    }
 
-            //public string LoginProvider { get; set; }
-            //public string RedirectUri { get; set; }
-            //public string UserId { get; set; }
+        //public string LoginProvider { get; set; }
+        //public string RedirectUri { get; set; }
+        //public string UserId { get; set; }
 
-            //public override void ExecuteResult(ControllerContext context)
-            //{
-            //    var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-            //    if (UserId != null)
-            //    {
-            //        properties.Dictionary[XsrfKey] = UserId;
-            //    }
-            //    context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
-            //}
+        //public override void ExecuteResult(ControllerContext context)
+        //{
+        //    var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
+        //    if (UserId != null)
+        //    {
+        //        properties.Dictionary[XsrfKey] = UserId;
+        //    }
+        //    context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+        //}
         //}
         #endregion
 

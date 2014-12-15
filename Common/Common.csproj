@@ -72,6 +72,9 @@
     <Compile Include="CustomExceptions\InvalidPasswordException.cs" />
     <Compile Include="CustomExceptions\InvalidUsernameException.cs" />
     <Compile Include="CustomExceptions\TransactionFailedException.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +97,9 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IdentityUserLogin.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityUserRole.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">

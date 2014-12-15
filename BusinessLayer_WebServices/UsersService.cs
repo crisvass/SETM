@@ -14,9 +14,8 @@ namespace BusinessLayer_WebServices
 {
     public class UsersService : IUsersService
     {
-        public void RegisterBuyer(string username, string password, string email,
-            string name, string surname, string residence, string street, string town,
-            string postCode, string country, int creditCardTypeId, string cardHolderName,
+        public void RegisterBuyer(string id, string name, string surname, string residence, string street,
+            string town, string postCode, string country, int creditCardTypeId, string cardHolderName,
             int expiryDateMonth, int expiryDateYear)
         {
             UsersRepository ur = new UsersRepository();
@@ -26,64 +25,48 @@ namespace BusinessLayer_WebServices
 
             try
             {
-                if (!ur.DoesEmailExist(email))
-                {
-                    if (!ur.DoesUsernameExist(username))
+                ApplicationUser u = new ApplicationUser()
                     {
-                        //var data = Encoding.UTF8.GetBytes(password);
-                        //byte[] hashedPassword;
-                        //using (SHA512 shaM = new SHA512Managed())
-                        //{
-                        //    hashedPassword = shaM.ComputeHash(data);
-                        //}
+                        Id = id,
+                        FirstName = name,
+                        LastName = surname,
+                        Residence = residence,
+                        Street = street,
+                        Town = town,
+                        PostCode = postCode,
+                        Country = country
+                    };
 
-                        ApplicationUser u = new ApplicationUser()
-                        {
-                            UserName = username,
-                            PasswordHash = password,
-                            Email = email,
-                            FirstName = name,
-                            LastName = surname,
-                            Residence = residence,
-                            Street = street,
-                            Town = town,
-                            PostCode = postCode,
-                            Country = country
-                        };
+                CreditCardDetail cc = null;
+                if (creditCardTypeId != null && cardHolderName != null && expiryDateMonth != null && expiryDateYear != null)
+                {
+                    cc = new CreditCardDetail()
+                    {
+                        CreditCardTypeId = creditCardTypeId,
+                        CardHolderName = cardHolderName,
+                        ExpiryDate = new DateTime(expiryDateYear, expiryDateMonth,
+                            GeneralUtitlities.GetLastDayOfTheMonth(expiryDateMonth, expiryDateYear))
 
-                        CreditCardDetail cc = null;
-                        if (creditCardTypeId != null && cardHolderName != null && expiryDateMonth != null && expiryDateYear != null)
-                        {
-                            cc = new CreditCardDetail()
-                            {
-                                CreditCardTypeId = creditCardTypeId,
-                                CardHolderName = cardHolderName,
-                                ExpiryDate = new DateTime(expiryDateYear, expiryDateMonth,
-                                    GeneralUtitlities.GetLastDayOfTheMonth(expiryDateMonth, expiryDateYear))
+                    };
+                }
 
-                            };
-                        }
-
-                        try
-                        {
-                            ur.Entity.Database.Connection.Open();
-                            rr.Transaction = ur.Transaction = ccr.Transaction = ur.Entity.Database.BeginTransaction();
-                            ur.AddUser(u);
-                            if (cc != null)
-                                ccr.AddCreditCardDetail(cc);
-                            rr.AllocateRole(u, rr.GetBuyerRole());
-                            ur.Transaction.Commit();
-                        }
-                        catch
-                        {
-                            ur.Transaction.Rollback();
-                            throw new TransactionFailedException("Registration Failed. Please try again or contact administrator if error persists.");
-                        }
-                        finally
-                        {
-                            ur.Entity.Database.Connection.Close();
-                        }
-                    }
+                try
+                {
+                    ur.Entity.Database.Connection.Open();
+                    rr.Transaction = ur.Transaction = ccr.Transaction = ur.Entity.Database.BeginTransaction();
+                    ur.UpdateUser(u);
+                    if (cc != null)
+                        ccr.AddCreditCardDetail(cc);
+                    ur.Transaction.Commit();
+                }
+                catch
+                {
+                    ur.Transaction.Rollback();
+                    throw new TransactionFailedException("Registration Failed. Please try again or contact administrator if error persists.");
+                }
+                finally
+                {
+                    ur.Entity.Database.Connection.Close();
                 }
             }
             catch (TransactionFailedException ex)
@@ -97,66 +80,53 @@ namespace BusinessLayer_WebServices
         }
 
 
-        public void RegisterSeller(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber)
+        public void RegisterSeller(string id, string name, string surname, string residence, string street, string town,
+            string postCode, string country, bool requiresDelivery, string ibanNumber)
         {
             UsersRepository ur = new UsersRepository();
             RolesRepository rr = new RolesRepository();
-            
+
             ur.Entity = rr.Entity;
 
             try
             {
-                if (!ur.DoesEmailExist(email))
+
+                ApplicationUser u = new ApplicationUser()
                 {
-                    if (!ur.DoesUsernameExist(username))
-                    {
-                        //var data = Encoding.UTF8.GetBytes(password);
-                        //byte[] hashedPassword;
-                        //using (SHA512 shaM = new SHA512Managed())
-                        //{
-                        //    hashedPassword = shaM.ComputeHash(data);
-                        //}
+                    Id = id,
+                    FirstName = name,
+                    LastName = surname,
+                    Residence = residence,
+                    Street = street,
+                    Town = town,
+                    PostCode = postCode,
+                    Country = country
+                };
 
-                        ApplicationUser u = new ApplicationUser()
-                        {
-                            UserName = username,
-                            PasswordHash = password,
-                            Email = email,
-                            FirstName = name,
-                            LastName = surname,
-                            Residence = residence,
-                            Street = street,
-                            Town = town,
-                            PostCode = postCode,
-                            Country = country                           
-                        };
+                Seller s = new Seller()
+                {
+                    IBANNumber = ibanNumber,
+                    RequiresDelivery = requiresDelivery
+                };
 
-                        Seller s = new Seller()
-                        {
-                            IBANNumber = ibanNumber,
-                            RequiresDelivery = requiresDelivery
-                        };
-                        
-                        try
-                        {
-                            ur.Entity.Database.Connection.Open();
-                            rr.Transaction = ur.Transaction = ur.Entity.Database.BeginTransaction();
-                            ur.AddUser(u);
-                            ur.AddSeller(u, s);
-                            rr.AllocateRole(u, rr.GetSellerRole());
-                            ur.Transaction.Commit();
-                        }
-                        catch
-                        {
-                            ur.Transaction.Rollback();
-                            throw new TransactionFailedException("Registration Failed. Please try again or contact administrator if error persists.");
-                        }
-                        finally
-                        {
-                            ur.Entity.Database.Connection.Close();
-                        }
-                    }
+                try
+                {
+                    ur.Entity.Database.Connection.Open();
+                    rr.Transaction = ur.Transaction = ur.Entity.Database.BeginTransaction();
+                    ur.UpdateUser(u);
+                    ur.AddSeller(u, s);
+                    ur.Transaction.Commit();
                 }
+                catch
+                {
+                    ur.Transaction.Rollback();
+                    throw new TransactionFailedException("Registration Failed. Please try again or contact administrator if error persists.");
+                }
+                finally
+                {
+                    ur.Entity.Database.Connection.Close();
+                }
+
             }
             catch (TransactionFailedException ex)
             {

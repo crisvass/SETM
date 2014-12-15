@@ -12,21 +12,21 @@ namespace DataAccessLayer
     {
         public RolesRepository() : base() { }
 
-        public IQueryable<RoleView> GetUserRoles(string username)
-        {
-            return (from u in Entity.ApplicationUsers
-                    from r in u.IdentityRoles
-                    where u.UserName == username
-                    select new RoleView()
-                    {
-                        RoleId = (int)r.Id,
-                        Role = r.Name
-                    });
-        }
+        //public IQueryable<RoleView> GetUserRoles(string username)
+        //{
+        //return (from u in entity.applicationusers
+        //        from r in u.identityroles
+        //        where u.username == username
+        //        select new roleview()
+        //        {
+        //            roleid = guid.parse(r.id),
+        //            role = r.name
+        //        });
+        //}
 
         public void AllocateRole(ApplicationUser u, IdentityRole r)
         {
-            u.IdentityRoles.Add(r);
+            u.IdentityUserRoles.Add(new IdentityUserRole() { ApplicationUser = u, IdentityRole = r });
             Entity.SaveChanges();
         }
 

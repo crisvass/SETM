@@ -45,42 +45,42 @@ namespace DataAccessLayer
             return menusWithSubmenus.AsQueryable();
         }
 
-        public IEnumerable<MenusView> GetMainMenus(string username)
-        {
-            IEnumerable<MenusView> menus = (from u in Entity.ApplicationUsers
-                                           from r in u.IdentityRoles
-                                           from m in r.Menus
-                                           where u.UserName == username && m.ParentId == null
-                                           select new MenusView()
-                                           {
-                                               MenuId = m.Id,
-                                               Action = m.Action,
-                                               Title = m.Title,
-                                               Url = m.Url,
-                                               Position = (int)m.Position
-                                           }
-                   ).Distinct().OrderBy(m => m.Position).AsQueryable();
+        //public IEnumerable<MenusView> GetMainMenus(string username)
+        //{
+        //    IEnumerable<MenusView> menus = (from u in Entity.ApplicationUsers
+        //                                    from r in u.IdentityUserRoles
+        //                                    from m in r.Menus
+        //                                    where u.UserName == username && m.ParentId == null
+        //                                    select new MenusView()
+        //                                    {
+        //                                        MenuId = m.Id,
+        //                                        Action = m.Action,
+        //                                        Title = m.Title,
+        //                                        Url = m.Url,
+        //                                        Position = (int)m.Position
+        //                                    }
+        //        ).Distinct().OrderBy(m => m.Position).AsQueryable();
 
-            List<MenusView> menusWithSubmenus = new List<MenusView>();
-            foreach (MenusView mv in menus)
-            {
-                MenusView menu = mv;
-                if (Entity.Menus.Where(m => m.ParentId == menu.MenuId).Count() > 0)
-                {
-                    menu.HasSubmenus = true;
-                    menu.Submenus = Entity.Menus.Where(m => m.ParentId == menu.MenuId).Select(m => new MenusView()
-                    {
-                        MenuId = m.Id,
-                        Action = m.Action,
-                        Title = m.Title,
-                        Url = m.Url,
-                        Position = (int)m.Position
-                    }).OrderBy(m => m.Position).AsQueryable();
-                }
-                menusWithSubmenus.Add(menu);
-            }
+        //    List<MenusView> menusWithSubmenus = new List<MenusView>();
+        //    foreach (MenusView mv in menus)
+        //    {
+        //        MenusView menu = mv;
+        //        if (Entity.Menus.Where(m => m.ParentId == menu.MenuId).Count() > 0)
+        //        {
+        //            menu.HasSubmenus = true;
+        //            menu.Submenus = Entity.Menus.Where(m => m.ParentId == menu.MenuId).Select(m => new MenusView()
+        //            {
+        //                MenuId = m.Id,
+        //                Action = m.Action,
+        //                Title = m.Title,
+        //                Url = m.Url,
+        //                Position = (int)m.Position
+        //            }).OrderBy(m => m.Position).AsQueryable();
+        //        }
+        //        menusWithSubmenus.Add(menu);
+        //    }
 
-            return menusWithSubmenus.AsQueryable();
-        }
+        //    return menusWithSubmenus.AsQueryable();
+        //}
     }
 }

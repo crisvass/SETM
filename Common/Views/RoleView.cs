@@ -8,7 +8,7 @@ namespace Common.Views
 {
     public class RoleView
     {
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
         public string Role { get; set; }
     }
 }

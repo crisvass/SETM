@@ -18,10 +18,22 @@ namespace DataAccessLayer
             return Entity.ApplicationUsers.SingleOrDefault(u => u.UserName == username);
         }
 
-        public void AddUser(ApplicationUser u)
+        public ApplicationUser GetUserById(string id)
         {
-                Entity.ApplicationUsers.Add(u);
-                Entity.SaveChanges();
+            return Entity.ApplicationUsers.SingleOrDefault(u => u.Id == id);
+        }
+
+        public void UpdateUser(ApplicationUser u)
+        {
+            ApplicationUser user = GetUserById(u.Id);
+            user.FirstName = u.FirstName;
+            user.LastName = u.LastName;
+            user.Residence = u.Residence;
+            user.Street = u.Street;
+            user.Town = u.Town;
+            user.PostCode = u.PostCode;
+            user.Country = u.Country;
+            Entity.SaveChanges();
         }
 
         public void AddSeller(ApplicationUser u, Seller s)

@@ -111,13 +111,13 @@ namespace TradersMarketplace.ProductsServiceClient {
     public interface IProductsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetLatestProducts", ReplyAction="http://tempuri.org/IProductsService/GetLatestProductsResponse")]
-       System.Collections.Generic.List<Common.Views.ProductListView> GetLatestProducts(int count);
+        System.Collections.Generic.List<Common.Views.ProductListView> GetLatestProducts(int count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetLatestProducts", ReplyAction="http://tempuri.org/IProductsService/GetLatestProductsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetLatestProductsAsync(int count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetAllProducts", ReplyAction="http://tempuri.org/IProductsService/GetAllProductsResponse")]
-       System.Collections.Generic.List<Common.Views.ProductListView> GetAllProducts();
+        System.Collections.Generic.List<Common.Views.ProductListView> GetAllProducts();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetAllProducts", ReplyAction="http://tempuri.org/IProductsService/GetAllProductsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetAllProductsAsync();

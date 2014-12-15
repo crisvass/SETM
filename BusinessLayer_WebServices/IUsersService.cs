@@ -12,13 +12,13 @@ namespace BusinessLayer_WebServices
     public interface IUsersService
     {
         [OperationContract]
-        void RegisterBuyer(string username, string password, string email, string name,
+        void RegisterBuyer(string id, string name,
             string surname, string residence, string street, string town, string postCode,
             string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth,
             int expiryDateYear);
 
         [OperationContract]
-        void RegisterSeller(string username, string password, string email, string name,
+        void RegisterSeller(string id, string name,
             string surname, string residence, string street, string town, string postCode,
             string country, bool requiresDelivery, string ibanNumber);
 

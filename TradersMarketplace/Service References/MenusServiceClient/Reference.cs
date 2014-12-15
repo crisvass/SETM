@@ -35,7 +35,7 @@ namespace TradersMarketplace.MenusServiceClient {
         private int PositionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.IEnumerable<Common.Views.MenusView> SubmenusField;
+        private System.Collections.Generic.List<Common.Views.MenusView> SubmenusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TitleField;
@@ -106,7 +106,7 @@ namespace TradersMarketplace.MenusServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.IEnumerable<Common.Views.MenusView> Submenus {
+        public System.Collections.Generic.List<Common.Views.MenusView> Submenus {
             get {
                 return this.SubmenusField;
             }
@@ -159,16 +159,16 @@ namespace TradersMarketplace.MenusServiceClient {
     public interface IMenusService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetGuestMenus", ReplyAction="http://tempuri.org/IMenusService/GetGuestMenusResponse")]
-        System.Collections.Generic.IEnumerable<Common.Views.MenusView> GetGuestMenus();
+        System.Collections.Generic.List<Common.Views.MenusView> GetGuestMenus();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetGuestMenus", ReplyAction="http://tempuri.org/IMenusService/GetGuestMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Common.Views.MenusView>> GetGuestMenusAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetGuestMenusAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetUserMenus", ReplyAction="http://tempuri.org/IMenusService/GetUserMenusResponse")]
-        System.Collections.Generic.IEnumerable<Common.Views.MenusView> GetUserMenus(string username);
+        System.Collections.Generic.List<Common.Views.MenusView> GetUserMenus(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetUserMenus", ReplyAction="http://tempuri.org/IMenusService/GetUserMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Common.Views.MenusView>> GetUserMenusAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetUserMenusAsync(string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -198,19 +198,19 @@ namespace TradersMarketplace.MenusServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.IEnumerable<Common.Views.MenusView> GetGuestMenus() {
+        public System.Collections.Generic.List<Common.Views.MenusView> GetGuestMenus() {
             return base.Channel.GetGuestMenus();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Common.Views.MenusView>> GetGuestMenusAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetGuestMenusAsync() {
             return base.Channel.GetGuestMenusAsync();
         }
         
-        public System.Collections.Generic.IEnumerable<Common.Views.MenusView> GetUserMenus(string username) {
+        public System.Collections.Generic.List<Common.Views.MenusView> GetUserMenus(string username) {
             return base.Channel.GetUserMenus(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<Common.Views.MenusView>> GetUserMenusAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetUserMenusAsync(string username) {
             return base.Channel.GetUserMenusAsync(username);
         }
     }

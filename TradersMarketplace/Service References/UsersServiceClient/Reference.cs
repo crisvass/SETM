@@ -16,16 +16,16 @@ namespace TradersMarketplace.UsersServiceClient {
     public interface IUsersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/RegisterBuyer", ReplyAction="http://tempuri.org/IUsersService/RegisterBuyerResponse")]
-        void RegisterBuyer(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear);
+        void RegisterBuyer(string id, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/RegisterBuyer", ReplyAction="http://tempuri.org/IUsersService/RegisterBuyerResponse")]
-        System.Threading.Tasks.Task RegisterBuyerAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear);
+        System.Threading.Tasks.Task RegisterBuyerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/RegisterSeller", ReplyAction="http://tempuri.org/IUsersService/RegisterSellerResponse")]
-        void RegisterSeller(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber);
+        void RegisterSeller(string id, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/RegisterSeller", ReplyAction="http://tempuri.org/IUsersService/RegisterSellerResponse")]
-        System.Threading.Tasks.Task RegisterSellerAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber);
+        System.Threading.Tasks.Task RegisterSellerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/IsUserAuthenticated", ReplyAction="http://tempuri.org/IUsersService/IsUserAuthenticatedResponse")]
         bool IsUserAuthenticated(string username, string password);
@@ -61,20 +61,20 @@ namespace TradersMarketplace.UsersServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public void RegisterBuyer(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear) {
-            base.Channel.RegisterBuyer(username, password, email, name, surname, residence, street, town, postCode, country, creditCardTypeId, cardHolderName, expiryDateMonth, expiryDateYear);
+        public void RegisterBuyer(string id, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear) {
+            base.Channel.RegisterBuyer(id, name, surname, residence, street, town, postCode, country, creditCardTypeId, cardHolderName, expiryDateMonth, expiryDateYear);
         }
         
-        public System.Threading.Tasks.Task RegisterBuyerAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear) {
-            return base.Channel.RegisterBuyerAsync(username, password, email, name, surname, residence, street, town, postCode, country, creditCardTypeId, cardHolderName, expiryDateMonth, expiryDateYear);
+        public System.Threading.Tasks.Task RegisterBuyerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, int creditCardTypeId, string cardHolderName, int expiryDateMonth, int expiryDateYear) {
+            return base.Channel.RegisterBuyerAsync(id, name, surname, residence, street, town, postCode, country, creditCardTypeId, cardHolderName, expiryDateMonth, expiryDateYear);
         }
         
-        public void RegisterSeller(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber) {
-            base.Channel.RegisterSeller(username, password, email, name, surname, residence, street, town, postCode, country, requiresDelivery, ibanNumber);
+        public void RegisterSeller(string id, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber) {
+            base.Channel.RegisterSeller(id, name, surname, residence, street, town, postCode, country, requiresDelivery, ibanNumber);
         }
         
-        public System.Threading.Tasks.Task RegisterSellerAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber) {
-            return base.Channel.RegisterSellerAsync(username, password, email, name, surname, residence, street, town, postCode, country, requiresDelivery, ibanNumber);
+        public System.Threading.Tasks.Task RegisterSellerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, bool requiresDelivery, string ibanNumber) {
+            return base.Channel.RegisterSellerAsync(id, name, surname, residence, street, town, postCode, country, requiresDelivery, ibanNumber);
         }
         
         public bool IsUserAuthenticated(string username, string password) {

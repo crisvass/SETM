@@ -18,7 +18,7 @@ namespace Common
         {
             this.IdentityUserClaims = new HashSet<IdentityUserClaim>();
             this.IdentityUserLogins = new HashSet<IdentityUserLogin>();
-            this.IdentityRoles = new HashSet<IdentityRole>();
+            this.IdentityUserRoles = new HashSet<IdentityUserRole>();
         }
     
         public string Id { get; set; }
@@ -33,18 +33,18 @@ namespace Common
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public string ContactNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ContactNumber { get; set; }
         public string Residence { get; set; }
         public string Street { get; set; }
-        public string Town { get; set; }
         public string PostCode { get; set; }
+        public string Town { get; set; }
         public string Country { get; set; }
     
-        public virtual Seller Seller { get; set; }
         public virtual ICollection<IdentityUserClaim> IdentityUserClaims { get; set; }
         public virtual ICollection<IdentityUserLogin> IdentityUserLogins { get; set; }
-        public virtual ICollection<IdentityRole> IdentityRoles { get; set; }
+        public virtual ICollection<IdentityUserRole> IdentityUserRoles { get; set; }
+        public virtual Seller Seller { get; set; }
     }
 }

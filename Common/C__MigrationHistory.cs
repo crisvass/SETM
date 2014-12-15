@@ -12,18 +12,11 @@ namespace Common
     using System;
     using System.Collections.Generic;
     
-    public partial class IdentityRole
+    public partial class C__MigrationHistory
     {
-        public IdentityRole()
-        {
-            this.IdentityUserRoles = new HashSet<IdentityUserRole>();
-            this.Menus = new HashSet<Menu>();
-        }
-    
-        public string Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<IdentityUserRole> IdentityUserRoles { get; set; }
-        public virtual ICollection<Menu> Menus { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace TradersMarketplace.RolesServiceClient {
         private string RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleIdField;
+        private System.Guid RoleIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -52,7 +52,7 @@ namespace TradersMarketplace.RolesServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleId {
+        public System.Guid RoleId {
             get {
                 return this.RoleIdField;
             }
@@ -111,8 +111,9 @@ namespace TradersMarketplace.RolesServiceClient {
         public RolesServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
-        
-        public System.Collections.Generic.List<Common.Views.RoleView> GetUserRoles(string username) {
+
+        public System.Collections.Generic.List<Common.Views.RoleView> GetUserRoles(string username)
+        {
             return base.Channel.GetUserRoles(username);
         }
         

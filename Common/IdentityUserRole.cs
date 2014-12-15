@@ -12,18 +12,14 @@ namespace Common
     using System;
     using System.Collections.Generic;
     
-    public partial class IdentityRole
+    public partial class IdentityUserRole
     {
-        public IdentityRole()
-        {
-            this.IdentityUserRoles = new HashSet<IdentityUserRole>();
-            this.Menus = new HashSet<Menu>();
-        }
+        public string RoleId { get; set; }
+        public string UserId { get; set; }
+        public string IdentityRole_Id { get; set; }
+        public string ApplicationUser_Id { get; set; }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<IdentityUserRole> IdentityUserRoles { get; set; }
-        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual IdentityRole IdentityRole { get; set; }
     }
 }

@@ -16,7 +16,8 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                return new RolesRepository().GetUserRoles(username);
+                //return new RolesRepository().GetUserRoles(username);
+                throw new NotImplementedException();
             }
             catch
             {
