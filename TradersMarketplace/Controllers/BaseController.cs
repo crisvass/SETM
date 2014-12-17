@@ -13,12 +13,12 @@ namespace TradersMarketplace.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                //ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetUserMenus(HttpContext.User.Identity.Name);
+                ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetUserMenus(HttpContext.User.Identity.Name);
                 //ViewBag.CartItems = new ShoppingCartsServiceClient().GetNumberOfItems(HttpContext.User.Identity.Name);
             }
             else
             {
-                //ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetGuestMenus();
+                ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetGuestMenus();
                 //ViewBag.CartItems = 0;
             }
 

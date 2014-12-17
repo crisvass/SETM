@@ -36,9 +36,9 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
-        public void AddSeller(ApplicationUser u, Seller s)
+        public void AddSeller(Seller s)
         {
-            u.Seller = s;
+            Entity.Sellers.Add(s);
             Entity.SaveChanges();
         }
 
@@ -63,6 +63,12 @@ namespace DataAccessLayer
                 else
                     throw new InvalidPasswordException();
             }
+        }
+
+        public void DeleteUser(string userId)
+        {
+            Entity.ApplicationUsers.Remove(GetUserById(userId));
+            Entity.SaveChanges();
         }
     }
 }

@@ -61,6 +61,7 @@ namespace BusinessLayer_WebServices
                 }
                 catch
                 {
+                    ur.DeleteUser(id);
                     ur.Transaction.Rollback();
                     throw new TransactionFailedException("Registration Failed. Please try again or contact administrator if error persists.");
                 }
@@ -105,6 +106,7 @@ namespace BusinessLayer_WebServices
 
                 Seller s = new Seller()
                 {
+                    Id = id,
                     IBANNumber = ibanNumber,
                     RequiresDelivery = requiresDelivery
                 };
@@ -114,11 +116,12 @@ namespace BusinessLayer_WebServices
                     ur.Entity.Database.Connection.Open();
                     rr.Transaction = ur.Transaction = ur.Entity.Database.BeginTransaction();
                     ur.UpdateUser(u);
-                    ur.AddSeller(u, s);
+                    ur.AddSeller(s);
                     ur.Transaction.Commit();
                 }
                 catch
                 {
+                    ur.DeleteUser(id);
                     ur.Transaction.Rollback();
                     throw new TransactionFailedException("Registration Failed. Please try again or contact administrator if error persists.");
                 }

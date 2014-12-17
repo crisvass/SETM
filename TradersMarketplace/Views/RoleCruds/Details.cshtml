@@ -1,0 +1,31 @@
+﻿@model TradersMarketplace.RolesServiceClient.RoleView
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Role Details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

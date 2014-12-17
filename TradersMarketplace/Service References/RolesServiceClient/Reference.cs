@@ -23,10 +23,10 @@ namespace TradersMarketplace.RolesServiceClient {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RoleField;
+        private string RoleIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid RoleIdField;
+        private string RoleNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -39,27 +39,27 @@ namespace TradersMarketplace.RolesServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Role {
+        public string RoleId {
             get {
-                return this.RoleField;
+                return this.RoleIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
-                    this.RoleField = value;
-                    this.RaisePropertyChanged("Role");
+                if ((object.ReferenceEquals(this.RoleIdField, value) != true)) {
+                    this.RoleIdField = value;
+                    this.RaisePropertyChanged("RoleId");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid RoleId {
+        public string RoleName {
             get {
-                return this.RoleIdField;
+                return this.RoleNameField;
             }
             set {
-                if ((this.RoleIdField.Equals(value) != true)) {
-                    this.RoleIdField = value;
-                    this.RaisePropertyChanged("RoleId");
+                if ((object.ReferenceEquals(this.RoleNameField, value) != true)) {
+                    this.RoleNameField = value;
+                    this.RaisePropertyChanged("RoleName");
                 }
             }
         }
@@ -78,11 +78,35 @@ namespace TradersMarketplace.RolesServiceClient {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RolesServiceClient.IRolesService")]
     public interface IRolesService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetUserRoles", ReplyAction="http://tempuri.org/IRolesService/GetUserRolesResponse")]
-        System.Collections.Generic.List<Common.Views.RoleView> GetUserRoles(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
+        System.Collections.Generic.List<Common.Views.RoleView> GetRoles();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetUserRoles", ReplyAction="http://tempuri.org/IRolesService/GetUserRolesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.RoleView>> GetUserRolesAsync(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.RoleView>> GetRolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/AddRole", ReplyAction="http://tempuri.org/IRolesService/AddRoleResponse")]
+        void AddRole(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/AddRole", ReplyAction="http://tempuri.org/IRolesService/AddRoleResponse")]
+        System.Threading.Tasks.Task AddRoleAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/UpdateRole", ReplyAction="http://tempuri.org/IRolesService/UpdateRoleResponse")]
+        void UpdateRole(string id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/UpdateRole", ReplyAction="http://tempuri.org/IRolesService/UpdateRoleResponse")]
+        System.Threading.Tasks.Task UpdateRoleAsync(string id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRole", ReplyAction="http://tempuri.org/IRolesService/GetRoleResponse")]
+        TradersMarketplace.RolesServiceClient.RoleView GetRole(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRole", ReplyAction="http://tempuri.org/IRolesService/GetRoleResponse")]
+        System.Threading.Tasks.Task<TradersMarketplace.RolesServiceClient.RoleView> GetRoleAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/DeleteRole", ReplyAction="http://tempuri.org/IRolesService/DeleteRoleResponse")]
+        void DeleteRole(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/DeleteRole", ReplyAction="http://tempuri.org/IRolesService/DeleteRoleResponse")]
+        System.Threading.Tasks.Task DeleteRoleAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,14 +135,45 @@ namespace TradersMarketplace.RolesServiceClient {
         public RolesServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
-
-        public System.Collections.Generic.List<Common.Views.RoleView> GetUserRoles(string username)
-        {
-            return base.Channel.GetUserRoles(username);
+        
+        public System.Collections.Generic.List<Common.Views.RoleView> GetRoles() {
+            return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.RoleView>> GetUserRolesAsync(string username) {
-            return base.Channel.GetUserRolesAsync(username);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.RoleView>> GetRolesAsync() {
+            return base.Channel.GetRolesAsync();
+        }
+        
+        public void AddRole(string name) {
+            base.Channel.AddRole(name);
+        }
+        
+        public System.Threading.Tasks.Task AddRoleAsync(string name) {
+            return base.Channel.AddRoleAsync(name);
+        }
+        
+        public void UpdateRole(string id, string name) {
+            base.Channel.UpdateRole(id, name);
+        }
+        
+        public System.Threading.Tasks.Task UpdateRoleAsync(string id, string name) {
+            return base.Channel.UpdateRoleAsync(id, name);
+        }
+        
+        public TradersMarketplace.RolesServiceClient.RoleView GetRole(string id) {
+            return base.Channel.GetRole(id);
+        }
+        
+        public System.Threading.Tasks.Task<TradersMarketplace.RolesServiceClient.RoleView> GetRoleAsync(string id) {
+            return base.Channel.GetRoleAsync(id);
+        }
+        
+        public void DeleteRole(string id) {
+            base.Channel.DeleteRole(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteRoleAsync(string id) {
+            return base.Channel.DeleteRoleAsync(id);
         }
     }
 }

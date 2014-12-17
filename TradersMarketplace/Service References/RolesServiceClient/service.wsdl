@@ -7,22 +7,98 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Common.Views" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IRolesService_GetUserRoles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetUserRoles" />
+  <wsdl:message name="IRolesService_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
   </wsdl:message>
-  <wsdl:message name="IRolesService_GetUserRoles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetUserRolesResponse" />
+  <wsdl:message name="IRolesService_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_AddRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRole" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_AddRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_UpdateRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRole" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_UpdateRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_GetRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRole" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_GetRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_DeleteRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRole" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_DeleteRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoleResponse" />
   </wsdl:message>
   <wsdl:portType name="IRolesService">
-    <wsdl:operation name="GetUserRoles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetUserRoles" message="tns:IRolesService_GetUserRoles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/GetUserRolesResponse" message="tns:IRolesService_GetUserRoles_OutputMessage" />
+    <wsdl:operation name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetRoles" message="tns:IRolesService_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/GetRolesResponse" message="tns:IRolesService_GetRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/AddRole" message="tns:IRolesService_AddRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/AddRoleResponse" message="tns:IRolesService_AddRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/UpdateRole" message="tns:IRolesService_UpdateRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/UpdateRoleResponse" message="tns:IRolesService_UpdateRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetRole" message="tns:IRolesService_GetRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/GetRoleResponse" message="tns:IRolesService_GetRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/DeleteRole" message="tns:IRolesService_DeleteRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/DeleteRoleResponse" message="tns:IRolesService_DeleteRole_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRolesService" type="tns:IRolesService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetUserRoles">
-      <soap:operation soapAction="http://tempuri.org/IRolesService/GetUserRoles" style="document" />
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="http://tempuri.org/IRolesService/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <soap:operation soapAction="http://tempuri.org/IRolesService/AddRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRole">
+      <soap:operation soapAction="http://tempuri.org/IRolesService/UpdateRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRole">
+      <soap:operation soapAction="http://tempuri.org/IRolesService/GetRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRole">
+      <soap:operation soapAction="http://tempuri.org/IRolesService/DeleteRole" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

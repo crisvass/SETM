@@ -45,5 +45,45 @@ namespace DataAccessLayer
         {
             return Entity.IdentityRoles.SingleOrDefault(r => r.Name.Trim().ToLower() == "guest");
         }
+
+        public IEnumerable<RoleView> GetRoles()
+        {
+            return Entity.IdentityRoles.Select(r => new RoleView() { RoleId = r.Id, RoleName = r.Name });
+        }
+
+        public void AddRole(IdentityRole r)
+        {
+            Entity.IdentityRoles.Add(r);
+            Entity.SaveChanges();
+        }
+
+        public void UpdateRole(IdentityRole updatedRole)
+        {
+            IdentityRole role = Entity.IdentityRoles.SingleOrDefault(r => r.Id == updatedRole.Id);
+            role.Name = updatedRole.Name;
+            Entity.SaveChanges();
+        }
+
+        public RoleView GetRole(string id)
+        {
+            return Entity.IdentityRoles.Select(r => new RoleView() { RoleId = r.Id, RoleName = r.Name }).SingleOrDefault(r => r.RoleId == id);
+        }
+
+        public void DeleteRole(string id)
+        {
+            Entity.IdentityRoles.Remove(Entity.IdentityRoles.SingleOrDefault(r => r.Id == id));
+            Entity.SaveChanges();
+        }
+
+        public void DeleteMenuRoles(string id)
+        {
+            Entity.IdentityRoles.SingleOrDefault(r => r.Id == id).Menus.Clear();
+            Entity.SaveChanges();
+        }
+
+        public bool RoleIsAssigned(string id)
+        {
+            return Entity.IdentityUserRoles.Count(ur => ur.RoleId == id) > 0;
+        }
     }
 }

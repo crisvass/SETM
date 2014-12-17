@@ -79,26 +79,26 @@ namespace TradersMarketplace
             HttpContext.Current.Request.Cookies.Set(cookie);
         }
 
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
-        {
-            if (Context.User != null)
-            {
-                try
-                {
-                    //List<RoleView> usersroles = new RolesServiceClient.RolesServiceClient().GetUserRoles(Context.User.Identity.Name).ToList();
-                    //string[] roles = new string[usersroles.Count()];
-                    //for (int i = 0; i < roles.Length; i++)
-                    //{
-                    //    roles[i] = usersroles.ElementAt(i).Role;
-                    //}
-                    //GenericPrincipal gp = new GenericPrincipal(Context.User.Identity, roles);
-                    //Context.User = gp;
-                }
-                catch (FaultException ex)
-                {
-                    throw ex;
-                }
-            }
-        }
+        //protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        //{
+        //    if (Context.User != null)
+        //    {
+        //        try
+        //        {
+        //            //List<RoleView> usersroles = new RolesServiceClient.RolesServiceClient().GetUserRoles(Context.User.Identity.Name).ToList();
+        //            //string[] roles = new string[usersroles.Count()];
+        //            //for (int i = 0; i < roles.Length; i++)
+        //            //{
+        //            //    roles[i] = usersroles.ElementAt(i).Role;
+        //            //}
+        //            //GenericPrincipal gp = new GenericPrincipal(Context.User.Identity, roles);
+        //            //Context.User = gp;
+        //        }
+        //        catch (FaultException ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //}
     }
 }

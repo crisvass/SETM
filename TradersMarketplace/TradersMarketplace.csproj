@@ -175,10 +175,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoleCrudsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\RoleCrudViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CreditCardsServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -349,6 +351,11 @@
     <Content Include="Views\Shared\_ProductList.cshtml" />
     <Content Include="Views\Shared\_ProductListInner.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\RoleCruds\Create.cshtml" />
+    <Content Include="Views\RoleCruds\Delete.cshtml" />
+    <Content Include="Views\RoleCruds\Details.cshtml" />
+    <Content Include="Views\RoleCruds\Edit.cshtml" />
+    <Content Include="Views\RoleCruds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
