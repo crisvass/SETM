@@ -79,10 +79,10 @@ namespace TradersMarketplace.RolesServiceClient {
     public interface IRolesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
-        System.Collections.Generic.List<Common.Views.RoleView> GetRoles();
+        TradersMarketplace.RolesServiceClient.RoleView[] GetRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.RoleView>> GetRolesAsync();
+        System.Threading.Tasks.Task<TradersMarketplace.RolesServiceClient.RoleView[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/AddRole", ReplyAction="http://tempuri.org/IRolesService/AddRoleResponse")]
         void AddRole(string name);
@@ -136,11 +136,11 @@ namespace TradersMarketplace.RolesServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<Common.Views.RoleView> GetRoles() {
+        public TradersMarketplace.RolesServiceClient.RoleView[] GetRoles() {
             return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.RoleView>> GetRolesAsync() {
+        public System.Threading.Tasks.Task<TradersMarketplace.RolesServiceClient.RoleView[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
         }
         

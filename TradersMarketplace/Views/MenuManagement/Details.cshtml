@@ -1,0 +1,116 @@
+﻿@model TradersMarketplace.MenusServiceClient.MenusView
+
+@{
+    ViewBag.Title = "Menu Management";
+}
+
+<h2>Menu Details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Action)
+        </dt>
+        <dd>
+            @if (Model.Action != String.Empty)
+            {
+                @Html.DisplayFor(model => model.Action)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+        <dd>
+            @if (Model.Url != String.Empty)
+            {
+                @Html.DisplayFor(model => model.Url)
+            }
+            else
+            {
+                <span class="not_specified">
+                    Not Specified
+                </span>
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+        @if (Model.HasSubmenus)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Submenus)
+            </dt>
+            <dd>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Action)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Url)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Position)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (TradersMarketplace.MenusServiceClient.MenusView sub in Model.Submenus)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sub.Action)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sub.Url)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sub.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => sub.Position)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = sub.MenuId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = sub.MenuId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = sub.MenuId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
+        }
+        @if (Model.MenuRoles.Length > 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.MenuRoles)
+            </dt>
+            <dd>
+                @Html.ListBoxFor(model => model.MenuRoles, Model.MenuRolesList)
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MenuId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

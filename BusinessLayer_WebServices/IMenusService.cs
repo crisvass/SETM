@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Common;
 using Common.Views;
 
 namespace BusinessLayer_WebServices
@@ -17,5 +18,20 @@ namespace BusinessLayer_WebServices
 
         [OperationContract(Name = "GetUserMenus")]
         IEnumerable<MenusView> GetMainMenus(string username);
+
+        [OperationContract]
+        IEnumerable<MenusView> GetAllMainMenus();
+
+        [OperationContract]
+        MenusView GetMenu(Guid id);
+
+        [OperationContract]
+        void AddMenu(string title, string action, string url, List<MenusView> submenus, List<RoleView> menuRoles);
+
+        [OperationContract]
+        void UpdateMenu(Guid id, string title, string action, string url, List<MenusView> submenus, List<RoleView> menuRoles);
+
+        [OperationContract]
+        void DeleteMenu(Guid id);
     }
 }

@@ -64,20 +64,26 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
-        public RoleView GetRole(string id)
+        public IdentityRole GetRole(string id)
         {
-            return Entity.IdentityRoles.Select(r => new RoleView() { RoleId = r.Id, RoleName = r.Name }).SingleOrDefault(r => r.RoleId == id);
+            return Entity.IdentityRoles.SingleOrDefault(r => r.Id == id);
+        }
+
+        public RoleView GetRoleView(string id)
+        {
+            IdentityRole r = GetRole(id);
+            return new RoleView() { RoleId = r.Id, RoleName = r.Name };
         }
 
         public void DeleteRole(string id)
         {
-            Entity.IdentityRoles.Remove(Entity.IdentityRoles.SingleOrDefault(r => r.Id == id));
+            Entity.IdentityRoles.Remove(GetRole(id));
             Entity.SaveChanges();
         }
 
         public void DeleteMenuRoles(string id)
         {
-            Entity.IdentityRoles.SingleOrDefault(r => r.Id == id).Menus.Clear();
+            GetRole(id).Menus.Clear();
             Entity.SaveChanges();
         }
 

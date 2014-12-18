@@ -29,13 +29,22 @@ namespace TradersMarketplace.MenusServiceClient {
         private bool HasSubmenusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MenuIdField;
+        private System.Guid MenuIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> MenuRolesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectList MenuRolesListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ParentIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PositionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Common.Views.MenusView> SubmenusField;
+        private System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> SubmenusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TitleField;
@@ -80,7 +89,7 @@ namespace TradersMarketplace.MenusServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MenuId {
+        public System.Guid MenuId {
             get {
                 return this.MenuIdField;
             }
@@ -88,6 +97,45 @@ namespace TradersMarketplace.MenusServiceClient {
                 if ((this.MenuIdField.Equals(value) != true)) {
                     this.MenuIdField = value;
                     this.RaisePropertyChanged("MenuId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> MenuRoles {
+            get {
+                return this.MenuRolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MenuRolesField, value) != true)) {
+                    this.MenuRolesField = value;
+                    this.RaisePropertyChanged("MenuRoles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectList MenuRolesList {
+            get {
+                return this.MenuRolesListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MenuRolesListField, value) != true)) {
+                    this.MenuRolesListField = value;
+                    this.RaisePropertyChanged("MenuRolesList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ParentId {
+            get {
+                return this.ParentIdField;
+            }
+            set {
+                if ((this.ParentIdField.Equals(value) != true)) {
+                    this.ParentIdField = value;
+                    this.RaisePropertyChanged("ParentId");
                 }
             }
         }
@@ -106,7 +154,7 @@ namespace TradersMarketplace.MenusServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Common.Views.MenusView> Submenus {
+        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> Submenus {
             get {
                 return this.SubmenusField;
             }
@@ -154,21 +202,189 @@ namespace TradersMarketplace.MenusServiceClient {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class RoleView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RoleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RoleNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleId {
+            get {
+                return this.RoleIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleIdField, value) != true)) {
+                    this.RoleIdField = value;
+                    this.RaisePropertyChanged("RoleId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleName {
+            get {
+                return this.RoleNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleNameField, value) != true)) {
+                    this.RoleNameField = value;
+                    this.RaisePropertyChanged("RoleName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SelectListItem", Namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc")]
+    [System.SerializableAttribute()]
+    public partial class SelectListItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SelectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Selected {
+            get {
+                return this.SelectedField;
+            }
+            set {
+                if ((this.SelectedField.Equals(value) != true)) {
+                    this.SelectedField = value;
+                    this.RaisePropertyChanged("Selected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text {
+            get {
+                return this.TextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextField, value) != true)) {
+                    this.TextField = value;
+                    this.RaisePropertyChanged("Text");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MenusServiceClient.IMenusService")]
     public interface IMenusService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetGuestMenus", ReplyAction="http://tempuri.org/IMenusService/GetGuestMenusResponse")]
-        System.Collections.Generic.List<Common.Views.MenusView> GetGuestMenus();
+        System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetGuestMenus();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetGuestMenus", ReplyAction="http://tempuri.org/IMenusService/GetGuestMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetGuestMenusAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetGuestMenusAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetUserMenus", ReplyAction="http://tempuri.org/IMenusService/GetUserMenusResponse")]
-        System.Collections.Generic.List<Common.Views.MenusView> GetUserMenus(string username);
+        System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetUserMenus(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetUserMenus", ReplyAction="http://tempuri.org/IMenusService/GetUserMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetUserMenusAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetUserMenusAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetAllMainMenus", ReplyAction="http://tempuri.org/IMenusService/GetAllMainMenusResponse")]
+        System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetAllMainMenus();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetAllMainMenus", ReplyAction="http://tempuri.org/IMenusService/GetAllMainMenusResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetAllMainMenusAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetMenu", ReplyAction="http://tempuri.org/IMenusService/GetMenuResponse")]
+        TradersMarketplace.MenusServiceClient.MenusView GetMenu(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetMenu", ReplyAction="http://tempuri.org/IMenusService/GetMenuResponse")]
+        System.Threading.Tasks.Task<TradersMarketplace.MenusServiceClient.MenusView> GetMenuAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/AddMenu", ReplyAction="http://tempuri.org/IMenusService/AddMenuResponse")]
+        void AddMenu(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/AddMenu", ReplyAction="http://tempuri.org/IMenusService/AddMenuResponse")]
+        System.Threading.Tasks.Task AddMenuAsync(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/UpdateMenu", ReplyAction="http://tempuri.org/IMenusService/UpdateMenuResponse")]
+        void UpdateMenu(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/UpdateMenu", ReplyAction="http://tempuri.org/IMenusService/UpdateMenuResponse")]
+        System.Threading.Tasks.Task UpdateMenuAsync(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/DeleteMenu", ReplyAction="http://tempuri.org/IMenusService/DeleteMenuResponse")]
+        void DeleteMenu(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/DeleteMenu", ReplyAction="http://tempuri.org/IMenusService/DeleteMenuResponse")]
+        System.Threading.Tasks.Task DeleteMenuAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -198,20 +414,60 @@ namespace TradersMarketplace.MenusServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<Common.Views.MenusView> GetGuestMenus() {
+        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetGuestMenus() {
             return base.Channel.GetGuestMenus();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetGuestMenusAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetGuestMenusAsync() {
             return base.Channel.GetGuestMenusAsync();
         }
         
-        public System.Collections.Generic.List<Common.Views.MenusView> GetUserMenus(string username) {
+        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetUserMenus(string username) {
             return base.Channel.GetUserMenus(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetUserMenusAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetUserMenusAsync(string username) {
             return base.Channel.GetUserMenusAsync(username);
+        }
+        
+        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetAllMainMenus() {
+            return base.Channel.GetAllMainMenus();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetAllMainMenusAsync() {
+            return base.Channel.GetAllMainMenusAsync();
+        }
+        
+        public TradersMarketplace.MenusServiceClient.MenusView GetMenu(System.Guid id) {
+            return base.Channel.GetMenu(id);
+        }
+        
+        public System.Threading.Tasks.Task<TradersMarketplace.MenusServiceClient.MenusView> GetMenuAsync(System.Guid id) {
+            return base.Channel.GetMenuAsync(id);
+        }
+        
+        public void AddMenu(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+            base.Channel.AddMenu(title, action, url, submenus, menuRoles);
+        }
+        
+        public System.Threading.Tasks.Task AddMenuAsync(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+            return base.Channel.AddMenuAsync(title, action, url, submenus, menuRoles);
+        }
+        
+        public void UpdateMenu(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+            base.Channel.UpdateMenu(id, title, action, url, submenus, menuRoles);
+        }
+        
+        public System.Threading.Tasks.Task UpdateMenuAsync(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+            return base.Channel.UpdateMenuAsync(id, title, action, url, submenus, menuRoles);
+        }
+        
+        public void DeleteMenu(System.Guid id) {
+            base.Channel.DeleteMenu(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteMenuAsync(System.Guid id) {
+            return base.Channel.DeleteMenuAsync(id);
         }
     }
 }

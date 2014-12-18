@@ -105,19 +105,19 @@
             <PropertyRef Name="MenuId" />
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Menus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Url" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Position" Type="int" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -271,7 +271,7 @@ warning 6035: The relationship 'FK_CreditCardDetails_ApplicationUsers' has colum
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MenuRoles_IdentityRoles">
+        <Association Name="FK_MenuRoles_IdentityRoles1">
           <End Role="IdentityRoles" Type="Self.IdentityRoles" Multiplicity="1" />
           <End Role="MenuRoles" Type="Self.MenuRoles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -295,7 +295,7 @@ warning 6035: The relationship 'FK_CreditCardDetails_ApplicationUsers' has colum
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menus_Menus1">
+        <Association Name="FK_Menus_Menus">
           <End Role="Menus" Type="Self.Menus" Multiplicity="0..1" />
           <End Role="Menus1" Type="Self.Menus" Multiplicity="*" />
           <ReferentialConstraint>
@@ -450,7 +450,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             <End Role="IdentityRoles" EntitySet="IdentityRoles" />
             <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_MenuRoles_IdentityRoles" Association="Self.FK_MenuRoles_IdentityRoles">
+          <AssociationSet Name="FK_MenuRoles_IdentityRoles1" Association="Self.FK_MenuRoles_IdentityRoles1">
             <End Role="IdentityRoles" EntitySet="IdentityRoles" />
             <End Role="MenuRoles" EntitySet="MenuRoles" />
           </AssociationSet>
@@ -458,7 +458,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             <End Role="Menus" EntitySet="Menus" />
             <End Role="MenuRoles" EntitySet="MenuRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menus_Menus1" Association="Self.FK_Menus_Menus1">
+          <AssociationSet Name="FK_Menus_Menus" Association="Self.FK_Menus_Menus">
             <End Role="Menus" EntitySet="Menus" />
             <End Role="Menus1" EntitySet="Menus" />
           </AssociationSet>
@@ -547,7 +547,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             <End Role="IdentityRole" EntitySet="IdentityRoles" />
             <End Role="IdentityUserRole" EntitySet="IdentityUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menus_Menus1" Association="dbTradersMarketplaceModel.FK_Menus_Menus1">
+          <AssociationSet Name="FK_Menus_Menus" Association="dbTradersMarketplaceModel.FK_Menus_Menus">
             <End Role="Menu" EntitySet="Menus" />
             <End Role="Menu1" EntitySet="Menus" />
           </AssociationSet>
@@ -692,14 +692,14 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Position" Type="Int32" />
-          <Property Name="ParentId" Type="Int32" />
-          <NavigationProperty Name="Menus1" Relationship="dbTradersMarketplaceModel.FK_Menus_Menus1" FromRole="Menu" ToRole="Menu1" />
-          <NavigationProperty Name="Menu1" Relationship="dbTradersMarketplaceModel.FK_Menus_Menus1" FromRole="Menu1" ToRole="Menu" />
+          <Property Name="ParentId" Type="Guid" />
+          <NavigationProperty Name="Menus1" Relationship="dbTradersMarketplaceModel.FK_Menus_Menus" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="Menu1" Relationship="dbTradersMarketplaceModel.FK_Menus_Menus" FromRole="Menu1" ToRole="Menu" />
           <NavigationProperty Name="IdentityRoles" Relationship="dbTradersMarketplaceModel.MenuRoles" FromRole="Menu" ToRole="IdentityRole" />
         </EntityType>
         <EntityType Name="OrderDetail">
@@ -889,7 +889,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menus_Menus1">
+        <Association Name="FK_Menus_Menus">
           <End Type="dbTradersMarketplaceModel.Menu" Role="Menu" Multiplicity="0..1" />
           <End Type="dbTradersMarketplaceModel.Menu" Role="Menu1" Multiplicity="*" />
           <ReferentialConstraint>

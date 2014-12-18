@@ -1,7 +1,7 @@
 ﻿@model TradersMarketplace.RolesServiceClient.RoleView
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Role Management";
 }
 
 <h2>Role Details</h2>
@@ -9,14 +9,14 @@
 <div>
     <dl class="dl-horizontal">
         <dt>
-            ID
+            @Html.DisplayNameFor(model => model.RoleId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.RoleId)
         </dd>
         <dt>
-            Name
+            @Html.DisplayNameFor(model => model.RoleName)
         </dt>
 
         <dd>

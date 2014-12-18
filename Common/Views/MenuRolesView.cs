@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Common.Views
 {
-    public class RoleView
+    public class MenuRolesView
     {
-        [Display(Name = "Role ID")]
+        public Guid MenuId { get; set; }
         public string RoleId { get; set; }
-        [Display(Name = "Role Name")]
-        public string RoleName { get; set; }
     }
 }

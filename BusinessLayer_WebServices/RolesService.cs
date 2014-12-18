@@ -54,7 +54,7 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                return new RolesRepository().GetRole(id);
+                return new RolesRepository().GetRoleView(id);
             }
 
             catch

@@ -14,7 +14,7 @@ using TradersMarketplace.RolesServiceClient;
 namespace TradersMarketplace.Controllers
 {
     //[Authorize(Roles = "Administrator")]
-    public class RoleCrudsController : BaseController
+    public class RoleManagementController : BaseController
     {
         private RolesServiceClient.RolesServiceClient rs = new RolesServiceClient.RolesServiceClient();
 

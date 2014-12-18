@@ -5,6 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Common.Views" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IMenusService_GetGuestMenus_InputMessage">
@@ -19,6 +20,36 @@
   <wsdl:message name="IMenusService_GetUserMenus_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserMenusResponse" />
   </wsdl:message>
+  <wsdl:message name="IMenusService_GetAllMainMenus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMainMenus" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_GetAllMainMenus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMainMenusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_GetMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMenu" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_GetMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_AddMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMenu" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_AddMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_UpdateMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenu" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_UpdateMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_DeleteMenu_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMenu" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_DeleteMenu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMenuResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMenusService">
     <wsdl:operation name="GetGuestMenus">
       <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/GetGuestMenus" message="tns:IMenusService_GetGuestMenus_InputMessage" />
@@ -27,6 +58,26 @@
     <wsdl:operation name="GetUserMenus">
       <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/GetUserMenus" message="tns:IMenusService_GetUserMenus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/GetUserMenusResponse" message="tns:IMenusService_GetUserMenus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMainMenus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/GetAllMainMenus" message="tns:IMenusService_GetAllMainMenus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/GetAllMainMenusResponse" message="tns:IMenusService_GetAllMainMenus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/GetMenu" message="tns:IMenusService_GetMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/GetMenuResponse" message="tns:IMenusService_GetMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/AddMenu" message="tns:IMenusService_AddMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/AddMenuResponse" message="tns:IMenusService_AddMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/UpdateMenu" message="tns:IMenusService_UpdateMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/UpdateMenuResponse" message="tns:IMenusService_UpdateMenu_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMenu">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/DeleteMenu" message="tns:IMenusService_DeleteMenu_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/DeleteMenuResponse" message="tns:IMenusService_DeleteMenu_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMenusService" type="tns:IMenusService">
@@ -42,6 +93,51 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserMenus">
       <soap:operation soapAction="http://tempuri.org/IMenusService/GetUserMenus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMainMenus">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/GetAllMainMenus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenu">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/GetMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMenu">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/AddMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMenu">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/UpdateMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMenu">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/DeleteMenu" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

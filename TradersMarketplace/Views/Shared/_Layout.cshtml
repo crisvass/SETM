@@ -21,14 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @foreach (Common.Views.MenusView men in ViewBag.Menus)
+                    @foreach (TradersMarketplace.MenusServiceClient.MenusView men in ViewBag.Menus)
                     {
                         <li>
                             @if (men.HasSubmenus)
                             {
                                 @Html.ActionLink(@men.Title, @men.Action, @men.Url, new { @class = "dropdown-toggle" })
                                 <ul class="dropdown-menu">
-                                    @foreach (Common.Views.MenusView sub in men.Submenus)
+                                    @foreach (TradersMarketplace.MenusServiceClient.MenusView sub in men.Submenus)
                                     {
                                         <li>@Html.ActionLink(@sub.Title, @sub.Action, @sub.Url)</li>
                                     }
@@ -62,5 +62,7 @@
             $('.dropdown-toggle').dropdown();
         });
     </script>
+
+    <script src="~/Scripts/Custom/MenuManagementScript.js"></script>
 </body>
 </html>
