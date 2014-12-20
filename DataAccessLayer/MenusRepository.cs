@@ -117,7 +117,7 @@ namespace DataAccessLayer
             return menusWithSubmenus.OrderBy(m => m.Position).AsQueryable();
         }
 
-        private Menu GetMenu(Guid id)
+        public Menu GetMenu(Guid id)
         {
             return Entity.Menus.SingleOrDefault(m => m.Id == id);
         }
@@ -176,8 +176,6 @@ namespace DataAccessLayer
             menu.Action = updatedMenu.Action;
             menu.Url = updatedMenu.Url;
             menu.Title = updatedMenu.Title;
-            menu.Menus1 = updatedMenu.Menus1;
-            menu.IdentityRoles = updatedMenu.IdentityRoles;
             Entity.SaveChanges();
         }
 
@@ -187,11 +185,11 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
-        public void DeleteSubmenus(Guid id)
-        {
-            GetMenu(id).Menus1.Clear();
-            Entity.SaveChanges();
-        }
+        //public void DeleteSubmenus(Guid id)
+        //{
+        //    GetMenu(id).Menus1.Clear();
+        //    Entity.SaveChanges();
+        //}
 
         //public void DeleteSubmenu(Guid pId, Guid sId)
         //{

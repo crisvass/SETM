@@ -13,6 +13,9 @@ namespace BusinessLayer_WebServices
     public interface IRolesService
     {
         [OperationContract]
+        IEnumerable<RoleView> GetUserRoles(string username);
+
+        [OperationContract]
         IEnumerable<RoleView> GetRoles();
 
         [OperationContract]
@@ -26,5 +29,8 @@ namespace BusinessLayer_WebServices
 
         [OperationContract]
         void DeleteRole(string id);
+
+        [OperationContract]
+        IEnumerable<RoleView> GetNonMenuAssignedRoles(Guid id);
     }
 }

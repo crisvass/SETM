@@ -78,11 +78,17 @@ namespace TradersMarketplace.RolesServiceClient {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RolesServiceClient.IRolesService")]
     public interface IRolesService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
-        TradersMarketplace.RolesServiceClient.RoleView[] GetRoles();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetUserRoles", ReplyAction="http://tempuri.org/IRolesService/GetUserRolesResponse")]
+        System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView> GetUserRoles(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetUserRoles", ReplyAction="http://tempuri.org/IRolesService/GetUserRolesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView>> GetUserRolesAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
-        System.Threading.Tasks.Task<TradersMarketplace.RolesServiceClient.RoleView[]> GetRolesAsync();
+        System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView> GetRoles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRoles", ReplyAction="http://tempuri.org/IRolesService/GetRolesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView>> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/AddRole", ReplyAction="http://tempuri.org/IRolesService/AddRoleResponse")]
         void AddRole(string name);
@@ -107,6 +113,12 @@ namespace TradersMarketplace.RolesServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/DeleteRole", ReplyAction="http://tempuri.org/IRolesService/DeleteRoleResponse")]
         System.Threading.Tasks.Task DeleteRoleAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetNonMenuAssignedRoles", ReplyAction="http://tempuri.org/IRolesService/GetNonMenuAssignedRolesResponse")]
+        System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView> GetNonMenuAssignedRoles(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetNonMenuAssignedRoles", ReplyAction="http://tempuri.org/IRolesService/GetNonMenuAssignedRolesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView>> GetNonMenuAssignedRolesAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -136,11 +148,19 @@ namespace TradersMarketplace.RolesServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public TradersMarketplace.RolesServiceClient.RoleView[] GetRoles() {
+        public System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView> GetUserRoles(string username) {
+            return base.Channel.GetUserRoles(username);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView>> GetUserRolesAsync(string username) {
+            return base.Channel.GetUserRolesAsync(username);
+        }
+        
+        public System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView> GetRoles() {
             return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<TradersMarketplace.RolesServiceClient.RoleView[]> GetRolesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView>> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
         }
         
@@ -174,6 +194,14 @@ namespace TradersMarketplace.RolesServiceClient {
         
         public System.Threading.Tasks.Task DeleteRoleAsync(string id) {
             return base.Channel.DeleteRoleAsync(id);
+        }
+        
+        public System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView> GetNonMenuAssignedRoles(System.Guid id) {
+            return base.Channel.GetNonMenuAssignedRoles(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.RolesServiceClient.RoleView>> GetNonMenuAssignedRolesAsync(System.Guid id) {
+            return base.Channel.GetNonMenuAssignedRolesAsync(id);
         }
     }
 }

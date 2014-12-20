@@ -50,24 +50,26 @@
         if (item.HasSubmenus)
         {
             <tr>
-                <th>
+                <th></th>
+                <th colspan="4">
                     Submenus
                     @*@Html.DisplayNameFor(modelItem => item.Submenus)*@
                 </th>
             </tr>
             <tr>
-                <td>
+                <td></td>
+                <td colspan="4">
                     <table>
                         <thead>
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Action)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Url)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Title)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Position)
@@ -80,13 +82,13 @@
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => sub.Title)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => sub.Action)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => sub.Url)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => sub.Title)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => sub.Position)

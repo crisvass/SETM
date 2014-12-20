@@ -13,7 +13,7 @@ using TradersMarketplace.RolesServiceClient;
 
 namespace TradersMarketplace.Controllers
 {
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class RoleManagementController : BaseController
     {
         private RolesServiceClient.RolesServiceClient rs = new RolesServiceClient.RolesServiceClient();
@@ -31,7 +31,7 @@ namespace TradersMarketplace.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            RoleView role = null;
+            RoleView role = new RoleView();
             try
             {
                 role = rs.GetRole(id);
@@ -78,8 +78,8 @@ namespace TradersMarketplace.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            RoleView role = null;
+
+            RoleView role = new RoleView(); ;
             try
             {
                 role = rs.GetRole(id);
@@ -139,14 +139,6 @@ namespace TradersMarketplace.Controllers
             {
                 rs.DeleteRole(id);
                 return RedirectToAction("Index");
-            }
-            catch (TransactionFailedException ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-            }
-            catch (ConstraintException ex)
-            {
-                ModelState.AddModelError("", ex.Message);
             }
             catch (FaultException ex)
             {

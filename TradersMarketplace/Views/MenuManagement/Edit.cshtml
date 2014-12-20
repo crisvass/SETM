@@ -4,17 +4,25 @@
     ViewBag.Title = "Menu Management";
 }
 
-<h2>Edit</h2>
+<h2>Edit Menu</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
+    @*@Html.AntiForgeryToken()*@
+
+    <input type="hidden" value="@Html.DisplayFor(model => model.MenuId)" id="menuId" />
+
     <div class="form-horizontal">
-        <h4>MenusCrud</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MenuId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -31,36 +39,80 @@
                 @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Submenus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="col-md-12" id="submenuList">
+                    <table>
+                        <thead>
+                            @if (Model.HasSubmenus)
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Action)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Url)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Position)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            }
+                        </thead>
+                        <tbody>
+                            @if (Model.HasSubmenus)
+                            {
+                                foreach (TradersMarketplace.MenusServiceClient.MenusView sub in Model.Submenus)
+                                {
+                                    <tr>
+                                        <td class="title">@Html.DisplayFor(modelItem => sub.Title)</td>
+                                        <td class="action">@Html.DisplayFor(modelItem => sub.Action)</td>
+                                        <td class="url">@Html.DisplayFor(modelItem => sub.Url)</td>
+                                        <td class="position">@Html.DisplayFor(modelItem => sub.Position)</td>
+                                        <td><a href="#" class="remove-table-item">X</a></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="addSubmenuContainer" class="col-md-12">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HasSubmenus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.HasSubmenus)
-                    @Html.ValidationMessageFor(model => model.HasSubmenus, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-12">
+                    <a href="javascript:void(0)" id="addNewSubmenu">Add Submenu</a>
                 </div>
             </div>
         </div>
+        <div class="form-group">
 
+            @Html.LabelFor(model => model.MenuRoles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.MenuRoles, Model.MenuRolesList)
+                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllRoles" />
+                <input type="button" value=">" class="btn, btn-default" id="btnAddRole" />
+                <input type="button" value="<" class="btn, btn-default" id="btnRemoveRole" />
+                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllRoles" />
+                <select id="MenuRolesSelected" multiple="multiple">
+                    @if (Model.MenuRoles.Count > 0)
+                    {
+                        foreach (TradersMarketplace.MenusServiceClient.RoleView role in Model.MenuRoles)
+                        {
+                            <option value="@role.RoleId">@role.RoleName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" value="Save" class="btn btn-default" id="btnSaveMenu" />
             </div>
         </div>
     </div>

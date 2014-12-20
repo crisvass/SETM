@@ -14,6 +14,11 @@ namespace BusinessLayer_WebServices
 {
     public class RolesService : IRolesService
     {
+        public IEnumerable<RoleView> GetUserRoles(string username)
+        {
+            return new RolesRepository().GetUserRoles(username);
+        }
+
         public IEnumerable<RoleView> GetRoles()
         {
             try
@@ -97,16 +102,21 @@ namespace BusinessLayer_WebServices
             }
             catch (TransactionFailedException ex)
             {
-                throw ex;
+                throw new FaultException(ex.Message);
             }
             catch (ConstraintException ex)
             {
-                throw ex;
+                throw new FaultException(ex.Message);
             }
             catch
             {
                 throw new FaultException("An error occurred whilst deleting the role.");
             }
+        }
+
+        public IEnumerable<RoleView> GetNonMenuAssignedRoles(Guid id)
+        {
+            return new RolesRepository().GetNonMenuAssignedRoles(id);
         }
     }
 }

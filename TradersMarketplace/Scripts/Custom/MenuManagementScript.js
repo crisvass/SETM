@@ -17,14 +17,15 @@
 
 $("body").on("click", "#btnAddSubmenu", function (e) {
     if ($("#submenuList table tbody tr").length <= 0) {
-        $("#submenuList table thead").append("<tr><th>Title</th><th>Action</th><th>URL</th><th>Position</th></tr>");
+        $("#submenuList table thead").append("<tr><th>Title</th><th>Action</th><th>URL</th><th>Position</th><th></th></tr>");
     }
 
     $("#submenuList table tbody").append("<tr><td class='title'>" + $("#submenuTitle").val()
                                         + "</td><td class='action'>" + $("#submenuAction").val()
                                         + "</td><td class='url'>" + $("#submenuUrl").val()
                                         + "</td><td class='position'>"
-                                        + ($("#submenuList table tbody tr").length + 1) + "</td></tr>");
+                                        + ($("#submenuList table tbody tr").length + 1)
+                                        + "</td><td><a href='#' class='remove-table-item'>X</a></td></tr>");
 
     $("#addSubmenuContainer").empty();
 });
@@ -64,42 +65,97 @@ function removeSelections() {
 
 $("body").on("click", "#btnCreateMenu", function () {
     var menuRoles = [];
-    if ($("#MenuRolesSelected option").length > 0)
-    {
-        $("#MenuRolesSelected option").each(function(i){
+    if ($("#MenuRolesSelected option").length > 0) {
+        $("#MenuRolesSelected option").each(function (i) {
             menuRoles.push({
                 RoleId: $(this).val(),
-                RoleName:$(this).text()
+                RoleName: $(this).text()
             });
-        });    
+        });
     }
 
     var submenus = [];
-    if ($("#submenuList table tbody tr").length <= 0) {
+    if ($("#submenuList table tbody tr").length > 0) {
         $("#submenuList table tbody tr").each(function (i) {
             submenus.push({
                 Title: $(this).find(".title").text(),
-                Action:$(this).find(".action").text(),
-                Url:$(this).find(".url").text(),
+                Action: $(this).find(".action").text(),
+                Url: $(this).find(".url").text(),
                 Position: $(this).find(".position").text()
             });
         });
     }
 
-    var params = "{'title' : '" + $("#Title").val()
-                    "', 'action' : '" + $("#Action").val() +
-                    "', 'url' : '" + $("#Url").val() +
-                    "', 'submenus' : '" + JSON.stringify(submenus) +
-                    "', 'menuRoles' : '" + JSON.stringify(menuRoles) +
-                    "'}";
+    var params = {
+        title: $("#Title").val(),
+        action: $("#Action").val(),
+        url: $("#Url").val(),
+        submenus: JSON.stringify(submenus),
+        menuRoles: JSON.stringify(menuRoles)
+    };
+    //AddAntiForgeryToken(params);
+
+
+    //var headers = {};
+    //AddAntiForgeryToken(headers);
 
     $.ajax({
         type: "POST",
-        data: params,
+        //headers: headers,
+        data: JSON.stringify(params),
         url: '../../MenuManagement/Create',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (data) {            
+        success: function (data) {
+            window.location.href = data;
+        },
+        error: function (xhr) {
+            var error = JSON.parse(xhr.responseText).message;
+            alert(error);
+        }
+    });
+});
+
+$("#btnSaveMenu").click(function () {
+    var menuRoles = [];
+    if ($("#MenuRolesSelected option").length > 0) {
+        $("#MenuRolesSelected option").each(function (i) {
+            menuRoles.push({
+                RoleId: $(this).val(),
+                RoleName: $(this).text()
+            });
+        });
+    }
+
+    var submenus = [];
+    if ($("#submenuList table tbody tr").length > 0) {
+        $("#submenuList table tbody tr").each(function (i) {
+            submenus.push({
+                Title: $(this).find(".title").text(),
+                Action: $(this).find(".action").text(),
+                Url: $(this).find(".url").text(),
+                Position: $(this).find(".position").text()
+            });
+        });
+    }
+
+    var params = {
+        id: $("#menuId").val(),
+        title: $("#Title").val(),
+        action: $("#Action").val(),
+        url: $("#Url").val(),
+        submenus: JSON.stringify(submenus),
+        menuRoles: JSON.stringify(menuRoles)
+    };
+
+    $.ajax({
+        type: "POST",
+        data: JSON.stringify(params),
+        url: '../../MenuManagement/Edit',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            window.location.href = data;
         },
         error: function (xhr) {
             var error = JSON.parse(xhr.responseText).message;

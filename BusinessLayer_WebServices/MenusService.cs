@@ -6,8 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using Common;
 using Common.CustomExceptions;
-using Common.Views;
 using DataAccessLayer;
+using Common.Views;
 
 namespace BusinessLayer_WebServices
 {
@@ -82,7 +82,11 @@ namespace BusinessLayer_WebServices
                     foreach (MenusView sub in submenus)
                         mr.AddSubmenu(m, new Menu() 
                         {
- 
+                            Id = Guid.NewGuid(),
+                            Title = sub.Title,
+                            Action = sub.Action,
+                            Url = sub.Url,
+                            Position = sub.Position
                         });
 
                     foreach (RoleView role in menuRoles)
@@ -102,7 +106,7 @@ namespace BusinessLayer_WebServices
             }
             catch (TransactionFailedException ex)
             {
-                throw ex;
+                throw new FaultException(ex.Message);
             }
             catch
             {
@@ -120,41 +124,84 @@ namespace BusinessLayer_WebServices
                 mr.Entity = rr.Entity;
                 Menu m = new Menu() { Id = id, Title = title, Action = action, Url = url };
 
-                foreach (MenusView mv in mr.GetSubmenus(id))
-                {
-                    foreach (MenusView menu in submenus)
-                    {
-                        if (mv.MenuId == menu.MenuId)
-                        {
-                            m.Menus1.Add(new Menu()
-                            {
-                                Id = mv.MenuId,
-                                Action = mv.Action,
-                                Url = mv.Url,
-                                Title = mv.Title,
-                                Position = mv.Position,
-                                ParentId = mv.ParentId
-                            });
-                        }
-                    }
-                }
-
-                foreach (RoleView rv in mr.GetMenuRoles(id))
-                {
-                    foreach (RoleView role in menuRoles)
-                    {
-                        if (rv.RoleId == role.RoleId)
-                            m.IdentityRoles.Add(rr.GetRole(rv.RoleId));
-                    }
-                }
-
                 try
                 {
                     mr.Entity.Database.Connection.Open();
                     mr.Transaction = rr.Transaction = mr.Entity.Database.BeginTransaction();
-
+                    List<MenusView> submenusOriginal = mr.GetSubmenus(id).ToList<MenusView>();
+                    List<RoleView> menuRolesOriginal = mr.GetMenuRoles(id).ToList<RoleView>();
                     mr.UpdateMenu(m);
 
+                    bool found;
+
+                    //delete removed submenus
+                    foreach (MenusView mv in submenusOriginal)
+                    {
+                        found = false;
+                        foreach (MenusView menu in submenus)
+                        {
+                            if (mv.MenuId == menu.MenuId)
+                            {
+                                found = true;
+                            }
+                        }
+                        if (!found)
+                        {
+                            mr.DeleteMenu(mv.MenuId);
+                        }
+                    }
+
+                    //add new submenus
+                    foreach (MenusView mv in submenus)
+                    {
+                        found = false;
+                        foreach (MenusView menu in submenusOriginal)
+                        {
+                            if (mv.MenuId == menu.MenuId)
+                            {
+                                found = true;
+                            }
+                        }
+                        if (!found)
+                        {
+                            mr.AddSubmenu(mr.GetMenu(id), new Menu() {
+                                Id = Guid.NewGuid(),
+                                Title = mv.Title,
+                                Action = mv.Action,
+                                Url = mv.Url,
+                                Position = mv.Position
+                            });
+                        }
+                    }
+                    
+                    //delete removed menu roles
+                    foreach (RoleView rv in menuRolesOriginal)
+                    {
+                        found = false;
+                        foreach (RoleView role in menuRoles)
+                        {
+                            if (rv.RoleId == role.RoleId)
+                                found = true;                            
+                        }
+
+                        if (!found)
+                            mr.DeleteMenuRole(id, rr.GetRole(rv.RoleId));
+                    }
+
+                    //add new menu roles
+                    foreach (RoleView rv in menuRoles)
+                    {
+                        found = false;
+                        foreach (RoleView role in menuRolesOriginal)
+                        {
+                            if (rv.RoleId == role.RoleId)
+                                found = true;
+                        }
+
+                        if (!found)
+                            mr.AddMenuRole(mr.GetMenu(id), rr.GetRole(rv.RoleId));
+                    }
+                    
                     mr.Transaction.Commit();
                 }
                 catch
@@ -169,7 +216,7 @@ namespace BusinessLayer_WebServices
             }
             catch (TransactionFailedException ex)
             {
-                throw ex;
+                throw new FaultException(ex.Message);
             }
             catch
             {
@@ -187,8 +234,12 @@ namespace BusinessLayer_WebServices
                     mr.Entity.Database.Connection.Open();
                     mr.Transaction = mr.Entity.Database.BeginTransaction();
 
+                    List<MenusView> submenus = mr.GetSubmenus(id).ToList();
+                    foreach(MenusView mv in submenus)
+                    {
+                        mr.DeleteMenu(mv.MenuId);
+                    }
                     mr.DeleteMenuRoles(id);
-                    mr.DeleteSubmenus(id);
                     mr.DeleteMenu(id);
 
                     mr.Transaction.Commit();
@@ -205,7 +256,7 @@ namespace BusinessLayer_WebServices
             }
             catch (TransactionFailedException ex)
             {
-                throw ex;
+                throw new FaultException(ex.Message);
             }
             catch
             {

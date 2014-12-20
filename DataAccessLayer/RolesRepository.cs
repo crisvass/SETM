@@ -12,17 +12,18 @@ namespace DataAccessLayer
     {
         public RolesRepository() : base() { }
 
-        //public IQueryable<RoleView> GetUserRoles(string username)
-        //{
-        //return (from u in entity.applicationusers
-        //        from r in u.identityroles
-        //        where u.username == username
-        //        select new roleview()
-        //        {
-        //            roleid = guid.parse(r.id),
-        //            role = r.name
-        //        });
-        //}
+        public IQueryable<RoleView> GetUserRoles(string username)
+        {
+            return (from ur in Entity.IdentityUserRoles
+                    join u in Entity.ApplicationUsers on ur.UserId equals u.Id
+                    join r in Entity.IdentityRoles on ur.RoleId equals r.Id
+                    where u.UserName == username
+                    select new RoleView()
+                    {
+                        RoleId = r.Id,
+                        RoleName = r.Name
+                    });
+        }
 
         public void AllocateRole(ApplicationUser u, IdentityRole r)
         {
@@ -90,6 +91,21 @@ namespace DataAccessLayer
         public bool RoleIsAssigned(string id)
         {
             return Entity.IdentityUserRoles.Count(ur => ur.RoleId == id) > 0;
+        }
+
+        public IEnumerable<RoleView> GetNonMenuAssignedRoles(Guid id)
+        {
+            return (from r in Entity.IdentityRoles
+                    where !(from m in Entity.Menus
+                            from role in m.IdentityRoles
+                            where m.Id == id
+                            select role.Id)
+                            .Contains(r.Id)
+                    select new RoleView()
+                    {
+                        RoleId = r.Id,
+                        RoleName = r.Name
+                    });
         }
     }
 }

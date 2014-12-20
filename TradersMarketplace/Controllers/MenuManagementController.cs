@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace TradersMarketplace.Controllers
 {
+    [Authorize(Roles="Administrator")]
     public class MenuManagementController : BaseController
     {
         private MenusServiceClient.MenusServiceClient ms = new MenusServiceClient.MenusServiceClient();
@@ -61,7 +62,7 @@ namespace TradersMarketplace.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(string title, string action, string url, string submenus, string menuRoles)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -81,7 +82,8 @@ namespace TradersMarketplace.Controllers
                 try
                 {
                     ms.AddMenu(menu.Title, menu.Action, menu.Url, menu.Submenus, menu.MenuRoles);
-                    return RedirectToAction("Index");
+                    return Json(Url.Action("Index", "MenuManagement"));
+                    //return RedirectToAction("Index");
                 }
                 catch (FaultException ex)
                 {
@@ -97,61 +99,99 @@ namespace TradersMarketplace.Controllers
             return PartialView("_CreateSubmenu", new MenusView());
         }
 
-        //// GET: MenuManagement/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    MenusCrud menusCrud = db.Menus.Find(id);
-        //    if (menusCrud == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(menusCrud);
-        //}
+        // GET: MenuManagement/Edit/5
+        public ActionResult Edit(Guid id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MenusView menu = new MenusView();
+            try
+            {
+                menu = ms.GetMenu(id);
+                menu.MenuRolesList = new SelectList(
+                        new RolesServiceClient.RolesServiceClient().GetNonMenuAssignedRoles(id),
+                        "RoleId", "RoleName");
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(menu);
+        }
 
-        //// POST: MenuManagement/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
+        // POST: MenuManagement/Edit/5
+        [HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "MenuId,Action,Url,Title,Position,HasSubmenus")] MenusCrud menusCrud)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(menusCrud).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(menusCrud);
-        //}
+        public ActionResult Edit(Guid id, string title, string action, string url, string submenus, string menuRoles)
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<MenusView> submenusList = js.Deserialize<List<MenusView>>(submenus);
+            List<RoleView> menuRolesList = js.Deserialize<List<RoleView>>(menuRoles);
 
-        //// GET: MenuManagement/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    MenusCrud menusCrud = db.Menus.Find(id);
-        //    if (menusCrud == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(menusCrud);
-        //}
+            MenusView menu = new MenusView()
+            {
+                MenuId = id,
+                Title = title,
+                Action = action,
+                Url = url,
+                Submenus = submenusList,
+                MenuRoles = menuRolesList
+            };
 
-        //// POST: MenuManagement/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    MenusCrud menusCrud = db.Menus.Find(id);
-        //    db.Menus.Remove(menusCrud);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}        
+            try
+            {
+                ms.UpdateMenu(menu.MenuId, menu.Title, menu.Action, menu.Url, menu.Submenus, menu.MenuRoles);
+                return Json(Url.Action("Index", "MenuManagement"));
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(menu);
+        }
+
+        // GET: MenuManagement/Delete/5
+        public ActionResult Delete(Guid id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MenusView menu = new MenusView();
+            try
+            {
+                menu = ms.GetMenu(id);
+                menu.MenuRolesList = new SelectList(
+                        new RolesServiceClient.RolesServiceClient().GetNonMenuAssignedRoles(id),
+                        "RoleId", "RoleName");
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(menu);
+        }
+
+        // POST: MenuManagement/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Guid id)
+        {
+            try
+            {
+                ms.DeleteMenu(id);
+                return RedirectToAction("Index");
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+
+            return View(ms.GetMenu(id).MenuRolesList = new SelectList(
+                    new RolesServiceClient.RolesServiceClient().GetNonMenuAssignedRoles(id),
+                    "RoleId", "RoleName"));
+        }
     }
 }
