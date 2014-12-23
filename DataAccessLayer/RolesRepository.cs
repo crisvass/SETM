@@ -31,6 +31,12 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
+        public void DeleteUserRole(ApplicationUser u, IdentityRole r)
+        {
+            u.IdentityUserRoles.Remove(new IdentityUserRole() { ApplicationUser = u, IdentityRole = r });
+            Entity.SaveChanges();
+        }
+
         public IdentityRole GetBuyerRole()
         {
             return Entity.IdentityRoles.SingleOrDefault(r => r.Name.Trim().ToLower() == "buyer");

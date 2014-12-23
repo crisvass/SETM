@@ -16,6 +16,7 @@ namespace Common
     {
         public int Id { get; set; }
         public int CreditCardTypeId { get; set; }
+        public string CreditCardNumber { get; set; }
         public string CardHolderName { get; set; }
         public System.DateTime ExpiryDate { get; set; }
         public string Username { get; set; }

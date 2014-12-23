@@ -177,10 +177,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuManagementController.cs" />
     <Compile Include="Controllers\RoleManagementController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\UserCrudViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CreditCardsServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -306,6 +308,9 @@
     <Content Include="Service References\RolesServiceClient\TradersMarketplace.RolesServiceClient.RoleView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\UsersServiceClient\Common.Views.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\UsersServiceClient\configuration91.svcinfo" />
     <None Include="Service References\UsersServiceClient\configuration.svcinfo" />
     <None Include="Service References\UsersServiceClient\Reference.svcmap">
@@ -367,6 +372,17 @@
     <Content Include="Views\MenuManagement\Edit.cshtml" />
     <Content Include="Views\MenuManagement\Index.cshtml" />
     <Content Include="Views\MenuManagement\_CreateSubmenu.cshtml" />
+    <Content Include="Views\UserManagement\Create.cshtml" />
+    <Content Include="Views\UserManagement\Delete.cshtml" />
+    <Content Include="Views\UserManagement\Details.cshtml" />
+    <Content Include="Views\UserManagement\Edit.cshtml" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
+    <Content Include="Service References\UsersServiceClient\TradersMarketplace.UsersServiceClient.UserView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\UsersServiceClient\System.Web.Mvc.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

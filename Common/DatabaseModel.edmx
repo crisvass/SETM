@@ -53,6 +53,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="CreditCardTypeId" Type="int" Nullable="false" />
+          <Property Name="CreditCardNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CardHolderName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ExpiryDate" Type="date" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
@@ -633,6 +634,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CreditCardTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreditCardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CardHolderName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -1033,6 +1035,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
                 <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
+                <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
                 <ScalarProperty Name="CreditCardTypeId" ColumnName="CreditCardTypeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

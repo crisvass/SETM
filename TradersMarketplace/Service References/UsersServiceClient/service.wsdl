@@ -4,6 +4,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Common.Views" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IUsersService_RegisterBuyer_InputMessage">
@@ -18,11 +20,29 @@
   <wsdl:message name="IUsersService_RegisterSeller_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterSellerResponse" />
   </wsdl:message>
-  <wsdl:message name="IUsersService_IsUserAuthenticated_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsUserAuthenticated" />
+  <wsdl:message name="IUsersService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
-  <wsdl:message name="IUsersService_IsUserAuthenticated_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsUserAuthenticatedResponse" />
+  <wsdl:message name="IUsersService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_AddBuyer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBuyer" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_AddBuyer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBuyerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_AddSeller_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSeller" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_AddSeller_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSellerResponse" />
   </wsdl:message>
   <wsdl:portType name="IUsersService">
     <wsdl:operation name="RegisterBuyer">
@@ -33,9 +53,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/RegisterSeller" message="tns:IUsersService_RegisterSeller_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/RegisterSellerResponse" message="tns:IUsersService_RegisterSeller_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="IsUserAuthenticated">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/IsUserAuthenticated" message="tns:IUsersService_IsUserAuthenticated_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/IsUserAuthenticatedResponse" message="tns:IUsersService_IsUserAuthenticated_OutputMessage" />
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/GetUser" message="tns:IUsersService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/GetUserResponse" message="tns:IUsersService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/GetAllUsers" message="tns:IUsersService_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/GetAllUsersResponse" message="tns:IUsersService_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBuyer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/AddBuyer" message="tns:IUsersService_AddBuyer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/AddBuyerResponse" message="tns:IUsersService_AddBuyer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSeller">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/AddSeller" message="tns:IUsersService_AddSeller_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/AddSellerResponse" message="tns:IUsersService_AddSeller_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUsersService" type="tns:IUsersService">
@@ -58,8 +90,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="IsUserAuthenticated">
-      <soap:operation soapAction="http://tempuri.org/IUsersService/IsUserAuthenticated" style="document" />
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IUsersService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://tempuri.org/IUsersService/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBuyer">
+      <soap:operation soapAction="http://tempuri.org/IUsersService/AddBuyer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSeller">
+      <soap:operation soapAction="http://tempuri.org/IUsersService/AddSeller" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -91,31 +91,6 @@ namespace TradersMarketplace.Controllers
             return View(model);
         }
 
-        //public ActionResult Login(LoginViewModel model, string returnUrl)
-        //{
-        //    try
-        //    {
-        //        ModelState.Clear();
-        //        if (new UsersServiceClient.UsersServiceClient().IsUserAuthenticated(model.Username, model.Password))
-        //        {
-        //            Membership.ValidateUser(model.Username, model.Password);
-        //            FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-        //            if (Url.IsLocalUrl(returnUrl)
-        //                && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-        //                && !returnUrl.StartsWith("//")
-        //                && !returnUrl.StartsWith("/\\"))
-        //                return Redirect(returnUrl);
-        //            else
-        //                return RedirectToAction("Index", "Home");
-        //        }
-        //    }
-        //    catch (FaultException ex)
-        //    {
-        //        ModelState.AddModelError("", ex.Message);
-        //    }
-        //    return View(model);
-        //}
-
         // GET: /Account/RegisterBuyer
         [AllowAnonymous]
         public ActionResult RegisterBuyer()
@@ -147,7 +122,8 @@ namespace TradersMarketplace.Controllers
 
                         new UsersServiceClient.UsersServiceClient().RegisterBuyer(currentUser.Id, model.BuyerName, 
                             model.BuyerSurname, model.BuyerResidence, model.BuyerStreet, model.BuyerTown, 
-                            model.BuyerPostCode, model.BuyerCountry, model.BuyerCreditCardType, model.BuyerCardHolderName, 
+                            model.BuyerPostCode, model.BuyerCountry, model.BuyerContactNumber, model.BuyerCreditCardType, 
+                            model.BuyerCreditCardNumber, model.BuyerCardHolderName, 
                             model.BuyerMonth, model.BuyerYear);
 
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -196,8 +172,8 @@ namespace TradersMarketplace.Controllers
                         var roleresult = UserManager.AddToRole(currentUser.Id, "Seller");
 
                         new UsersServiceClient.UsersServiceClient().RegisterSeller(currentUser.Id, model.SellerName, 
-                            model.SellerSurname, model.SellerResidence, model.SellerStreet, model.SellerTown, 
-                            model.SellerPostCode, model.SellerCountry, model.SellerRequiresDelivery, model.SellerIbanNumber);
+                            model.SellerSurname, model.SellerResidence, model.SellerStreet, model.SellerTown,
+                            model.SellerPostCode, model.SellerCountry, model.SellerContactNumber, model.SellerRequiresDelivery, model.SellerIbanNumber);
 
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToAction("Index", "Home");

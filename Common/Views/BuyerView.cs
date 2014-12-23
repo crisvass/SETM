@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Common.Views
 {
-    public class RoleView
+    public class BuyerView
     {
-        [Key]
-        [Display(Name = "Role ID")]
-        public string RoleId { get; set; }
-        [Display(Name = "Role Name")]
-        public string RoleName { get; set; }
+        [Display(Name = "Credit Cards")]
+        public List<CreditCardDetailView> CreditCards { get; set; }
     }
 }

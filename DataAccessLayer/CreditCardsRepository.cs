@@ -18,6 +18,20 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
+        public void UpdateCreditCardDetail(CreditCardDetail cc)
+        {
+            CreditCardDetail creditCard = Entity.CreditCardDetails.SingleOrDefault(ccd => ccd.Id == cc.Id);
+            creditCard.CreditCardNumber = cc.CreditCardNumber;
+            creditCard.ExpiryDate = cc.ExpiryDate;
+            Entity.SaveChanges();
+        }
+
+        public void DeleteCreditCardDetail(int id)
+        {
+            Entity.CreditCardDetails.Remove(Entity.CreditCardDetails.SingleOrDefault(cc => cc.Id == id));
+            Entity.SaveChanges();
+        }
+
         public IEnumerable<CreditCardTypeView> GetCardTypes()
         {
             return Entity.CreditCardTypes

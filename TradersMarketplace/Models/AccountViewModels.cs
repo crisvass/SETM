@@ -66,9 +66,15 @@ namespace TradersMarketplace.Models
         [Display(Name = "Country")]
         public string BuyerCountry { get; set; }
 
+        [Display(Name = "Contact Number")]
+        public string BuyerContactNumber { get; set; }
+
         [Display(Name = "Credit Card")]
         public int BuyerCreditCardType { get; set; }
         public SelectList BuyerCreditCardTypesList { get; set; }
+
+        [Display(Name = "Credit Card Number")]
+        public string BuyerCreditCardNumber { get; set; }
 
         [Display(Name = "Card Holder Name")]
         public string BuyerCardHolderName { get; set; }
@@ -161,6 +167,10 @@ namespace TradersMarketplace.Models
         [Required]
         [Display(Name = "Country*")]
         public string SellerCountry { get; set; }
+
+        [Required]
+        [Display(Name = "Contact Number")]
+        public string SellerContactNumber { get; set; }
 
         [Required]
         [Display(Name = "IBAN Number*")]
