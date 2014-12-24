@@ -1,18 +1,16 @@
-﻿@model TradersMarketplace.Models.UserCrud
+﻿@model TradersMarketplace.UsersServiceClient.UserView
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "User Management";
 }
 
-<h2>Create</h2>
+<h2>Create User</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>UserCrud</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -27,6 +25,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -102,9 +108,56 @@
             </div>
         </div>
 
+        <div class="form-group disabled">
+            @Html.LabelFor(model => model.CreditCards, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="creditCardsList" class="col-md-12">
+                    <table>
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div id="addCreditCardContainer" class="col-md-12">
+
+                </div>
+                <div class="col-md-12">
+                    <a href="javascript:void(0)" id="addNewCreditCard">Add Credit Card</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequiresDelivery, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RequiresDelivery, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RequiresDelivery, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IbanNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IbanNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IbanNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserRoles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.UserRoles, Model.UserRolesList)
+                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllRoles" />
+                <input type="button" value=">" class="btn, btn-default" id="btnAddRole" />
+                <input type="button" value="<" class="btn, btn-default" id="btnRemoveRole" />
+                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllRoles" />
+                <select id="UserRolesSelected" multiple="multiple"></select>
+                @Html.ValidationMessageFor(model => model.UserRoles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="button" value="Create" class="btn btn-default" id="btnCreateUser" />
             </div>
         </div>
     </div>

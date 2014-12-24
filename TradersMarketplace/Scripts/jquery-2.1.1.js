@@ -1924,7 +1924,7 @@ Expr = Sizzle.selectors = {
 				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text" );
 		},
 
-		// Position-in-collection
+		// Position-in-Collections
 		"first": createPositionalPseudo(function() {
 			return [ 0 ];
 		}),
@@ -3090,7 +3090,7 @@ jQuery.Callbacks = function( options ) {
 		},
 		// Actual Callbacks object
 		self = {
-			// Add a callback or a collection of callbacks to the list
+			// Add a callback or a Collections of callbacks to the list
 			add: function() {
 				if ( list ) {
 					// First, we save the current length
@@ -3437,7 +3437,7 @@ jQuery.ready.promise();
 
 
 
-// Multifunctional method to get and set values of a collection
+// Multifunctional method to get and set values of a Collections
 // The value/s can optionally be executed if it's a function
 var access = jQuery.access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	var i = 0,
@@ -6320,11 +6320,11 @@ function genFx( type, includeWidth ) {
 
 function createTween( value, prop, animation ) {
 	var tween,
-		collection = ( tweeners[ prop ] || [] ).concat( tweeners[ "*" ] ),
+		Collections = ( tweeners[ prop ] || [] ).concat( tweeners[ "*" ] ),
 		index = 0,
-		length = collection.length;
+		length = Collections.length;
 	for ( ; index < length; index++ ) {
-		if ( (tween = collection[ index ].call( animation, prop, value )) ) {
+		if ( (tween = Collections[ index ].call( animation, prop, value )) ) {
 
 			// we're done with this property
 			return tween;
@@ -7918,7 +7918,7 @@ jQuery.extend({
 			s = jQuery.ajaxSetup( {}, options ),
 			// Callbacks context
 			callbackContext = s.context || s,
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			// Context for global events is callbackContext if it is a DOM node or jQuery Collections
 			globalEventContext = s.context && ( callbackContext.nodeType || callbackContext.jquery ) ?
 				jQuery( callbackContext ) :
 				jQuery.event,
@@ -8179,7 +8179,7 @@ jQuery.extend({
 				clearTimeout( timeoutTimer );
 			}
 
-			// Dereference transport for early garbage collection
+			// Dereference transport for early garbage Collections
 			// (no matter how long the jqXHR object will be used)
 			transport = undefined;
 

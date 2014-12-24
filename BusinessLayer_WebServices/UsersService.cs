@@ -16,7 +16,7 @@ namespace BusinessLayer_WebServices
     public class UsersService : IUsersService
     {
         public void RegisterBuyer(string id, string name, string surname, string residence, string street,
-            string town, string postCode, string country, string contactNumber, int creditCardTypeId, 
+            string town, string postCode, string country, string contactNumber, int creditCardTypeId,
             string creditCardNumber, string cardHolderName, int expiryDateMonth, int expiryDateYear)
         {
             UsersRepository ur = new UsersRepository();
@@ -166,7 +166,7 @@ namespace BusinessLayer_WebServices
         {
             UsersRepository ur = new UsersRepository();
             RolesRepository rr = new RolesRepository();
-            
+
             ur.Entity = rr.Entity;
 
             try
@@ -207,8 +207,9 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        public void AddBuyer(string id, string name, string surname, string residence, string street, string town, 
-            string postCode, string country, string contactNumber, List<CreditCardDetailView> creditCards)
+        public void AddUser(string username, string password, string email, string name, string surname, string residence, 
+            string street, string town, string postCode, string country, string contactNumber, 
+            List<CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, List<RoleView> userRoles)
         {
             UsersRepository ur = new UsersRepository();
             RolesRepository rr = new RolesRepository();
@@ -220,7 +221,10 @@ namespace BusinessLayer_WebServices
             {
                 ApplicationUser u = new ApplicationUser()
                 {
-                    Id= userId.ToString(),
+                    Id = userId.ToString(),
+                    UserName = username,
+                    PasswordHash = password,
+                    Email = email,
                     FirstName = name,
                     LastName = surname,
                     ContactNumber = contactNumber,
@@ -229,7 +233,7 @@ namespace BusinessLayer_WebServices
                     Town = town,
                     PostCode = postCode,
                     Country = country
-                };               
+                };
 
                 try
                 {
@@ -237,23 +241,46 @@ namespace BusinessLayer_WebServices
                     rr.Transaction = ur.Transaction = ccr.Transaction = ur.Entity.Database.BeginTransaction();
                     ur.AddUser(u);
 
-                    foreach (CreditCardDetailView ccd in creditCards)
+                    bool buyer = false;
+                    bool seller = false;
+                    foreach (RoleView rv in userRoles)
                     {
-                        ccr.AddCreditCardDetail(new CreditCardDetail()
-                        {
-                            CreditCardTypeId = ccd.CreditCardTypeId,
-                            CardHolderName = ccd.CardHolderName,
-                            ExpiryDate = ccd.ExpiryDate
-                        });
+                        if (rv.RoleName.ToLower() == "buyer")
+                            buyer = true;
+
+                        if (rv.RoleName.ToLower() == "seller")
+                            seller = true;
+
+                        rr.AllocateRole(u, rr.GetRole(rv.RoleId));
                     }
 
-                    rr.AllocateRole(u, rr.GetBuyerRole());
+                    if (buyer)
+                    {
+                        foreach (CreditCardDetailView ccd in creditCards)
+                        {
+                            ccr.AddCreditCardDetail(new CreditCardDetail()
+                            {
+                                CreditCardTypeId = ccd.CreditCardTypeId,
+                                CardHolderName = ccd.CardHolderName,
+                                ExpiryDate = ccd.ExpiryDate
+                            });
+                        }
+                    }
+
+                    if (seller)
+                    {
+                        ur.AddSeller(new Seller()
+                        {
+                            Id = userId.ToString(),
+                            RequiresDelivery = requiresDelivery,
+                            IBANNumber = ibanNumber
+                        });
+                    }                    
 
                     ur.Transaction.Commit();
                 }
                 catch
                 {
-                    ur.DeleteUser(id);
                     ur.Transaction.Rollback();
                     throw new TransactionFailedException("Adding a new user failed. Please try again or contact administrator if error persists.");
                 }
@@ -272,51 +299,30 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        public void AddSeller(string id, string name, string surname, string residence, string street, string town, 
-            string postCode, string country, string contactNumber, bool requiresDelivery, string ibanNumber)
+        public void UpdateUser(string id, string email, string name, string surname, string residence, 
+            string street, string town, string postCode, string country, string contactNumber, 
+            List<CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, List<RoleView> userRoles)
         {
-            UsersRepository ur = new UsersRepository();
-            RolesRepository rr = new RolesRepository();
-            CreditCardsRepository ccr = new CreditCardsRepository();
-            ur.Entity = rr.Entity = ccr.Entity;
-            Guid userId = Guid.NewGuid();
+            throw new NotImplementedException();
+        }
 
+        public void DeleteUser(string id)
+        {
             try
             {
-                ApplicationUser u = new ApplicationUser()
-                {
-                    Id = userId.ToString(),
-                    FirstName = name,
-                    LastName = surname,
-                    ContactNumber = contactNumber,
-                    Residence = residence,
-                    Street = street,
-                    Town = town,
-                    PostCode = postCode,
-                    Country = country
-                };
-
+                UsersRepository ur = new UsersRepository();
                 try
                 {
                     ur.Entity.Database.Connection.Open();
-                    rr.Transaction = ur.Transaction = ccr.Transaction = ur.Entity.Database.BeginTransaction();
-                    ur.AddUser(u);
+                    ur.Transaction = ur.Entity.Database.BeginTransaction();
 
-                    ur.AddSeller(new Seller() { 
-                        Id = userId.ToString(), 
-                        RequiresDelivery = requiresDelivery, 
-                        IBANNumber = ibanNumber
-                    });
-
-                    rr.AllocateRole(u, rr.GetSellerRole());
-
+                    ur.MarkUserAsDeleted(id);
                     ur.Transaction.Commit();
                 }
                 catch
                 {
-                    ur.DeleteUser(id);
                     ur.Transaction.Rollback();
-                    throw new TransactionFailedException("Adding a new user failed. Please try again or contact administrator if error persists.");
+                    throw new TransactionFailedException("User Deletion Failed. Please try again or contact administrator if error persists.");
                 }
                 finally
                 {
@@ -329,7 +335,7 @@ namespace BusinessLayer_WebServices
             }
             catch
             {
-                throw new FaultException("Error whilst adding a new user. Please try again or contact administrator if error persists.");
+                throw new FaultException("An error occurred whilst deleting the user.");
             }
         }
     }

@@ -74,10 +74,12 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddBuyer">
+  <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="residence" nillable="true" type="xs:string" />
@@ -87,18 +89,22 @@
         <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="contactNumber" nillable="true" type="xs:string" />
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="creditCards" nillable="true" type="q3:ArrayOfCreditCardDetailView" />
+        <xs:element minOccurs="0" name="requiresDelivery" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ibanNumber" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="userRoles" nillable="true" type="q4:ArrayOfRoleView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddBuyerResponse">
+  <xs:element name="AddUserResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddSeller">
+  <xs:element name="UpdateUser">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="residence" nillable="true" type="xs:string" />
@@ -107,12 +113,26 @@
         <xs:element minOccurs="0" name="postCode" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="contactNumber" nillable="true" type="xs:string" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="creditCards" nillable="true" type="q5:ArrayOfCreditCardDetailView" />
         <xs:element minOccurs="0" name="requiresDelivery" type="xs:boolean" />
         <xs:element minOccurs="0" name="ibanNumber" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="userRoles" nillable="true" type="q6:ArrayOfRoleView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddSellerResponse">
+  <xs:element name="UpdateUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

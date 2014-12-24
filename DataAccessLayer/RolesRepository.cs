@@ -55,7 +55,9 @@ namespace DataAccessLayer
 
         public IEnumerable<RoleView> GetRoles()
         {
-            return Entity.IdentityRoles.Select(r => new RoleView() { RoleId = r.Id, RoleName = r.Name });
+            return Entity.IdentityRoles
+                .Select(r => new RoleView() { RoleId = r.Id, RoleName = r.Name })
+                .Where(r=> r.RoleName.ToLower() != "guest");
         }
 
         public void AddRole(IdentityRole r)

@@ -93,7 +93,7 @@ intellisense.annotate(jQuery, {
   'each': function() {
     /// <signature>
     ///   <summary>A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.</summary>
-    ///   <param name="collection" type="Object">The object or array to iterate over.</param>
+    ///   <param name="Collections" type="Object">The object or array to iterate over.</param>
     ///   <param name="callback(indexInArray, valueOfElement)" type="Function">The function that will be executed on every object.</param>
     ///   <returns type="Object" />
     /// </signature>
@@ -387,7 +387,7 @@ intellisense.annotate(jQuery, {
     /// <returns type="jQuery" />
   },
   'support': function() {
-    /// <summary>A collection of properties that represent the presence of different browser features or bugs. Primarily intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance.</summary>
+    /// <summary>A Collections of properties that represent the presence of different browser features or bugs. Primarily intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance.</summary>
     /// <returns type="Object" />
   },
   'trim': function() {
@@ -426,7 +426,7 @@ var _object = _1228819969(flags);
 intellisense.annotate(_object, {
   'add': function() {
     /// <signature>
-    ///   <summary>Add a callback or a collection of callbacks to a callback list.</summary>
+    ///   <summary>Add a callback or a Collections of callbacks to a callback list.</summary>
     ///   <param name="callbacks" type="">A function, or array of functions, that are to be added to the callback list.</param>
     ///   <returns type="Callbacks" />
     /// </signature>
@@ -479,7 +479,7 @@ intellisense.annotate(_object, {
   },
   'remove': function() {
     /// <signature>
-    ///   <summary>Remove a callback or a collection of callbacks from a callback list.</summary>
+    ///   <summary>Remove a callback or a Collections of callbacks from a callback list.</summary>
     ///   <param name="callbacks" type="">A function, or array of functions, that are to be removed from the callback list.</param>
     ///   <returns type="Callbacks" />
     /// </signature>
@@ -1534,7 +1534,7 @@ intellisense.annotate(jQuery.fn, {
   'index': function() {
     /// <signature>
     ///   <summary>Search for a given element from among the matched elements.</summary>
-    ///   <param name="selector" type="String">A selector representing a jQuery collection in which to look for an element.</param>
+    ///   <param name="selector" type="String">A selector representing a jQuery Collections in which to look for an element.</param>
     ///   <returns type="Number" />
     /// </signature>
     /// <signature>
@@ -1604,7 +1604,7 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
     /// <signature>
     ///   <summary>Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.</summary>
-    ///   <param name="function(index)" type="Function">A function used as a test for the set of elements. It accepts one argument, index, which is the element's index in the jQuery collection.Within the function, this refers to the current DOM element.</param>
+    ///   <param name="function(index)" type="Function">A function used as a test for the set of elements. It accepts one argument, index, which is the element's index in the jQuery Collections.Within the function, this refers to the current DOM element.</param>
     ///   <returns type="Boolean" />
     /// </signature>
     /// <signature>
@@ -1943,7 +1943,7 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
     /// <signature>
     ///   <summary>Set the current coordinates of every element in the set of matched elements, relative to the document.</summary>
-    ///   <param name="function(index, coords)" type="Function">A function to return the coordinates to set. Receives the index of the element in the collection as the first argument and the current coordinates as the second argument. The function should return an object with the new top and left properties.</param>
+    ///   <param name="function(index, coords)" type="Function">A function to return the coordinates to set. Receives the index of the element in the Collections as the first argument and the current coordinates as the second argument. The function should return an object with the new top and left properties.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },
@@ -2097,7 +2097,7 @@ intellisense.annotate(jQuery.fn, {
   },
   'promise': function() {
     /// <signature>
-    ///   <summary>Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.</summary>
+    ///   <summary>Return a Promise object to observe when all actions of a certain type bound to the Collections, queued or not, have finished.</summary>
     ///   <param name="type" type="String">The type of queue that needs to be observed.</param>
     ///   <param name="target" type="PlainObject">Object onto which the promise methods have to be attached</param>
     ///   <returns type="Promise" />
@@ -2124,12 +2124,12 @@ intellisense.annotate(jQuery.fn, {
   },
   'pushStack': function() {
     /// <signature>
-    ///   <summary>Add a collection of DOM elements onto the jQuery stack.</summary>
+    ///   <summary>Add a Collections of DOM elements onto the jQuery stack.</summary>
     ///   <param name="elements" type="Array">An array of elements to push onto the stack and make into a new jQuery object.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>Add a collection of DOM elements onto the jQuery stack.</summary>
+    ///   <summary>Add a Collections of DOM elements onto the jQuery stack.</summary>
     ///   <param name="elements" type="Array">An array of elements to push onto the stack and make into a new jQuery object.</param>
     ///   <param name="name" type="String">The name of a jQuery method that generated the array of elements.</param>
     ///   <param name="arguments" type="Array">The arguments that were passed in to the jQuery method (for serialization).</param>

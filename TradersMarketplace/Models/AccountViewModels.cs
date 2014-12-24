@@ -94,7 +94,7 @@ namespace TradersMarketplace.Models
             }
             catch (FaultException ex)
             {
-
+                throw ex;
             }
 
             List<MonthModel> months = new List<MonthModel>();

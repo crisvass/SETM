@@ -13,7 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace TradersMarketplace.Controllers
 {
-    [Authorize(Roles="Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class MenuManagementController : BaseController
     {
         private MenusServiceClient.MenusServiceClient ms = new MenusServiceClient.MenusServiceClient();
@@ -87,14 +87,16 @@ namespace TradersMarketplace.Controllers
                 }
                 catch (FaultException ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    //ModelState.AddModelError("", ex.Message);
+                    throw ex;
                 }
             }
             return View(menu);
         }
 
         [HttpGet]
-        public PartialViewResult CreateSubmenu(MenusView menu)
+        //public PartialViewResult CreateSubmenu(MenusView menu)
+        public PartialViewResult CreateSubmenu()
         {
             return PartialView("_CreateSubmenu", new MenusView());
         }

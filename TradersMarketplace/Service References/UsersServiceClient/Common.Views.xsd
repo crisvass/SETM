@@ -3,14 +3,18 @@
   <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" />
   <xs:complexType name="UserView">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ConfirmPassword" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ContactNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCards" nillable="true" type="tns:ArrayOfCreditCardDetailView" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IbanNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PostCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequiresDelivery" type="xs:boolean" />
       <xs:element minOccurs="0" name="Residence" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Town" nillable="true" type="xs:string" />
@@ -20,6 +24,28 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserView" nillable="true" type="tns:UserView" />
+  <xs:complexType name="ArrayOfCreditCardDetailView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditCardDetailView" nillable="true" type="tns:CreditCardDetailView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCreditCardDetailView" nillable="true" type="tns:ArrayOfCreditCardDetailView" />
+  <xs:complexType name="CreditCardDetailView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardHolderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCardType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCardTypeId" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="CreditCardTypeList" nillable="true" type="q2:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="ExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Month" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="MonthsList" nillable="true" type="q3:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="Year" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="YearsList" nillable="true" type="q4:ArrayOfSelectListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditCardDetailView" nillable="true" type="tns:CreditCardDetailView" />
   <xs:complexType name="ArrayOfRoleView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleView" nillable="true" type="tns:RoleView" />
@@ -39,20 +65,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUserView" nillable="true" type="tns:ArrayOfUserView" />
-  <xs:complexType name="ArrayOfCreditCardDetailView">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditCardDetailView" nillable="true" type="tns:CreditCardDetailView" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCreditCardDetailView" nillable="true" type="tns:ArrayOfCreditCardDetailView" />
-  <xs:complexType name="CreditCardDetailView">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CardHolderName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreditCardType" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreditCardTypeId" type="xs:int" />
-      <xs:element minOccurs="0" name="ExpiryDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CreditCardDetailView" nillable="true" type="tns:CreditCardDetailView" />
 </xs:schema>

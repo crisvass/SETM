@@ -33,13 +33,18 @@ namespace BusinessLayer_WebServices
         IEnumerable<UserView> GetAllUsers();
 
         [OperationContract]
-        void AddBuyer(string id, string name,
+        void AddUser(string username, string password, string email, string name,
             string surname, string residence, string street, string town, string postCode,
-            string country, string contactNumber, List<CreditCardDetailView> creditCards);
+            string country, string contactNumber, List<CreditCardDetailView> creditCards, 
+            bool requiresDelivery, string ibanNumber, List<RoleView> userRoles);
 
         [OperationContract]
-        void AddSeller(string id, string name,
+        void UpdateUser(string id, string email, string name,
             string surname, string residence, string street, string town, string postCode,
-            string country, string contactNumber, bool requiresDelivery, string ibanNumber);
+            string country, string contactNumber, List<CreditCardDetailView> creditCards,
+            bool requiresDelivery, string ibanNumber, List<RoleView> userRoles);
+
+        [OperationContract]
+        void DeleteUser(string id);
     }
 }

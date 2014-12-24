@@ -91,6 +91,13 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
+        public void MarkUserAsDeleted(string userId)
+        {
+            ApplicationUser user = GetUserById(userId);
+            user.IsDeleted = true;
+            Entity.SaveChanges();
+        }
+
         public void DeleteSeller(string userId)
         {
             Entity.Sellers.Remove(GetSeller(userId));
@@ -118,7 +125,7 @@ namespace DataAccessLayer
 
         public IEnumerable<UserView> GetAllUsers()
         {
-            return Entity.ApplicationUsers.Select(u =>
+            return Entity.ApplicationUsers.Where(u=> u.IsDeleted == false).Select(u =>
                 new UserView()
             {
                 Id = u.Id,

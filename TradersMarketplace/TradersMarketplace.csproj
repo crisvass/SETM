@@ -232,6 +232,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\CommonScript.js" />
     <Content Include="Scripts\Custom\MenuManagementScript.js" />
+    <Content Include="Scripts\Custom\UserManagementScript.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -308,15 +309,6 @@
     <Content Include="Service References\RolesServiceClient\TradersMarketplace.RolesServiceClient.RoleView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\UsersServiceClient\Common.Views.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UsersServiceClient\configuration91.svcinfo" />
-    <None Include="Service References\UsersServiceClient\configuration.svcinfo" />
-    <None Include="Service References\UsersServiceClient\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\CreditCardsServiceClient\configuration91.svcinfo" />
     <None Include="Service References\CreditCardsServiceClient\configuration.svcinfo" />
     <None Include="Service References\CreditCardsServiceClient\Reference.svcmap">
@@ -335,6 +327,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\UsersServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\UsersServiceClient\configuration.svcinfo" />
+    <None Include="Service References\UsersServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -348,13 +346,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <None Include="Service References\UsersServiceClient\service.wsdl" />
-    <None Include="Service References\UsersServiceClient\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UsersServiceClient\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Account\RegisterBuyer.cshtml" />
     <Content Include="Views\Account\RegisterSeller.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -377,12 +368,23 @@
     <Content Include="Views\UserManagement\Details.cshtml" />
     <Content Include="Views\UserManagement\Edit.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
-    <Content Include="Service References\UsersServiceClient\TradersMarketplace.UsersServiceClient.UserView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
+    <None Include="Service References\UsersServiceClient\Common.Views.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UsersServiceClient\service.wsdl" />
+    <None Include="Service References\UsersServiceClient\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UsersServiceClient\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\UsersServiceClient\System.Web.Mvc.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Service References\UsersServiceClient\TradersMarketplace.UsersServiceClient.UserView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\UserManagement\_CreateCreditCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

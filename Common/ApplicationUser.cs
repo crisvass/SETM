@@ -41,6 +41,7 @@ namespace Common
         public string PostCode { get; set; }
         public string Town { get; set; }
         public string Country { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ICollection<IdentityUserClaim> IdentityUserClaims { get; set; }
         public virtual ICollection<IdentityUserLogin> IdentityUserLogins { get; set; }

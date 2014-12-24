@@ -23,16 +23,25 @@ namespace TradersMarketplace.UsersServiceClient {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ConfirmPasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ContactNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CountryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> CreditCardsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IbanNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string IdField;
@@ -45,6 +54,9 @@ namespace TradersMarketplace.UsersServiceClient {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PostCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool RequiresDeliveryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ResidenceField;
@@ -75,6 +87,19 @@ namespace TradersMarketplace.UsersServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ConfirmPassword {
+            get {
+                return this.ConfirmPasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConfirmPasswordField, value) != true)) {
+                    this.ConfirmPasswordField = value;
+                    this.RaisePropertyChanged("ConfirmPassword");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ContactNumber {
             get {
                 return this.ContactNumberField;
@@ -101,6 +126,19 @@ namespace TradersMarketplace.UsersServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> CreditCards {
+            get {
+                return this.CreditCardsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreditCardsField, value) != true)) {
+                    this.CreditCardsField = value;
+                    this.RaisePropertyChanged("CreditCards");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email {
             get {
                 return this.EmailField;
@@ -122,6 +160,19 @@ namespace TradersMarketplace.UsersServiceClient {
                 if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
                     this.FirstNameField = value;
                     this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IbanNumber {
+            get {
+                return this.IbanNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IbanNumberField, value) != true)) {
+                    this.IbanNumberField = value;
+                    this.RaisePropertyChanged("IbanNumber");
                 }
             }
         }
@@ -174,6 +225,19 @@ namespace TradersMarketplace.UsersServiceClient {
                 if ((object.ReferenceEquals(this.PostCodeField, value) != true)) {
                     this.PostCodeField = value;
                     this.RaisePropertyChanged("PostCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool RequiresDelivery {
+            get {
+                return this.RequiresDeliveryField;
+            }
+            set {
+                if ((this.RequiresDeliveryField.Equals(value) != true)) {
+                    this.RequiresDeliveryField = value;
+                    this.RaisePropertyChanged("RequiresDelivery");
                 }
             }
         }
@@ -252,6 +316,211 @@ namespace TradersMarketplace.UsersServiceClient {
                 if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
                     this.UsernameField = value;
                     this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreditCardDetailView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class CreditCardDetailView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CardHolderNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CreditCardNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CreditCardTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreditCardTypeIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectList CreditCardTypeListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExpiryDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MonthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectList MonthsListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YearField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Web.Mvc.SelectList YearsListField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CardHolderName {
+            get {
+                return this.CardHolderNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CardHolderNameField, value) != true)) {
+                    this.CardHolderNameField = value;
+                    this.RaisePropertyChanged("CardHolderName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreditCardNumber {
+            get {
+                return this.CreditCardNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreditCardNumberField, value) != true)) {
+                    this.CreditCardNumberField = value;
+                    this.RaisePropertyChanged("CreditCardNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreditCardType {
+            get {
+                return this.CreditCardTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreditCardTypeField, value) != true)) {
+                    this.CreditCardTypeField = value;
+                    this.RaisePropertyChanged("CreditCardType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreditCardTypeId {
+            get {
+                return this.CreditCardTypeIdField;
+            }
+            set {
+                if ((this.CreditCardTypeIdField.Equals(value) != true)) {
+                    this.CreditCardTypeIdField = value;
+                    this.RaisePropertyChanged("CreditCardTypeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectList CreditCardTypeList {
+            get {
+                return this.CreditCardTypeListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreditCardTypeListField, value) != true)) {
+                    this.CreditCardTypeListField = value;
+                    this.RaisePropertyChanged("CreditCardTypeList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpiryDate {
+            get {
+                return this.ExpiryDateField;
+            }
+            set {
+                if ((this.ExpiryDateField.Equals(value) != true)) {
+                    this.ExpiryDateField = value;
+                    this.RaisePropertyChanged("ExpiryDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Month {
+            get {
+                return this.MonthField;
+            }
+            set {
+                if ((this.MonthField.Equals(value) != true)) {
+                    this.MonthField = value;
+                    this.RaisePropertyChanged("Month");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectList MonthsList {
+            get {
+                return this.MonthsListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MonthsListField, value) != true)) {
+                    this.MonthsListField = value;
+                    this.RaisePropertyChanged("MonthsList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Year {
+            get {
+                return this.YearField;
+            }
+            set {
+                if ((this.YearField.Equals(value) != true)) {
+                    this.YearField = value;
+                    this.RaisePropertyChanged("Year");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Web.Mvc.SelectList YearsList {
+            get {
+                return this.YearsListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.YearsListField, value) != true)) {
+                    this.YearsListField = value;
+                    this.RaisePropertyChanged("YearsList");
                 }
             }
         }
@@ -404,115 +673,6 @@ namespace TradersMarketplace.UsersServiceClient {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CreditCardDetailView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
-    [System.SerializableAttribute()]
-    public partial class CreditCardDetailView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CardHolderNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CreditCardTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreditCardTypeIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ExpiryDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CardHolderName {
-            get {
-                return this.CardHolderNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CardHolderNameField, value) != true)) {
-                    this.CardHolderNameField = value;
-                    this.RaisePropertyChanged("CardHolderName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CreditCardType {
-            get {
-                return this.CreditCardTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CreditCardTypeField, value) != true)) {
-                    this.CreditCardTypeField = value;
-                    this.RaisePropertyChanged("CreditCardType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CreditCardTypeId {
-            get {
-                return this.CreditCardTypeIdField;
-            }
-            set {
-                if ((this.CreditCardTypeIdField.Equals(value) != true)) {
-                    this.CreditCardTypeIdField = value;
-                    this.RaisePropertyChanged("CreditCardTypeId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ExpiryDate {
-            get {
-                return this.ExpiryDateField;
-            }
-            set {
-                if ((this.ExpiryDateField.Equals(value) != true)) {
-                    this.ExpiryDateField = value;
-                    this.RaisePropertyChanged("ExpiryDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UsersServiceClient.IUsersService")]
     public interface IUsersService {
@@ -541,17 +701,23 @@ namespace TradersMarketplace.UsersServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/GetAllUsers", ReplyAction="http://tempuri.org/IUsersService/GetAllUsersResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.UserView>> GetAllUsersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/AddBuyer", ReplyAction="http://tempuri.org/IUsersService/AddBuyerResponse")]
-        void AddBuyer(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, TradersMarketplace.UsersServiceClient.CreditCardDetailView[] creditCards);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/AddUser", ReplyAction="http://tempuri.org/IUsersService/AddUserResponse")]
+        void AddUser(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/AddBuyer", ReplyAction="http://tempuri.org/IUsersService/AddBuyerResponse")]
-        System.Threading.Tasks.Task AddBuyerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, TradersMarketplace.UsersServiceClient.CreditCardDetailView[] creditCards);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/AddUser", ReplyAction="http://tempuri.org/IUsersService/AddUserResponse")]
+        System.Threading.Tasks.Task AddUserAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/AddSeller", ReplyAction="http://tempuri.org/IUsersService/AddSellerResponse")]
-        void AddSeller(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, bool requiresDelivery, string ibanNumber);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/UpdateUser", ReplyAction="http://tempuri.org/IUsersService/UpdateUserResponse")]
+        void UpdateUser(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/AddSeller", ReplyAction="http://tempuri.org/IUsersService/AddSellerResponse")]
-        System.Threading.Tasks.Task AddSellerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, bool requiresDelivery, string ibanNumber);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/UpdateUser", ReplyAction="http://tempuri.org/IUsersService/UpdateUserResponse")]
+        System.Threading.Tasks.Task UpdateUserAsync(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/DeleteUser", ReplyAction="http://tempuri.org/IUsersService/DeleteUserResponse")]
+        void DeleteUser(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/DeleteUser", ReplyAction="http://tempuri.org/IUsersService/DeleteUserResponse")]
+        System.Threading.Tasks.Task DeleteUserAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -613,20 +779,28 @@ namespace TradersMarketplace.UsersServiceClient {
             return base.Channel.GetAllUsersAsync();
         }
         
-        public void AddBuyer(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, TradersMarketplace.UsersServiceClient.CreditCardDetailView[] creditCards) {
-            base.Channel.AddBuyer(id, name, surname, residence, street, town, postCode, country, contactNumber, creditCards);
+        public void AddUser(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles) {
+            base.Channel.AddUser(username, password, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
         }
         
-        public System.Threading.Tasks.Task AddBuyerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, TradersMarketplace.UsersServiceClient.CreditCardDetailView[] creditCards) {
-            return base.Channel.AddBuyerAsync(id, name, surname, residence, street, town, postCode, country, contactNumber, creditCards);
+        public System.Threading.Tasks.Task AddUserAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles) {
+            return base.Channel.AddUserAsync(username, password, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
         }
         
-        public void AddSeller(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, bool requiresDelivery, string ibanNumber) {
-            base.Channel.AddSeller(id, name, surname, residence, street, town, postCode, country, contactNumber, requiresDelivery, ibanNumber);
+        public void UpdateUser(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles) {
+            base.Channel.UpdateUser(id, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
         }
         
-        public System.Threading.Tasks.Task AddSellerAsync(string id, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, bool requiresDelivery, string ibanNumber) {
-            return base.Channel.AddSellerAsync(id, name, surname, residence, street, town, postCode, country, contactNumber, requiresDelivery, ibanNumber);
+        public System.Threading.Tasks.Task UpdateUserAsync(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<TradersMarketplace.UsersServiceClient.RoleView> userRoles) {
+            return base.Channel.UpdateUserAsync(id, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
+        }
+        
+        public void DeleteUser(string id) {
+            base.Channel.DeleteUser(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserAsync(string id) {
+            return base.Channel.DeleteUserAsync(id);
         }
     }
 }

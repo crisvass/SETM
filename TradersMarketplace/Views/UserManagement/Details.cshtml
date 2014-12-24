@@ -1,29 +1,18 @@
 ﻿@model TradersMarketplace.UsersServiceClient.UserView
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User Management";
 }
 
-<h2>Details</h2>
+<h2>User Details</h2>
 
 <div>
-    <h4>UserCrud</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Username)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
         </dd>
 
         <dt>
@@ -39,7 +28,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @if (Model.FirstName != null)
+            {
+                @Html.DisplayFor(model => model.FirstName)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
@@ -47,7 +43,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @if (Model.LastName != null)
+            {
+                @Html.DisplayFor(model => model.LastName)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
@@ -55,7 +58,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
+            @if (Model.ContactNumber != null)
+            {
+                @Html.DisplayFor(model => model.ContactNumber)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
@@ -63,40 +73,132 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Residence)
+            @if (Model.Residence != null)
+            {
+                @Html.DisplayFor(model => model.Residence)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Street)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Street)
+            @if (Model.Street != null)
+            {
+                @Html.DisplayFor(model => model.Street)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.PostCode)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.PostCode)
+            @if (Model.PostCode != null)
+            {
+                @Html.DisplayFor(model => model.PostCode)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Town)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Town)
+            @if (Model.Town != null)
+            {
+                @Html.DisplayFor(model => model.Town)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Country)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Country)
+            @if (Model.Country != null)
+            {
+                @Html.DisplayFor(model => model.Country)
+            }
+            else
+            {
+                <span class="not_specified">Not Specified</span>
+            }
         </dd>
+
+        @if (Model.CreditCards != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.CreditCards)
+            </dt>
+            <dd>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().CreditCardType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().CardHolderName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().CreditCardNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().ExpiryDate)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (TradersMarketplace.UsersServiceClient.CreditCardDetailView ccd in Model.CreditCards)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => ccd.CreditCardType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => ccd.CardHolderName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => ccd.CreditCardNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => ccd.ExpiryDate.Month + "/" + ccd.ExpiryDate.Year)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dd>
+        }
+        @if (Model.RequiresDelivery != null && Model.IbanNumber != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.RequiresDelivery)
+            </dt>
+            <dd>
+                @Html.CheckBoxFor(model => model.RequiresDelivery)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IbanNumber)
+            </dt>
+            <dd>
+                @Html.DisplayNameFor(model => model.IbanNumber)
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.UserRoles)
         </dt>
