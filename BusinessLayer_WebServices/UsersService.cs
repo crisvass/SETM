@@ -91,7 +91,6 @@ namespace BusinessLayer_WebServices
 
             try
             {
-
                 ApplicationUser u = new ApplicationUser()
                 {
                     Id = id,
@@ -161,18 +160,25 @@ namespace BusinessLayer_WebServices
         //    }
         //}
 
-
         public UserView GetUser(string id)
         {
             UsersRepository ur = new UsersRepository();
             RolesRepository rr = new RolesRepository();
+            CreditCardsRepository ccr = new CreditCardsRepository();
 
-            ur.Entity = rr.Entity;
+            ur.Entity = rr.Entity = ccr.Entity;
 
             try
             {
                 UserView user = ur.GetUserView(id);
                 user.UserRoles = rr.GetUserRoles(user.Username).ToList<RoleView>();
+                user.CreditCards = ccr.GetUserCreditCards(user.Username).ToList<CreditCardDetailView>();
+                Seller s;
+                if ((s = ur.GetSeller(id)) != null)
+                {
+                    user.RequiresDelivery = s.RequiresDelivery;
+                    user.IbanNumber = s.IBANNumber;
+                }
                 return user;
             }
             catch
@@ -207,8 +213,8 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        public void AddUser(string username, string password, string email, string name, string surname, string residence, 
-            string street, string town, string postCode, string country, string contactNumber, 
+        public void AddUser(string username, string password, string email, string name, string surname, string residence,
+            string street, string town, string postCode, string country, string contactNumber,
             List<CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, List<RoleView> userRoles)
         {
             UsersRepository ur = new UsersRepository();
@@ -223,7 +229,8 @@ namespace BusinessLayer_WebServices
                 {
                     Id = userId.ToString(),
                     UserName = username,
-                    PasswordHash = password,
+                    PasswordHash = GeneralUtitlities.HashPassword(password),
+                    SecurityStamp = Guid.NewGuid().ToString(),
                     Email = email,
                     FirstName = name,
                     LastName = surname,
@@ -251,7 +258,7 @@ namespace BusinessLayer_WebServices
                         if (rv.RoleName.ToLower() == "seller")
                             seller = true;
 
-                        rr.AllocateRole(u, rr.GetRole(rv.RoleId));
+                        rr.AllocateRole(u, rv.RoleId);
                     }
 
                     if (buyer)
@@ -260,9 +267,11 @@ namespace BusinessLayer_WebServices
                         {
                             ccr.AddCreditCardDetail(new CreditCardDetail()
                             {
+                                Username = username,
                                 CreditCardTypeId = ccd.CreditCardTypeId,
+                                CreditCardNumber = ccd.CreditCardNumber,
                                 CardHolderName = ccd.CardHolderName,
-                                ExpiryDate = ccd.ExpiryDate
+                                ExpiryDate = new DateTime(ccd.Year, ccd.Month, GeneralUtitlities.GetLastDayOfTheMonth(ccd.Month, ccd.Year))
                             });
                         }
                     }
@@ -275,7 +284,7 @@ namespace BusinessLayer_WebServices
                             RequiresDelivery = requiresDelivery,
                             IBANNumber = ibanNumber
                         });
-                    }                    
+                    }
 
                     ur.Transaction.Commit();
                 }
@@ -299,11 +308,171 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        public void UpdateUser(string id, string email, string name, string surname, string residence, 
-            string street, string town, string postCode, string country, string contactNumber, 
+        public void UpdateUser(string id, string email, string name, string surname, string residence,
+            string street, string town, string postCode, string country, string contactNumber,
             List<CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, List<RoleView> userRoles)
         {
-            throw new NotImplementedException();
+            UsersRepository ur = new UsersRepository();
+            RolesRepository rr = new RolesRepository();
+            CreditCardsRepository ccr = new CreditCardsRepository();
+            ur.Entity = rr.Entity = ccr.Entity;
+
+            try
+            {
+                ApplicationUser u = new ApplicationUser()
+                {
+                    Id = id,
+                    Email = email,
+                    FirstName = name,
+                    LastName = surname,
+                    ContactNumber = contactNumber,
+                    Residence = residence,
+                    Street = street,
+                    Town = town,
+                    PostCode = postCode,
+                    Country = country
+                };
+
+                try
+                {
+                    ur.Entity.Database.Connection.Open();
+                    rr.Transaction = ur.Transaction = ccr.Transaction = ur.Entity.Database.BeginTransaction();
+                    ur.UpdateUser(u);
+
+                    string username = ur.GetUserById(id).UserName;
+                    bool buyer = false;
+                    bool seller = false;
+                    bool found;
+
+                    IEnumerable<RoleView> userOriginalRoles = rr.GetUserRoles(username);
+
+                    //delete removed user roles
+                    foreach (RoleView rv in userOriginalRoles)
+                    {
+                        found = false;
+                        foreach (RoleView role in userRoles)
+                        {
+                            if (rv.RoleId == role.RoleId)
+                                found = true;
+                        }
+
+                        if (!found)
+                            rr.DeleteUserRole(id, rv.RoleId);
+                    }
+
+                    //add new user roles
+                    foreach (RoleView rv in userRoles)
+                    {
+                        if (rv.RoleName.ToLower() == "buyer")
+                            buyer = true;
+
+                        if (rv.RoleName.ToLower() == "seller")
+                            seller = true;
+
+                        found = false;
+                        foreach (RoleView role in userOriginalRoles)
+                        {
+                            if (rv.RoleId == role.RoleId)
+                                found = true;
+                        }
+
+                        if (!found)
+                            rr.AllocateRole(u, id);
+                    }
+
+                    IEnumerable<CreditCardDetailView> creditCardsOriginal = ccr.GetUserCreditCards(username);
+                    if (buyer)
+                    {
+                        //delete removed credit cards
+                        foreach (CreditCardDetailView card in creditCardsOriginal)
+                        {
+                            found = false;
+                            foreach (CreditCardDetailView ccd in creditCards)
+                            {
+                                if (card.Id == ccd.Id)
+                                {
+                                    found = true;
+                                }
+                            }
+
+                            if (!found)
+                            {
+                                ccr.DeleteCreditCardDetail(card.Id);
+                            }
+                        }
+
+                        //add new credit cards
+                        foreach (CreditCardDetailView ccd in creditCards)
+                        {
+                            found = false;
+                            foreach (CreditCardDetailView card in creditCardsOriginal)
+                            {
+                                if (ccd.Id == card.Id)
+                                {
+                                    found = true;
+                                }
+                            }
+                            if (!found)
+                            {
+                                ccr.AddCreditCardDetail(new CreditCardDetail()
+                                {
+                                    Username = username,
+                                    CreditCardTypeId = ccd.CreditCardTypeId,
+                                    CreditCardNumber = ccd.CreditCardNumber,
+                                    CardHolderName = ccd.CardHolderName,
+                                    ExpiryDate = new DateTime(ccd.Year, ccd.Month, GeneralUtitlities.GetLastDayOfTheMonth(ccd.Month, ccd.Year))
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ccr.DeleteUserCreditCards(username);
+                    }
+
+                    if (seller)
+                    {
+                        Seller s = new Seller()
+                            {
+                                Id = id,
+                                RequiresDelivery = requiresDelivery,
+                                IBANNumber = ibanNumber
+                            };
+
+                        if (ur.GetSeller(id) != null)
+                        {
+                            ur.UpdateSeller(s);
+                        }
+                        else
+                        {
+                            ur.AddSeller(s);
+                        }
+                    }
+                    else
+                    {
+                        ur.DeleteSeller(id);
+                    }
+
+                    ur.Transaction.Commit();
+                }
+                catch
+                {
+                    ur.Transaction.Rollback();
+                    throw new TransactionFailedException("Adding a new user failed. Please try again or contact administrator if error persists.");
+                }
+                finally
+                {
+                    ur.Entity.Database.Connection.Close();
+                }
+            }
+            catch (TransactionFailedException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch
+            {
+                throw new FaultException("Error whilst adding a new user. Please try again or contact administrator if error persists.");
+            }
         }
 
         public void DeleteUser(string id)

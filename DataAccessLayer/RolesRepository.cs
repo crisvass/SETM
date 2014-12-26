@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common;
 using Common.Views;
 
@@ -25,15 +23,16 @@ namespace DataAccessLayer
                     });
         }
 
-        public void AllocateRole(ApplicationUser u, IdentityRole r)
+        public void AllocateRole(ApplicationUser u, string roleId)
         {
-            u.IdentityUserRoles.Add(new IdentityUserRole() { ApplicationUser = u, IdentityRole = r });
+            Entity.IdentityUserRoles.Add(new IdentityUserRole() { UserId = u.Id, RoleId = roleId });
             Entity.SaveChanges();
         }
 
-        public void DeleteUserRole(ApplicationUser u, IdentityRole r)
+        public void DeleteUserRole(string userId, string roleId)
         {
-            u.IdentityUserRoles.Remove(new IdentityUserRole() { ApplicationUser = u, IdentityRole = r });
+            Entity.IdentityUserRoles.Remove(
+                Entity.IdentityUserRoles.SingleOrDefault(ur => ur.UserId == userId && ur.RoleId == roleId));
             Entity.SaveChanges();
         }
 
@@ -57,7 +56,7 @@ namespace DataAccessLayer
         {
             return Entity.IdentityRoles
                 .Select(r => new RoleView() { RoleId = r.Id, RoleName = r.Name })
-                .Where(r=> r.RoleName.ToLower() != "guest");
+                .Where(r => r.RoleName.ToLower() != "guest");
         }
 
         public void AddRole(IdentityRole r)
@@ -109,6 +108,22 @@ namespace DataAccessLayer
                             where m.Id == id
                             select role.Id)
                             .Contains(r.Id)
+                    select new RoleView()
+                    {
+                        RoleId = r.Id,
+                        RoleName = r.Name
+                    });
+        }
+
+        public IEnumerable<RoleView> GetNonUserAssignedRoles(String id)
+        {
+            return (from r in Entity.IdentityRoles
+                    where !(from ur in Entity.IdentityUserRoles
+                            join role in Entity.IdentityRoles on ur.RoleId equals role.Id
+                            join u in Entity.ApplicationUsers on ur.UserId equals u.Id
+                            where u.Id == id
+                            select role.Id)
+                            .Contains(r.Id) && r.Name.ToLower() != "guest"
                     select new RoleView()
                     {
                         RoleId = r.Id,

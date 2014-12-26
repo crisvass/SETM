@@ -1,4 +1,4 @@
-﻿@model TradersMarketplace.UsersServiceClient.UserView
+﻿@model Common.Views.UserView
 
 @{
     ViewBag.Title = "User Management";
@@ -149,21 +149,21 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().CreditCardType)
+                                @Html.DisplayNameFor(modelItem => new Common.Views.CreditCardDetailView().CreditCardType)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().CardHolderName)
+                                @Html.DisplayNameFor(modelItem => new Common.Views.CreditCardDetailView().CardHolderName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().CreditCardNumber)
+                                @Html.DisplayNameFor(modelItem => new Common.Views.CreditCardDetailView().CreditCardNumber)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(modelItem => new TradersMarketplace.UsersServiceClient.CreditCardDetailView().ExpiryDate)
+                                @Html.DisplayNameFor(modelItem => new Common.Views.CreditCardDetailView().ExpiryDate)
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (TradersMarketplace.UsersServiceClient.CreditCardDetailView ccd in Model.CreditCards)
+                        @foreach (Common.Views.CreditCardDetailView ccd in Model.CreditCards)
                         {
                             <tr>
                                 <td>
@@ -176,7 +176,7 @@
                                     @Html.DisplayFor(modelItem => ccd.CreditCardNumber)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => ccd.ExpiryDate.Month + "/" + ccd.ExpiryDate.Year)
+                                    @Html.DisplayFor(modelItem => ccd.ExpiryDate.Month)/@Html.DisplayFor(modelItem => ccd.ExpiryDate.Year)
                                 </td>
                             </tr>
                         }

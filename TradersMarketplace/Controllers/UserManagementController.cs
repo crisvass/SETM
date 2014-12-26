@@ -13,7 +13,7 @@ using Common.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using TradersMarketplace.Models;
-using TradersMarketplace.UsersServiceClient;
+using Common.Views;
 
 namespace TradersMarketplace.Controllers
 {
@@ -149,36 +149,75 @@ namespace TradersMarketplace.Controllers
             return PartialView("_CreateCreditCard", view);
         }
 
-        //// GET: UserManagement/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    UserCrud userCrud = db.Users.Find(id);
-        //    if (userCrud == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(userCrud);
-        //}
+        // GET: UserManagement/Edit/5
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        //// POST: UserManagement/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
+            UserView user = new UserView();
+            try
+            {
+                user = us.GetUser(id);
+                user.UserRolesList = new SelectList(new RolesServiceClient.RolesServiceClient().GetNonUserAssignedRoles(id),
+                    "RoleId", "RoleName");
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(user);
+        }
+
+        // POST: UserManagement/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,Username,Password,Email,FirstName,LastName,ContactNumber,Residence,Street,PostCode,Town,Country")] UserCrud userCrud)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(userCrud).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(userCrud);
-        //}
+        public ActionResult Edit(string id, string username, string password, string email, string firstName, string lastName,
+            string contactNumber, string residence, string street, string postCode, string town, string country,
+            string creditCards, bool requiresDelivery, string ibanNumber, string userRoles)
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            List<CreditCardDetailView> creditCardsList = js.Deserialize<List<CreditCardDetailView>>(creditCards);
+            List<RoleView> userRolesList = js.Deserialize<List<RoleView>>(userRoles);
+
+            UserView user = new UserView()
+            {
+                Id = id,
+                Username = username,
+                Email = email,
+                FirstName = firstName,
+                LastName = lastName,
+                ContactNumber = contactNumber,
+                Residence = residence,
+                Street = street,
+                Town = town,
+                PostCode = postCode,
+                Country = country,
+                CreditCards = creditCardsList,
+                RequiresDelivery = requiresDelivery,
+                IbanNumber = ibanNumber,
+                UserRoles = userRolesList
+            };
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    us.UpdateUser(id, email, firstName, lastName, residence, street, town, postCode,
+                        country, contactNumber, creditCardsList, requiresDelivery, ibanNumber, userRolesList);
+                    return Json(Url.Action("Index", "UserManagement"));
+                }
+                catch (FaultException ex)
+                {
+                    throw ex;
+                }
+            }
+            return View(user);
+        }
 
         // GET: UserManagement/Delete/5
         public ActionResult Delete(string id)

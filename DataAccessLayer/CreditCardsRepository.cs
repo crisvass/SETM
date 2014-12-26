@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,25 @@ namespace DataAccessLayer
 
         public void AddCreditCardDetail(CreditCardDetail cc)
         {
-            Entity.CreditCardDetails.Add(cc);
-            Entity.SaveChanges();
-        }
-
-        public void UpdateCreditCardDetail(CreditCardDetail cc)
-        {
-            CreditCardDetail creditCard = Entity.CreditCardDetails.SingleOrDefault(ccd => ccd.Id == cc.Id);
-            creditCard.CreditCardNumber = cc.CreditCardNumber;
-            creditCard.ExpiryDate = cc.ExpiryDate;
-            Entity.SaveChanges();
+            //try
+            //{
+                Entity.CreditCardDetails.Add(cc);
+                Entity.SaveChanges();
+            //}
+            //catch (DbEntityValidationException e)
+            //{
+            //    foreach (var eve in e.EntityValidationErrors)
+            //    {
+            //        System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+            //            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+            //        foreach (var ve in eve.ValidationErrors)
+            //        {
+            //            System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+            //                ve.PropertyName, ve.ErrorMessage);
+            //        }
+            //    }
+            //    throw;
+            //}
         }
 
         public void DeleteCreditCardDetail(int id)
@@ -40,6 +50,30 @@ namespace DataAccessLayer
                     CreditCardTypeId = cct.Id,
                     CreditCardType = cct.CreditCardType1
                 });
+        }
+
+        public IEnumerable<CreditCardDetailView> GetUserCreditCards(string username)
+        {
+            return Entity.CreditCardDetails.Where(cc => cc.Username == username)
+                .Select(cc => new CreditCardDetailView()
+                {
+                    Id = cc.Id,
+                    CreditCardTypeId = cc.CreditCardTypeId,
+                    CreditCardType = cc.CreditCardType.CreditCardType1,
+                    CardHolderName = cc.CardHolderName,
+                    CreditCardNumber = cc.CreditCardNumber,
+                    ExpiryDate = cc.ExpiryDate
+                });
+        }
+
+        public void DeleteUserCreditCards(string username)
+        {
+            IEnumerable<CreditCardDetail> creditCards = Entity.CreditCardDetails.Where(cc => cc.Username == username);
+            foreach (CreditCardDetail cc in creditCards)
+            {
+                Entity.CreditCardDetails.Remove(cc);
+            }
+            Entity.SaveChanges();
         }
     }
 }

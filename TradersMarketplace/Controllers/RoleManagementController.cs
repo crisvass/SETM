@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Common.CustomExceptions;
 using TradersMarketplace.Models;
-using TradersMarketplace.RolesServiceClient;
+using Common.Views;
 
 namespace TradersMarketplace.Controllers
 {
@@ -36,7 +36,7 @@ namespace TradersMarketplace.Controllers
             {
                 role = rs.GetRole(id);
             }
-            catch(FaultException ex)
+            catch (FaultException ex)
             {
                 ModelState.AddModelError("", ex.Message);
             }

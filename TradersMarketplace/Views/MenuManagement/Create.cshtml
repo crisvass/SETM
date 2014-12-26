@@ -1,4 +1,4 @@
-﻿@model TradersMarketplace.MenusServiceClient.MenusView
+﻿@model Common.Views.MenusView
 
 @{
     ViewBag.Title = "Menu Management";
@@ -81,10 +81,10 @@
             <div class="col-md-10">
                 @Html.ListBoxFor(model => model.MenuRoles, Model.MenuRolesList)
                 @*@Html.DropDownListFor(model => model.MenuRoles, Model.MenuRolesList, "Select Role")*@
-                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllRoles" />
-                <input type="button" value=">" class="btn, btn-default" id="btnAddRole" />
-                <input type="button" value="<" class="btn, btn-default" id="btnRemoveRole" />
-                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllRoles" />
+                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllMenuRoles" />
+                <input type="button" value=">" class="btn, btn-default" id="btnAddMenuRole" />
+                <input type="button" value="<" class="btn, btn-default" id="btnRemoveMenuRole" />
+                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllMenuRoles" />
                 <select id="MenuRolesSelected" multiple="multiple"></select>
                 @Html.ValidationMessageFor(model => model.MenuRoles, "", new { @class = "text-danger" })
             </div>

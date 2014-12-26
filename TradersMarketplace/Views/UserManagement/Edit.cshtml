@@ -1,36 +1,18 @@
-﻿@model TradersMarketplace.Models.UserCrud
+﻿@model Common.Views.UserView
 
 @{
     ViewBag.Title = "User Management";
 }
 
-<h2>Edit</h2>
+<h2>Edit User</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>UserCrud</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -104,9 +86,99 @@
             </div>
         </div>
 
+        <div class="form-group disabled">
+            @Html.LabelFor(model => model.CreditCards, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="creditCardsList" class="col-md-12">
+                    <table>
+                        <thead>
+                            @if (Model.CreditCards != null && Model.CreditCards.Count > 0)
+                            {
+                                <tr>
+                                    <th>Credit Card</th>
+                                    <th>Card Holder Name</th>
+                                    <th>Credit Card Number</th>
+                                    <th>Expiry Date</th>
+                                    <th></th>
+                                </tr>
+                            }
+                        </thead>
+                        <tbody>
+                            @if (Model.CreditCards != null && Model.CreditCards.Count > 0)
+                            {
+                                foreach (Common.Views.CreditCardDetailView ccd in Model.CreditCards)
+                                {
+                                    <tr>
+                                        @Html.HiddenFor(modelItem => ccd.Id)
+                                        <td class="creditCardType">
+                                            @Html.HiddenFor(modelItem => ccd.CreditCardTypeId)
+                                            @Html.DisplayFor(modelItem => ccd.CreditCardType)
+                                        </td>
+                                        <td class="cardHolderName">
+                                            @Html.DisplayFor(modelItem => ccd.CardHolderName)
+                                        </td>
+                                        <td class="creditCardNumber">
+                                            @Html.DisplayFor(modelItem => ccd.CreditCardNumber)
+                                        </td>
+                                        <td class="expiryDate">
+                                            @Html.DisplayFor(modelItem => ccd.ExpiryDate.Month)/@Html.DisplayFor(modelItem => ccd.ExpiryDate.Year)
+                                        </td>
+                                        <td><a href="#" class="remove-table-item">X</a></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="addCreditCardContainer" class="col-md-12">
+
+                </div>
+                <div class="col-md-12">
+                    <a href="javascript:void(0)" id="addNewCreditCard">Add Credit Card</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequiresDelivery, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RequiresDelivery, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RequiresDelivery, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IbanNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IbanNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IbanNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserRoles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.UserRoles, Model.UserRolesList)
+                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllUserRoles" />
+                <input type="button" value=">" class="btn, btn-default" id="btnAddUserRole" />
+                <input type="button" value="<" class="btn, btn-default" id="btnRemoveUserRole" />
+                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllUserRoles" />
+                <select id="UserRolesSelected" multiple="multiple">
+                    @if (Model.UserRoles.Count > 0)
+                    {
+                        foreach (Common.Views.RoleView role in Model.UserRoles)
+                        {
+                            <option value="@role.RoleId">@role.RoleName</option>
+                        }
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.UserRoles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" value="Save" class="btn btn-default" id="btnSaveUser" />
             </div>
         </div>
     </div>

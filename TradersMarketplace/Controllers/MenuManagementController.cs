@@ -4,12 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
-using TradersMarketplace.Models;
-using TradersMarketplace.MenusServiceClient;
-using System.ServiceModel;
 using System.Web.Script.Serialization;
+using Common.Views;
+using TradersMarketplace.Models;
 
 namespace TradersMarketplace.Controllers
 {
@@ -74,20 +74,18 @@ namespace TradersMarketplace.Controllers
                 Title = title,
                 Action = action,
                 Url = url,
-                Submenus = submenusList,
-                MenuRoles = menuRolesList
+                Submenus = submenusList.AsEnumerable<MenusView>(),
+                MenuRoles = menuRolesList.AsEnumerable<RoleView>()
             };
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ms.AddMenu(menu.Title, menu.Action, menu.Url, menu.Submenus, menu.MenuRoles);
+                    ms.AddMenu(menu.Title, menu.Action, menu.Url, submenusList, menuRolesList);
                     return Json(Url.Action("Index", "MenuManagement"));
-                    //return RedirectToAction("Index");
                 }
                 catch (FaultException ex)
                 {
-                    //ModelState.AddModelError("", ex.Message);
                     throw ex;
                 }
             }
@@ -138,13 +136,13 @@ namespace TradersMarketplace.Controllers
                 Title = title,
                 Action = action,
                 Url = url,
-                Submenus = submenusList,
-                MenuRoles = menuRolesList
+                Submenus = submenusList.AsEnumerable<MenusView>(),
+                MenuRoles = menuRolesList.AsEnumerable<RoleView>()
             };
 
             try
             {
-                ms.UpdateMenu(menu.MenuId, menu.Title, menu.Action, menu.Url, menu.Submenus, menu.MenuRoles);
+                ms.UpdateMenu(menu.MenuId, menu.Title, menu.Action, menu.Url, submenusList, menuRolesList);
                 return Json(Url.Action("Index", "MenuManagement"));
             }
             catch (FaultException ex)

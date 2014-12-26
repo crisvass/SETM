@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace TradersMarketplace.Models
 {
-    public class RegisterViewModel
-    {
-        public List<object> RegisterModels;
-    }
+    //public class RegisterViewModel
+    //{
+    //    public List<object> RegisterModels;
+    //}
 
     public class RegisterBuyerViewModel
     {
@@ -26,6 +26,7 @@ namespace TradersMarketplace.Models
         [Display(Name = "Password*")]
         public string BuyerPassword { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password*")]
         [System.ComponentModel.DataAnnotations.CompareAttribute("BuyerPassword", ErrorMessage = "The password and confirmation password do not match.")]

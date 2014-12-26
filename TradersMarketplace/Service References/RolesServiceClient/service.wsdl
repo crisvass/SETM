@@ -49,6 +49,12 @@
   <wsdl:message name="IRolesService_GetNonMenuAssignedRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNonMenuAssignedRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="IRolesService_GetNonUserAssignedRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNonUserAssignedRoles" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_GetNonUserAssignedRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNonUserAssignedRolesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRolesService">
     <wsdl:operation name="GetUserRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetUserRoles" message="tns:IRolesService_GetUserRoles_InputMessage" />
@@ -77,6 +83,10 @@
     <wsdl:operation name="GetNonMenuAssignedRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetNonMenuAssignedRoles" message="tns:IRolesService_GetNonMenuAssignedRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/GetNonMenuAssignedRolesResponse" message="tns:IRolesService_GetNonMenuAssignedRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNonUserAssignedRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetNonUserAssignedRoles" message="tns:IRolesService_GetNonUserAssignedRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/GetNonUserAssignedRolesResponse" message="tns:IRolesService_GetNonUserAssignedRoles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRolesService" type="tns:IRolesService">
@@ -137,6 +147,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetNonMenuAssignedRoles">
       <soap:operation soapAction="http://tempuri.org/IRolesService/GetNonMenuAssignedRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNonUserAssignedRoles">
+      <soap:operation soapAction="http://tempuri.org/IRolesService/GetNonUserAssignedRoles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,4 +1,4 @@
-﻿@model TradersMarketplace.UsersServiceClient.UserView
+﻿@model Common.Views.UserView
 
 @{
     ViewBag.Title = "User Management";
@@ -146,10 +146,10 @@
             @Html.LabelFor(model => model.UserRoles, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ListBoxFor(model => model.UserRoles, Model.UserRolesList)
-                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllRoles" />
-                <input type="button" value=">" class="btn, btn-default" id="btnAddRole" />
-                <input type="button" value="<" class="btn, btn-default" id="btnRemoveRole" />
-                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllRoles" />
+                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllUserRoles" />
+                <input type="button" value=">" class="btn, btn-default" id="btnAddUserRole" />
+                <input type="button" value="<" class="btn, btn-default" id="btnRemoveUserRole" />
+                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllUserRoles" />
                 <select id="UserRolesSelected" multiple="multiple"></select>
                 @Html.ValidationMessageFor(model => model.UserRoles, "", new { @class = "text-danger" })
             </div>

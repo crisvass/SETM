@@ -21,7 +21,8 @@ namespace DataAccessLayer
 
         public ApplicationUser GetUserById(string id)
         {
-            return Entity.ApplicationUsers.SingleOrDefault(u => u.Id == id);
+            ApplicationUser u = Entity.ApplicationUsers.SingleOrDefault(user => user.Id == id);
+            return Entity.ApplicationUsers.SingleOrDefault(user => user.Id == id);
         }
 
         public Seller GetSeller(string userId)

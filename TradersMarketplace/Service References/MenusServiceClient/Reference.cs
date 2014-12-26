@@ -32,7 +32,7 @@ namespace TradersMarketplace.MenusServiceClient {
         private System.Guid MenuIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> MenuRolesField;
+        private System.Collections.Generic.List<Common.Views.RoleView> MenuRolesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Web.Mvc.SelectList MenuRolesListField;
@@ -44,7 +44,7 @@ namespace TradersMarketplace.MenusServiceClient {
         private int PositionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> SubmenusField;
+        private System.Collections.Generic.List<Common.Views.MenusView> SubmenusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TitleField;
@@ -102,7 +102,7 @@ namespace TradersMarketplace.MenusServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> MenuRoles {
+        public System.Collections.Generic.List<Common.Views.RoleView> MenuRoles {
             get {
                 return this.MenuRolesField;
             }
@@ -154,7 +154,7 @@ namespace TradersMarketplace.MenusServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> Submenus {
+        public System.Collections.Generic.List<Common.Views.MenusView> Submenus {
             get {
                 return this.SubmenusField;
             }
@@ -345,40 +345,40 @@ namespace TradersMarketplace.MenusServiceClient {
     public interface IMenusService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetGuestMenus", ReplyAction="http://tempuri.org/IMenusService/GetGuestMenusResponse")]
-        System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetGuestMenus();
+        System.Collections.Generic.List<Common.Views.MenusView> GetGuestMenus();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetGuestMenus", ReplyAction="http://tempuri.org/IMenusService/GetGuestMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetGuestMenusAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetGuestMenusAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetUserMenus", ReplyAction="http://tempuri.org/IMenusService/GetUserMenusResponse")]
-        System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetUserMenus(string username);
+        System.Collections.Generic.List<Common.Views.MenusView> GetUserMenus(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetUserMenus", ReplyAction="http://tempuri.org/IMenusService/GetUserMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetUserMenusAsync(string username);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetUserMenusAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetAllMainMenus", ReplyAction="http://tempuri.org/IMenusService/GetAllMainMenusResponse")]
-        System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetAllMainMenus();
+        System.Collections.Generic.List<Common.Views.MenusView> GetAllMainMenus();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetAllMainMenus", ReplyAction="http://tempuri.org/IMenusService/GetAllMainMenusResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetAllMainMenusAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetAllMainMenusAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetMenu", ReplyAction="http://tempuri.org/IMenusService/GetMenuResponse")]
-        TradersMarketplace.MenusServiceClient.MenusView GetMenu(System.Guid id);
+        Common.Views.MenusView GetMenu(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/GetMenu", ReplyAction="http://tempuri.org/IMenusService/GetMenuResponse")]
-        System.Threading.Tasks.Task<TradersMarketplace.MenusServiceClient.MenusView> GetMenuAsync(System.Guid id);
+        System.Threading.Tasks.Task<Common.Views.MenusView> GetMenuAsync(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/AddMenu", ReplyAction="http://tempuri.org/IMenusService/AddMenuResponse")]
-        void AddMenu(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        void AddMenu(string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/AddMenu", ReplyAction="http://tempuri.org/IMenusService/AddMenuResponse")]
-        System.Threading.Tasks.Task AddMenuAsync(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        System.Threading.Tasks.Task AddMenuAsync(string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/UpdateMenu", ReplyAction="http://tempuri.org/IMenusService/UpdateMenuResponse")]
-        void UpdateMenu(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        void UpdateMenu(System.Guid id, string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/UpdateMenu", ReplyAction="http://tempuri.org/IMenusService/UpdateMenuResponse")]
-        System.Threading.Tasks.Task UpdateMenuAsync(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles);
+        System.Threading.Tasks.Task UpdateMenuAsync(System.Guid id, string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMenusService/DeleteMenu", ReplyAction="http://tempuri.org/IMenusService/DeleteMenuResponse")]
         void DeleteMenu(System.Guid id);
@@ -414,51 +414,51 @@ namespace TradersMarketplace.MenusServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetGuestMenus() {
+        public System.Collections.Generic.List<Common.Views.MenusView> GetGuestMenus() {
             return base.Channel.GetGuestMenus();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetGuestMenusAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetGuestMenusAsync() {
             return base.Channel.GetGuestMenusAsync();
         }
         
-        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetUserMenus(string username) {
+        public System.Collections.Generic.List<Common.Views.MenusView> GetUserMenus(string username) {
             return base.Channel.GetUserMenus(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetUserMenusAsync(string username) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetUserMenusAsync(string username) {
             return base.Channel.GetUserMenusAsync(username);
         }
         
-        public System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> GetAllMainMenus() {
+        public System.Collections.Generic.List<Common.Views.MenusView> GetAllMainMenus() {
             return base.Channel.GetAllMainMenus();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView>> GetAllMainMenusAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.MenusView>> GetAllMainMenusAsync() {
             return base.Channel.GetAllMainMenusAsync();
         }
         
-        public TradersMarketplace.MenusServiceClient.MenusView GetMenu(System.Guid id) {
+        public Common.Views.MenusView GetMenu(System.Guid id) {
             return base.Channel.GetMenu(id);
         }
         
-        public System.Threading.Tasks.Task<TradersMarketplace.MenusServiceClient.MenusView> GetMenuAsync(System.Guid id) {
+        public System.Threading.Tasks.Task<Common.Views.MenusView> GetMenuAsync(System.Guid id) {
             return base.Channel.GetMenuAsync(id);
         }
         
-        public void AddMenu(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+        public void AddMenu(string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles) {
             base.Channel.AddMenu(title, action, url, submenus, menuRoles);
         }
         
-        public System.Threading.Tasks.Task AddMenuAsync(string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+        public System.Threading.Tasks.Task AddMenuAsync(string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles) {
             return base.Channel.AddMenuAsync(title, action, url, submenus, menuRoles);
         }
         
-        public void UpdateMenu(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+        public void UpdateMenu(System.Guid id, string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles) {
             base.Channel.UpdateMenu(id, title, action, url, submenus, menuRoles);
         }
         
-        public System.Threading.Tasks.Task UpdateMenuAsync(System.Guid id, string title, string action, string url, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.MenusView> submenus, System.Collections.Generic.List<TradersMarketplace.MenusServiceClient.RoleView> menuRoles) {
+        public System.Threading.Tasks.Task UpdateMenuAsync(System.Guid id, string title, string action, string url, System.Collections.Generic.List<Common.Views.MenusView> submenus, System.Collections.Generic.List<Common.Views.RoleView> menuRoles) {
             return base.Channel.UpdateMenuAsync(id, title, action, url, submenus, menuRoles);
         }
         

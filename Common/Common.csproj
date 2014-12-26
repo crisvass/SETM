@@ -113,6 +113,9 @@
     <Compile Include="OrderDetail.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrderStatus.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>

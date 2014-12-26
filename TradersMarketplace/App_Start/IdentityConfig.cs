@@ -46,8 +46,8 @@ namespace TradersMarketplace
             //var manager = new ApplicationUserManager(new UserStore<Common.Models.ApplicationUser>(context.Get<BusinessLayer_WebServices.DbContext.ApplicationDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<Common.Models.ApplicationUser>(manager)
-            {
-                AllowOnlyAlphanumericUserNames = false,
+            {                
+                AllowOnlyAlphanumericUserNames = true,
                 RequireUniqueEmail = true
             };
 

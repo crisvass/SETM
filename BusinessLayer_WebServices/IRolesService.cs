@@ -32,5 +32,8 @@ namespace BusinessLayer_WebServices
 
         [OperationContract]
         IEnumerable<RoleView> GetNonMenuAssignedRoles(Guid id);
+
+        [OperationContract]
+        IEnumerable<RoleView> GetNonUserAssignedRoles(String id);
     }
 }

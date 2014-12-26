@@ -30,7 +30,7 @@ $("body").on("click", "#btnAddSubmenu", function (e) {
     $("#addSubmenuContainer").empty();
 });
 
-$("body").on("click", "#btnAddAllRoles", function () {
+$("body").on("click", "#btnAddAllMenuRoles", function () {
     $("#MenuRoles option").each(function (i) {
         $("#MenuRolesSelected").append($(this));
     });
@@ -38,19 +38,19 @@ $("body").on("click", "#btnAddAllRoles", function () {
     removeSelections();
 });
 
-$("body").on("click", "#btnAddRole", function () {
+$("body").on("click", "#btnAddMenuRole", function () {
     $("#MenuRolesSelected").append($("#MenuRoles option:selected"));
     $("#MenuRoles option:selected").remove();
     removeSelections();
 });
 
-$("body").on("click", "#btnRemoveRole", function () {
+$("body").on("click", "#btnRemoveMenuRole", function () {
     $("#MenuRoles").append($("#MenuRolesSelected option:selected"));
     $("#MenuRolesSelected option:selected").remove();
     $("#MenuRoles option:selected").removeAttr("selected");
 });
 
-$("body").on("click", "#btnRemoveAllRoles", function () {
+$("body").on("click", "#btnRemoveAllMenuRoles", function () {
     $("#MenuRolesSelected option").each(function (i) {
         $("#MenuRoles").append($(this));
         $("#MenuRoles option:selected").removeAttr("selected");

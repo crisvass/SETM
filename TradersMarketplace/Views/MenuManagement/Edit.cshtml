@@ -1,4 +1,4 @@
-﻿@model TradersMarketplace.MenusServiceClient.MenusView
+﻿@model Common.Views.MenusView
 
 @{
     ViewBag.Title = "Menu Management";
@@ -67,7 +67,7 @@
                         <tbody>
                             @if (Model.HasSubmenus)
                             {
-                                foreach (TradersMarketplace.MenusServiceClient.MenusView sub in Model.Submenus)
+                                foreach (Common.Views.MenusView sub in Model.Submenus)
                                 {
                                     <tr>
                                         <td class="title">@Html.DisplayFor(modelItem => sub.Title)</td>
@@ -90,18 +90,17 @@
             </div>
         </div>
         <div class="form-group">
-
             @Html.LabelFor(model => model.MenuRoles, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ListBoxFor(model => model.MenuRoles, Model.MenuRolesList)
-                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllRoles" />
-                <input type="button" value=">" class="btn, btn-default" id="btnAddRole" />
-                <input type="button" value="<" class="btn, btn-default" id="btnRemoveRole" />
-                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllRoles" />
+                <input type="button" value=">>" class="btn, btn-default" id="btnAddAllMenuRoles" />
+                <input type="button" value=">" class="btn, btn-default" id="btnAddMenuRole" />
+                <input type="button" value="<" class="btn, btn-default" id="btnRemoveMenuRole" />
+                <input type="button" value="<<" class="btn, btn-default" id="btnRemoveAllMenuRoles" />
                 <select id="MenuRolesSelected" multiple="multiple">
-                    @if (Model.MenuRoles.Count > 0)
+                   @if (Model.MenuRoles.Count() > 0)
                     {
-                        foreach (TradersMarketplace.MenusServiceClient.RoleView role in Model.MenuRoles)
+                        foreach (Common.Views.RoleView role in Model.MenuRoles)
                         {
                             <option value="@role.RoleId">@role.RoleName</option>
                         }

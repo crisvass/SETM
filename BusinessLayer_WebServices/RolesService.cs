@@ -118,5 +118,10 @@ namespace BusinessLayer_WebServices
         {
             return new RolesRepository().GetNonMenuAssignedRoles(id);
         }
+
+        public IEnumerable<RoleView> GetNonUserAssignedRoles(String id)
+        {
+            return new RolesRepository().GetNonUserAssignedRoles(id);
+        }
     }
 }

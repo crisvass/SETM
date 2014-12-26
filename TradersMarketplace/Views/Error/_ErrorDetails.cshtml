@@ -1,0 +1,35 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+<p>@Model.Exception.Message</p>
+
+<div>
+    <h4>
+        Technical Details
+    </h4>
+    <dl class="dl-horizontal">
+        <dt>
+            Controller
+        </dt>
+        <dd>
+            @Model.ControllerName
+        </dd>
+        <dt>
+            Action
+        </dt>
+        <dd>
+            @Model.ActionName
+        </dd>
+        <dt>
+            Exception
+        </dt>
+        <dd>
+            @Model.Exception.Message
+        </dd>
+        <dt>
+            Stack Trace
+        </dt>
+        <dd>
+            @Model.Exception.StackTrace
+        </dd>
+    </dl>
+</div>
+

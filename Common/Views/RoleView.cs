@@ -12,6 +12,8 @@ namespace Common.Views
         [Key]
         [Display(Name = "Role ID")]
         public string RoleId { get; set; }
+
+        [Required]
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
     }

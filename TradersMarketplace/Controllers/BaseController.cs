@@ -7,6 +7,7 @@ using Common.Views;
 
 namespace TradersMarketplace.Controllers
 {
+    [CustomHandleErrorAttribute]
     public class BaseController : Controller
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

@@ -1,4 +1,4 @@
-﻿@model TradersMarketplace.MenusServiceClient.MenusView
+﻿@model Common.Views.MenusView
 
 @{
     ViewBag.Title = "Menu Management";
@@ -73,7 +73,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (TradersMarketplace.MenusServiceClient.MenusView sub in Model.Submenus)
+                        @foreach (Common.Views.MenusView sub in Model.Submenus)
                         {
                             <tr>
                                 <td>
