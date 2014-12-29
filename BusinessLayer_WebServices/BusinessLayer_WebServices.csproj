@@ -62,10 +62,14 @@
     <Compile Include="CreditCardsService.cs" />
     <Compile Include="ICreditCardsService.cs" />
     <Compile Include="IMenusService.cs" />
+    <Compile Include="IOrdersService.cs" />
+    <Compile Include="IProductCategoriesService.cs" />
     <Compile Include="IProductsService.cs" />
     <Compile Include="IRolesService.cs" />
     <Compile Include="IUsersService.cs" />
     <Compile Include="MenusService.cs" />
+    <Compile Include="OrdersService.cs" />
+    <Compile Include="ProductCategoriesService.cs" />
     <Compile Include="ProductsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesService.cs" />

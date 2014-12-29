@@ -16,7 +16,14 @@ namespace BusinessLayer_WebServices
     {
         public IEnumerable<RoleView> GetUserRoles(string username)
         {
-            return new RolesRepository().GetUserRoles(username);
+            try
+            {
+                return new RolesRepository().GetUserRoles(username);
+            }
+            catch
+            {
+                throw new FaultException("An error occurred whilst retrieving the user roles.");
+            }
         }
 
         public IEnumerable<RoleView> GetRoles()
@@ -116,12 +123,26 @@ namespace BusinessLayer_WebServices
 
         public IEnumerable<RoleView> GetNonMenuAssignedRoles(Guid id)
         {
-            return new RolesRepository().GetNonMenuAssignedRoles(id);
+            try
+            {
+                return new RolesRepository().GetNonMenuAssignedRoles(id);
+            }
+            catch
+            {
+                throw new FaultException("An error occurred whilst retrieving the list of roles.");
+            }
         }
 
         public IEnumerable<RoleView> GetNonUserAssignedRoles(String id)
         {
-            return new RolesRepository().GetNonUserAssignedRoles(id);
+            try
+            {
+                return new RolesRepository().GetNonUserAssignedRoles(id);
+            }
+            catch
+            {
+                throw new FaultException("An error occurred whilst retrieving the list of roles.");
+            }
         }
     }
 }

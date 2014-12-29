@@ -13,10 +13,30 @@ namespace BusinessLayer_WebServices
     public interface IProductsService
     {
         [OperationContract]
-        IQueryable<ProductListView> GetLatestProducts(int count);
+        IEnumerable<ProductListView> GetLatestProducts(int count);
 
         [OperationContract]
-        IQueryable<ProductListView> GetAllProducts();
+        IEnumerable<ProductListView> GetAllProducts();
 
+        [OperationContract]
+        IEnumerable<ProductListView> GetProductsByCategory(int categoryId);
+
+        [OperationContract]
+        bool IsCartQuantityRequestedAvailable(string username);
+
+        [OperationContract]
+        void AddProductToCart(string username, int productId, int qtyRequested);
+
+        [OperationContract]
+        void UpdateCart(List<CartItemView> cartItems, string username);
+
+        [OperationContract]
+        ShoppingCartView GetShoppingCart(string username);
+
+        [OperationContract]
+        ProductDetailsView GetProductDetails(int prodId);
+
+        [OperationContract]
+        int GetNumberOfItems(string username);
     }
 }

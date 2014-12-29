@@ -15,22 +15,15 @@ namespace TradersMarketplace.Controllers
             if (Request.IsAuthenticated)
             {
                 ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetUserMenus(HttpContext.User.Identity.Name);
-                //ViewBag.CartItems = new ShoppingCartsServiceClient().GetNumberOfItems(HttpContext.User.Identity.Name);
+                ViewBag.CartItems = new ProductsServiceClient.ProductsServiceClient()
+                    .GetNumberOfItems(HttpContext.User.Identity.Name);
             }
             else
             {
-                ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetGuestMenus();
-                //ViewBag.CartItems = 0;
+                ViewBag.Menus = new MenusServiceClient.MenusServiceClient().GetGuestMenus();                
             }
-
-            //foreach (MenusView mv in ViewBag.Menus)
-            //{
-            //    if (mv.HasSubmenus)
-            //    {
-            //        string title = "Submenus" + (mv.Title);
-            //        ViewData.Add(title, new MenusServiceClient.MenusServiceClient().GetSubMenus(mv.MenuId));
-            //    }
-            //}
+            
+            ViewBag.Categories = new ProductCategoriesServiceClient.ProductCategoriesServiceClient().GetCategories();
 
             base.OnActionExecuting(filterContext);
         }

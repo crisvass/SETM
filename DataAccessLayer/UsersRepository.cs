@@ -30,29 +30,6 @@ namespace DataAccessLayer
             return Entity.Sellers.SingleOrDefault(sel => sel.Id == userId);
         }
 
-        //public bool DoesUsernameExist(string username)
-        //{
-        //    return GetUser(username) != null;
-        //}
-
-        //public bool DoesEmailExist(string email)
-        //{
-        //    return Entity.ApplicationUsers.SingleOrDefault(u => u.Email == email) != null;
-        //}
-
-        //public bool IsUserAuthenticated(string username, string password)//byte[] password)
-        //{
-        //    if (Entity.ApplicationUsers.SingleOrDefault(u => u.UserName == username && u.PasswordHash == password) != null)
-        //        return true;
-        //    else
-        //    {
-        //        if (GetUser(username) == null)
-        //            throw new InvalidUsernameException();
-        //        else
-        //            throw new InvalidPasswordException();
-        //    }
-        //}
-
         public void AddUser(ApplicationUser u)
         {
             Entity.ApplicationUsers.Add(u);

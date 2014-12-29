@@ -19,6 +19,48 @@
   <wsdl:message name="IProductsService_GetAllProducts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllProductsResponse" />
   </wsdl:message>
+  <wsdl:message name="IProductsService_GetProductsByCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByCategory" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetProductsByCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_IsCartQuantityRequestedAvailable_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsCartQuantityRequestedAvailable" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_IsCartQuantityRequestedAvailable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsCartQuantityRequestedAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_AddProductToCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductToCart" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_AddProductToCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductToCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_UpdateCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCart" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_UpdateCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetShoppingCartItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShoppingCartItems" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetShoppingCartItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShoppingCartItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetProductDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductDetails" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetProductDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetNumberOfItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberOfItems" />
+  </wsdl:message>
+  <wsdl:message name="IProductsService_GetNumberOfItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberOfItemsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProductsService">
     <wsdl:operation name="GetLatestProducts">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetLatestProducts" message="tns:IProductsService_GetLatestProducts_InputMessage" />
@@ -27,6 +69,34 @@
     <wsdl:operation name="GetAllProducts">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetAllProducts" message="tns:IProductsService_GetAllProducts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetAllProductsResponse" message="tns:IProductsService_GetAllProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetProductsByCategory" message="tns:IProductsService_GetProductsByCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetProductsByCategoryResponse" message="tns:IProductsService_GetProductsByCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCartQuantityRequestedAvailable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/IsCartQuantityRequestedAvailable" message="tns:IProductsService_IsCartQuantityRequestedAvailable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/IsCartQuantityRequestedAvailableResponse" message="tns:IProductsService_IsCartQuantityRequestedAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProductToCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/AddProductToCart" message="tns:IProductsService_AddProductToCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/AddProductToCartResponse" message="tns:IProductsService_AddProductToCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/UpdateCart" message="tns:IProductsService_UpdateCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/UpdateCartResponse" message="tns:IProductsService_UpdateCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShoppingCartItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetShoppingCartItems" message="tns:IProductsService_GetShoppingCartItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetShoppingCartItemsResponse" message="tns:IProductsService_GetShoppingCartItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetProductDetails" message="tns:IProductsService_GetProductDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetProductDetailsResponse" message="tns:IProductsService_GetProductDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductsService/GetNumberOfItems" message="tns:IProductsService_GetNumberOfItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductsService/GetNumberOfItemsResponse" message="tns:IProductsService_GetNumberOfItems_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProductsService" type="tns:IProductsService">
@@ -42,6 +112,69 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllProducts">
       <soap:operation soapAction="http://tempuri.org/IProductsService/GetAllProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByCategory">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/GetProductsByCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCartQuantityRequestedAvailable">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/IsCartQuantityRequestedAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProductToCart">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/AddProductToCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCart">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/UpdateCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShoppingCartItems">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/GetShoppingCartItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductDetails">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/GetProductDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfItems">
+      <soap:operation soapAction="http://tempuri.org/IProductsService/GetNumberOfItems" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

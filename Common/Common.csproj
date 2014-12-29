@@ -70,8 +70,7 @@
     <Compile Include="CreditCardType.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CustomExceptions\InvalidPasswordException.cs" />
-    <Compile Include="CustomExceptions\InvalidUsernameException.cs" />
+    <Compile Include="CustomExceptions\ProductQuantityNotAvailable.cs" />
     <Compile Include="CustomExceptions\TransactionFailedException.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
@@ -139,12 +138,16 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utilities\GeneralUtitlities.cs" />
+    <Compile Include="Views\CartItemView.cs" />
+    <Compile Include="Views\CategoryView.cs" />
     <Compile Include="Views\CreditCardDetailView.cs" />
     <Compile Include="Views\CreditCardTypeView.cs" />
     <Compile Include="Views\MenuRolesView.cs" />
     <Compile Include="Views\MenusView.cs" />
+    <Compile Include="Views\ProductDetailsView.cs" />
     <Compile Include="Views\ProductListView.cs" />
     <Compile Include="Views\RoleView.cs" />
+    <Compile Include="Views\ShoppingCartView.cs" />
     <Compile Include="Views\UserView.cs" />
   </ItemGroup>
   <ItemGroup>

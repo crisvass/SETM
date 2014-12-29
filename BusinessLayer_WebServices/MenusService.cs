@@ -48,12 +48,26 @@ namespace BusinessLayer_WebServices
 
         public IEnumerable<MenusView> GetAllMainMenus()
         {
-            return new MenusRepository().GetMainMenus();
+            try
+            {
+                return new MenusRepository().GetMainMenus();
+            }
+            catch
+            {
+                throw new FaultException("An error occurred whilst retrieving the menus.");
+            }
         }
 
         public MenusView GetMenu(Guid id)
         {
-            return new MenusRepository().GetMenuView(id);
+            try
+            {
+                return new MenusRepository().GetMenuView(id);
+            }
+            catch
+            {
+                throw new FaultException("An error occurred whilst retrieving the menu details.");
+            }
         }
 
         public void AddMenu(string title, string action, string url, List<MenusView> submenus, List<RoleView> menuRoles)

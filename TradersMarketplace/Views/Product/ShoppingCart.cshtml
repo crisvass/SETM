@@ -1,0 +1,71 @@
+﻿@model Common.Views.ShoppingCartView
+
+@{
+    ViewBag.Title = "My Bag";
+}
+
+<h2>My Bag</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CartItems[0].ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartItems[0].ProductQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CartItems[0].ProductPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.CartItems)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImagePath)
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <input type="number" min="1" value="@item.ProductQty" />
+            </td>
+            <td>
+                @if (item.ProductQty > 1)
+                {
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                    <span class="each">@Html.DisplayFor(modelItem => item.ProductPrice) each</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                }
+            </td>
+            <td><a class="remove-table-item">X</a></td>
+        </tr>
+    }
+
+</table>
+
+<dl>
+    <dt>
+        @Html.DisplayNameFor(model => model.Subtotal)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Subtotal)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.VatRate) @Html.DisplayFor(model => model.VatRate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.VatAmount)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Total)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Total)
+    </dd>
+</dl>
+<input type="button" value="Update" id="btnUpdateCart" />
+<input type="button" value="Checkout" id="btnCheckout" />

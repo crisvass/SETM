@@ -140,26 +140,6 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        //public bool IsUserAuthenticated(string username, string password)
-        //{
-        //    try
-        //    {
-        //        return new UsersRepository().IsUserAuthenticated(username, password);
-        //    }
-        //    catch (InvalidUsernameException ex)
-        //    {
-        //        throw new FaultException(ex.Message);
-        //    }
-        //    catch (InvalidPasswordException ex)
-        //    {
-        //        throw new FaultException(ex.Message);
-        //    }
-        //    catch
-        //    {
-        //        throw new FaultException("Error whilst authenticating your username and password. Please try again or contact administrator if error persists.");
-        //    }
-        //}
-
         public UserView GetUser(string id)
         {
             UsersRepository ur = new UsersRepository();

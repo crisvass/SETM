@@ -52,12 +52,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriesRepository.cs" />
     <Compile Include="ConnectionClass.cs" />
     <Compile Include="CreditCardsRepository.cs" />
     <Compile Include="MenusRepository.cs" />
+    <Compile Include="OrdersRepository.cs" />
     <Compile Include="ProductsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesRepository.cs" />
+    <Compile Include="SettingsRepository.cs" />
     <Compile Include="UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>

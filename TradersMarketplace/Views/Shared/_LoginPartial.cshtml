@@ -5,6 +5,12 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            @if (ViewBag.CartItems != 0)
+            {
+                <li id="noOfCartItems">
+                    <a href="~/Product/ShoppingCart">Bag: @ViewBag.CartItems</a>
+                </li>
+            }
             <li>
                 @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Home" })
             </li>

@@ -196,6 +196,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\OrdersServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProductCategoriesServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ProductsServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -234,6 +244,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\CommonScript.js" />
     <Content Include="Scripts\Custom\MenuManagementScript.js" />
+    <Content Include="Scripts\Custom\ProductScript.js" />
     <Content Include="Scripts\Custom\UserManagementScript.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -279,22 +290,35 @@
     <None Include="Service References\MenusServiceClient\System.Web.Mvc.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsServiceClient\Common.Views.xsd">
+    <None Include="Service References\OrdersServiceClient\service.wsdl" />
+    <None Include="Service References\OrdersServiceClient\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsServiceClient\service.wsdl" />
-    <None Include="Service References\ProductsServiceClient\service.xsd">
+    <None Include="Service References\OrdersServiceClient\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProductsServiceClient\service1.xsd">
+    <None Include="Service References\ProductCategoriesServiceClient\Common.Views.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ProductListView.datasource">
+    <None Include="Service References\ProductCategoriesServiceClient\service.wsdl" />
+    <None Include="Service References\ProductCategoriesServiceClient\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductCategoriesServiceClient\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrdersServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\OrdersServiceClient\configuration.svcinfo" />
+    <None Include="Service References\OrdersServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\ProductCategoriesServiceClient\TradersMarketplace.ProductCategoriesServiceClient.CategoryView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\ProductsServiceClient\configuration91.svcinfo" />
-    <None Include="Service References\ProductsServiceClient\configuration.svcinfo" />
-    <None Include="Service References\ProductsServiceClient\Reference.svcmap">
+    <None Include="Service References\ProductCategoriesServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\ProductCategoriesServiceClient\configuration.svcinfo" />
+    <None Include="Service References\ProductCategoriesServiceClient\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -310,6 +334,25 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ProductsServiceClient\Common.Views.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsServiceClient\service.wsdl" />
+    <None Include="Service References\ProductsServiceClient\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsServiceClient\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ProductListView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.CartItemView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ProductDetailsView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\RolesServiceClient\Common.Views.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -319,6 +362,12 @@
     </None>
     <None Include="Service References\RolesServiceClient\service1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductsServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\ProductsServiceClient\configuration.svcinfo" />
+    <None Include="Service References\ProductsServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Service References\RolesServiceClient\TradersMarketplace.RolesServiceClient.RoleView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -390,10 +439,14 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\_ErrorDetails.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutProduct.cshtml" />
+    <Content Include="Views\Shared\_CategoriesMenu.cshtml" />
+    <Content Include="Views\Shared\_CartItems.cshtml" />
+    <Content Include="Views\Product\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -415,6 +468,8 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CreditCardsServiceClient\" />
     <WCFMetadataStorage Include="Service References\MenusServiceClient\" />
+    <WCFMetadataStorage Include="Service References\OrdersServiceClient\" />
+    <WCFMetadataStorage Include="Service References\ProductCategoriesServiceClient\" />
     <WCFMetadataStorage Include="Service References\ProductsServiceClient\" />
     <WCFMetadataStorage Include="Service References\RolesServiceClient\" />
     <WCFMetadataStorage Include="Service References\UsersServiceClient\" />

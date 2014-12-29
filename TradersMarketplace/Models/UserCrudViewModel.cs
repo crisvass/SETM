@@ -27,5 +27,13 @@ namespace TradersMarketplace.Models
     public class UserDbcontext : DbContext
     {
         public DbSet<UserCrud> Users { get; set; }
+
+        public System.Data.Entity.DbSet<Common.Views.ProductDetailsView> ProductDetailsViews { get; set; }
+
+        public System.Data.Entity.DbSet<Common.Views.CategoryView> CategoryViews { get; set; }
+
+        public System.Data.Entity.DbSet<Common.Views.ProductListView> ProductListViews { get; set; }
+
+        public System.Data.Entity.DbSet<Common.Views.CartItemView> CartItemViews { get; set; }
     }
 }

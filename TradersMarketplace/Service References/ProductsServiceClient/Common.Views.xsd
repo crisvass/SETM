@@ -15,4 +15,32 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductListView" nillable="true" type="tns:ProductListView" />
+  <xs:complexType name="ArrayOfCartItemView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CartItemView" nillable="true" type="tns:CartItemView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCartItemView" nillable="true" type="tns:ArrayOfCartItemView" />
+  <xs:complexType name="CartItemView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductQty" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CartItemView" nillable="true" type="tns:CartItemView" />
+  <xs:complexType name="ProductDetailsView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="QtyAvailable" type="xs:int" />
+      <xs:element minOccurs="0" name="SellerUsername" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductDetailsView" nillable="true" type="tns:ProductDetailsView" />
 </xs:schema>
