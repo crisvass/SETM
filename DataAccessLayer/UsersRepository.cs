@@ -52,6 +52,20 @@ namespace DataAccessLayer
             user.Town = u.Town;
             user.PostCode = u.PostCode;
             user.Country = u.Country;
+            user.ContactNumber = u.ContactNumber;
+            Entity.SaveChanges();
+        }
+
+        public void UpdateUserPartial(ApplicationUser u)
+        {
+            ApplicationUser user = Entity.ApplicationUsers.SingleOrDefault(us=> us.UserName == u.UserName);
+            user.Email = u.Email;
+            user.ContactNumber = u.ContactNumber;
+            user.Residence = u.Residence;
+            user.Street = u.Street;
+            user.Town = u.Town;
+            user.PostCode = u.PostCode;
+            user.Country = u.Country;
             Entity.SaveChanges();
         }
 
@@ -85,6 +99,25 @@ namespace DataAccessLayer
         public UserView GetUserView(string userId)
         {
             ApplicationUser u = GetUserById(userId);
+            return new UserView()
+            {
+                Id = u.Id,
+                Username = u.UserName,
+                Email = u.Email,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Residence = u.Residence,
+                Street = u.Street,
+                PostCode = u.PostCode,
+                Town = u.Town,
+                Country = u.Country,
+                ContactNumber = u.ContactNumber
+            };
+        }
+
+        public UserView GetUserViewByUsername(string username)
+        {
+            ApplicationUser u = GetUser(username);
             return new UserView()
             {
                 Id = u.Id,

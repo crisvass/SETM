@@ -4,6 +4,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Common.Views" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IOrdersService_PlaceOrder_InputMessage">
@@ -18,6 +20,12 @@
   <wsdl:message name="IOrdersService_UpdateOrderStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateOrderStatusResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrdersService_GetInvoice_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoice" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetInvoice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrdersService">
     <wsdl:operation name="PlaceOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/PlaceOrder" message="tns:IOrdersService_PlaceOrder_InputMessage" />
@@ -26,6 +34,10 @@
     <wsdl:operation name="UpdateOrderStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/UpdateOrderStatus" message="tns:IOrdersService_UpdateOrderStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/UpdateOrderStatusResponse" message="tns:IOrdersService_UpdateOrderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/GetInvoice" message="tns:IOrdersService_GetInvoice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/GetInvoiceResponse" message="tns:IOrdersService_GetInvoice_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrdersService" type="tns:IOrdersService">
@@ -41,6 +53,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateOrderStatus">
       <soap:operation soapAction="http://tempuri.org/IOrdersService/UpdateOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoice">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/GetInvoice" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

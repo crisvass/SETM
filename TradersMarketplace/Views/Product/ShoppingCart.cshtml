@@ -1,71 +1,47 @@
 ﻿@model Common.Views.ShoppingCartView
 
 @{
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
     ViewBag.Title = "My Bag";
 }
 
 <h2>My Bag</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CartItems[0].ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CartItems[0].ProductQty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CartItems[0].ProductPrice)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.CartItems)
+<div id="shoppingCartContainer">
+    @if (Model.CartItems.Count == 0)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductImagePath)
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                <input type="number" min="1" value="@item.ProductQty" />
-            </td>
-            <td>
-                @if (item.ProductQty > 1)
-                {
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
-                    <span class="each">@Html.DisplayFor(modelItem => item.ProductPrice) each</span>
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.ProductPrice)
-                }
-            </td>
-            <td><a class="remove-table-item">X</a></td>
-        </tr>
+        <p>
+            There are no items in your shopping bag.
+        </p>
     }
+    else
+    {
+        <table class="table" id="shoppingCartTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CartItems[0].ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CartItems[0].ProductQty)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CartItems[0].ProductPrice)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.Partial("_ShoppingCartItems")
+            <tbody>
+        </table>
 
-</table>
+        <dl id="shoppingCartTotals">
+            @Html.Partial("_ShoppingCartTotals")
+        </dl>
+        <input type="button" value="Update" id="btnUpdateCart" />
+        @Html.ActionLink("Checkout", "Checkout", "Product", null, new { @class = "btn" })
+        @*<input type="button" value="Checkout" id="btnCheckout" />*@
 
-<dl>
-    <dt>
-        @Html.DisplayNameFor(model => model.Subtotal)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Subtotal)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.VatRate) @Html.DisplayFor(model => model.VatRate)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.VatAmount)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Total)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Total)
-    </dd>
-</dl>
-<input type="button" value="Update" id="btnUpdateCart" />
-<input type="button" value="Checkout" id="btnCheckout" />
+        <div id="updateResult"></div>
+    }
+</div>

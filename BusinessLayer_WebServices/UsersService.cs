@@ -27,16 +27,16 @@ namespace BusinessLayer_WebServices
             try
             {
                 ApplicationUser u = new ApplicationUser()
-                    {
-                        Id = id,
-                        FirstName = name,
-                        LastName = surname,
-                        Residence = residence,
-                        Street = street,
-                        Town = town,
-                        PostCode = postCode,
-                        Country = country
-                    };
+                {
+                    Id = id,
+                    FirstName = name,
+                    LastName = surname,
+                    Residence = residence,
+                    Street = street,
+                    Town = town,
+                    PostCode = postCode,
+                    Country = country
+                };
 
                 CreditCardDetail cc = null;
                 if (creditCardTypeId != null && cardHolderName != null && expiryDateMonth != null && expiryDateYear != null)
@@ -164,6 +164,26 @@ namespace BusinessLayer_WebServices
             catch
             {
                 throw new FaultException("Error whilst retrieving user details. Please try again or contact administrator if error persists.");
+            }
+        }
+
+        public UserView GetUserForCheckout(string id)
+        {
+            UsersRepository ur = new UsersRepository();
+            RolesRepository rr = new RolesRepository();
+            CreditCardsRepository ccr = new CreditCardsRepository();
+
+            ur.Entity = rr.Entity = ccr.Entity;
+
+            try
+            {
+                UserView user = ur.GetUserViewByUsername(id);
+                user.CreditCards = ccr.GetUserNonExpiredCreditCards(user.Username).ToList<CreditCardDetailView>();
+                return user;
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving user details for checkout. Please try again or contact administrator if error persists.");
             }
         }
 
@@ -413,11 +433,11 @@ namespace BusinessLayer_WebServices
                     if (seller)
                     {
                         Seller s = new Seller()
-                            {
-                                Id = id,
-                                RequiresDelivery = requiresDelivery,
-                                IBANNumber = ibanNumber
-                            };
+                        {
+                            Id = id,
+                            RequiresDelivery = requiresDelivery,
+                            IBANNumber = ibanNumber
+                        };
 
                         if (ur.GetSeller(id) != null)
                         {
@@ -431,6 +451,83 @@ namespace BusinessLayer_WebServices
                     else
                     {
                         ur.DeleteSeller(id);
+                    }
+
+                    ur.Transaction.Commit();
+                }
+                catch
+                {
+                    ur.Transaction.Rollback();
+                    throw new TransactionFailedException("Adding a new user failed. Please try again or contact administrator if error persists.");
+                }
+                finally
+                {
+                    ur.Entity.Database.Connection.Close();
+                }
+            }
+            catch (TransactionFailedException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch
+            {
+                throw new FaultException("Error whilst adding a new user. Please try again or contact administrator if error persists.");
+            }
+        }
+
+        public void UpdateUser(string username, string email, string residence, string street, string town,
+            string postCode, string country, string contactNumber, List<CreditCardDetailView> creditCards)
+        {
+            UsersRepository ur = new UsersRepository();
+            CreditCardsRepository ccr = new CreditCardsRepository();
+            ur.Entity = ccr.Entity;
+
+            try
+            {
+                ApplicationUser u = new ApplicationUser()
+                {
+                    UserName = username,
+                    Email = email,
+                    ContactNumber = contactNumber,
+                    Residence = residence,
+                    Street = street,
+                    Town = town,
+                    PostCode = postCode,
+                    Country = country
+                };
+
+                try
+                {
+                    ur.Entity.Database.Connection.Open();
+                    ur.Transaction = ccr.Transaction = ur.Entity.Database.BeginTransaction();
+                    ur.UpdateUserPartial(u);
+
+                    bool found;
+
+                    IEnumerable<CreditCardDetailView> creditCardsOriginal = ccr.GetUserNonExpiredCreditCards(username);
+                    
+                    //add new credit cards
+                    foreach (CreditCardDetailView ccd in creditCards)
+                    {
+                        found = false;
+                        foreach (CreditCardDetailView card in creditCardsOriginal)
+                        {
+                            if (ccd.Id == card.Id)
+                            {
+                                found = true;
+                            }
+                        }
+                        if (!found)
+                        {
+                            ccr.AddCreditCardDetail(new CreditCardDetail()
+                            {
+                                Username = username,
+                                CreditCardTypeId = ccd.CreditCardTypeId,
+                                CreditCardNumber = ccd.CreditCardNumber,
+                                CardHolderName = ccd.CardHolderName,
+                                ExpiryDate = new DateTime(ccd.Year, ccd.Month, GeneralUtitlities.GetLastDayOfTheMonth(ccd.Month, ccd.Year))
+                            });
+                        }
                     }
 
                     ur.Transaction.Commit();

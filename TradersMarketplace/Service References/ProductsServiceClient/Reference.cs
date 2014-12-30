@@ -130,6 +130,9 @@ namespace TradersMarketplace.ProductsServiceClient {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProductQtyField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalPriceField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -201,6 +204,128 @@ namespace TradersMarketplace.ProductsServiceClient {
                 if ((this.ProductQtyField.Equals(value) != true)) {
                     this.ProductQtyField = value;
                     this.RaisePropertyChanged("ProductQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalPrice {
+            get {
+                return this.TotalPriceField;
+            }
+            set {
+                if ((this.TotalPriceField.Equals(value) != true)) {
+                    this.TotalPriceField = value;
+                    this.RaisePropertyChanged("TotalPrice");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ShoppingCartView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class ShoppingCartView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Common.Views.CartItemView> CartItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal SubtotalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal VatAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VatRateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Common.Views.CartItemView> CartItems {
+            get {
+                return this.CartItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CartItemsField, value) != true)) {
+                    this.CartItemsField = value;
+                    this.RaisePropertyChanged("CartItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Subtotal {
+            get {
+                return this.SubtotalField;
+            }
+            set {
+                if ((this.SubtotalField.Equals(value) != true)) {
+                    this.SubtotalField = value;
+                    this.RaisePropertyChanged("Subtotal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Total {
+            get {
+                return this.TotalField;
+            }
+            set {
+                if ((this.TotalField.Equals(value) != true)) {
+                    this.TotalField = value;
+                    this.RaisePropertyChanged("Total");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal VatAmount {
+            get {
+                return this.VatAmountField;
+            }
+            set {
+                if ((this.VatAmountField.Equals(value) != true)) {
+                    this.VatAmountField = value;
+                    this.RaisePropertyChanged("VatAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VatRate {
+            get {
+                return this.VatRateField;
+            }
+            set {
+                if ((this.VatRateField.Equals(value) != true)) {
+                    this.VatRateField = value;
+                    this.RaisePropertyChanged("VatRate");
                 }
             }
         }
@@ -396,11 +521,11 @@ namespace TradersMarketplace.ProductsServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/UpdateCart", ReplyAction="http://tempuri.org/IProductsService/UpdateCartResponse")]
         System.Threading.Tasks.Task UpdateCartAsync(System.Collections.Generic.List<Common.Views.CartItemView> cartItems, string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetShoppingCartItems", ReplyAction="http://tempuri.org/IProductsService/GetShoppingCartItemsResponse")]
-        System.Collections.Generic.List<Common.Views.CartItemView> GetShoppingCartItems(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetShoppingCart", ReplyAction="http://tempuri.org/IProductsService/GetShoppingCartResponse")]
+        Common.Views.ShoppingCartView GetShoppingCart(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetShoppingCartItems", ReplyAction="http://tempuri.org/IProductsService/GetShoppingCartItemsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CartItemView>> GetShoppingCartItemsAsync(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetShoppingCart", ReplyAction="http://tempuri.org/IProductsService/GetShoppingCartResponse")]
+        System.Threading.Tasks.Task<Common.Views.ShoppingCartView> GetShoppingCartAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductDetails", ReplyAction="http://tempuri.org/IProductsService/GetProductDetailsResponse")]
         Common.Views.ProductDetailsView GetProductDetails(int prodId);
@@ -490,12 +615,12 @@ namespace TradersMarketplace.ProductsServiceClient {
             return base.Channel.UpdateCartAsync(cartItems, username);
         }
         
-        public System.Collections.Generic.List<Common.Views.CartItemView> GetShoppingCartItems(string username) {
-            return base.Channel.GetShoppingCartItems(username);
+        public Common.Views.ShoppingCartView GetShoppingCart(string username) {
+            return base.Channel.GetShoppingCart(username);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CartItemView>> GetShoppingCartItemsAsync(string username) {
-            return base.Channel.GetShoppingCartItemsAsync(username);
+        public System.Threading.Tasks.Task<Common.Views.ShoppingCartView> GetShoppingCartAsync(string username) {
+            return base.Channel.GetShoppingCartAsync(username);
         }
         
         public Common.Views.ProductDetailsView GetProductDetails(int prodId) {

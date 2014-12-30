@@ -695,6 +695,12 @@ namespace TradersMarketplace.UsersServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/GetUser", ReplyAction="http://tempuri.org/IUsersService/GetUserResponse")]
         System.Threading.Tasks.Task<Common.Views.UserView> GetUserAsync(string id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/GetUserForCheckout", ReplyAction="http://tempuri.org/IUsersService/GetUserForCheckoutResponse")]
+        Common.Views.UserView GetUserForCheckout(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/GetUserForCheckout", ReplyAction="http://tempuri.org/IUsersService/GetUserForCheckoutResponse")]
+        System.Threading.Tasks.Task<Common.Views.UserView> GetUserForCheckoutAsync(string id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/GetAllUsers", ReplyAction="http://tempuri.org/IUsersService/GetAllUsersResponse")]
         System.Collections.Generic.List<Common.Views.UserView> GetAllUsers();
         
@@ -712,6 +718,12 @@ namespace TradersMarketplace.UsersServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/UpdateUser", ReplyAction="http://tempuri.org/IUsersService/UpdateUserResponse")]
         System.Threading.Tasks.Task UpdateUserAsync(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<Common.Views.RoleView> userRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/UpdateUserPartial", ReplyAction="http://tempuri.org/IUsersService/UpdateUserPartialResponse")]
+        void UpdateUserPartial(string username, string email, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/UpdateUserPartial", ReplyAction="http://tempuri.org/IUsersService/UpdateUserPartialResponse")]
+        System.Threading.Tasks.Task UpdateUserPartialAsync(string username, string email, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsersService/DeleteUser", ReplyAction="http://tempuri.org/IUsersService/DeleteUserResponse")]
         void DeleteUser(string id);
@@ -771,6 +783,14 @@ namespace TradersMarketplace.UsersServiceClient {
             return base.Channel.GetUserAsync(id);
         }
         
+        public Common.Views.UserView GetUserForCheckout(string id) {
+            return base.Channel.GetUserForCheckout(id);
+        }
+        
+        public System.Threading.Tasks.Task<Common.Views.UserView> GetUserForCheckoutAsync(string id) {
+            return base.Channel.GetUserForCheckoutAsync(id);
+        }
+        
         public System.Collections.Generic.List<Common.Views.UserView> GetAllUsers() {
             return base.Channel.GetAllUsers();
         }
@@ -786,15 +806,21 @@ namespace TradersMarketplace.UsersServiceClient {
         public System.Threading.Tasks.Task AddUserAsync(string username, string password, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<Common.Views.RoleView> userRoles) {
             return base.Channel.AddUserAsync(username, password, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
         }
-
-        public void UpdateUser(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<Common.Views.RoleView> userRoles)
-        {
+        
+        public void UpdateUser(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<Common.Views.RoleView> userRoles) {
             base.Channel.UpdateUser(id, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
         }
-
-        public System.Threading.Tasks.Task UpdateUserAsync(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<Common.Views.RoleView> userRoles)
-        {
+        
+        public System.Threading.Tasks.Task UpdateUserAsync(string id, string email, string name, string surname, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards, bool requiresDelivery, string ibanNumber, System.Collections.Generic.List<Common.Views.RoleView> userRoles) {
             return base.Channel.UpdateUserAsync(id, email, name, surname, residence, street, town, postCode, country, contactNumber, creditCards, requiresDelivery, ibanNumber, userRoles);
+        }
+        
+        public void UpdateUserPartial(string username, string email, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards) {
+            base.Channel.UpdateUserPartial(username, email, residence, street, town, postCode, country, contactNumber, creditCards);
+        }
+        
+        public System.Threading.Tasks.Task UpdateUserPartialAsync(string username, string email, string residence, string street, string town, string postCode, string country, string contactNumber, System.Collections.Generic.List<Common.Views.CreditCardDetailView> creditCards) {
+            return base.Channel.UpdateUserPartialAsync(username, email, residence, street, town, postCode, country, contactNumber, creditCards);
         }
         
         public void DeleteUser(string id) {

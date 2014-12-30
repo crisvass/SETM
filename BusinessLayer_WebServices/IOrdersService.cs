@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Common.Views;
 
 namespace BusinessLayer_WebServices
 {
@@ -12,9 +13,12 @@ namespace BusinessLayer_WebServices
     public interface IOrdersService
     {
         [OperationContract]
-        void PlaceOrder(string username);
+        Guid PlaceOrder(string username);
 
         [OperationContract]
         void UpdateOrderStatus(Guid id, int statusId);
+
+        [OperationContract]
+        InvoiceView GetInvoice(string username, Guid orderId);
     }
 }

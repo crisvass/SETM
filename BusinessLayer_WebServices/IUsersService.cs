@@ -15,7 +15,7 @@ namespace BusinessLayer_WebServices
         [OperationContract]
         void RegisterBuyer(string id, string name,
             string surname, string residence, string street, string town, string postCode,
-            string country, string contactNumber, int creditCardTypeId, string creditCardNumber, 
+            string country, string contactNumber, int creditCardTypeId, string creditCardNumber,
             string cardHolderName, int expiryDateMonth, int expiryDateYear);
 
         [OperationContract]
@@ -30,19 +30,26 @@ namespace BusinessLayer_WebServices
         UserView GetUser(string id);
 
         [OperationContract]
+        UserView GetUserForCheckout(string id);
+
+        [OperationContract]
         IEnumerable<UserView> GetAllUsers();
 
         [OperationContract]
         void AddUser(string username, string password, string email, string name,
             string surname, string residence, string street, string town, string postCode,
-            string country, string contactNumber, List<CreditCardDetailView> creditCards, 
+            string country, string contactNumber, List<CreditCardDetailView> creditCards,
             bool requiresDelivery, string ibanNumber, List<RoleView> userRoles);
 
-        [OperationContract]
+        [OperationContract(Name="UpdateUser")]
         void UpdateUser(string id, string email, string name,
             string surname, string residence, string street, string town, string postCode,
             string country, string contactNumber, List<CreditCardDetailView> creditCards,
             bool requiresDelivery, string ibanNumber, List<RoleView> userRoles);
+
+        [OperationContract(Name="UpdateUserPartial")]
+        void UpdateUser(string username, string email, string residence, string street, string town,
+            string postCode, string country, string contactNumber, List<CreditCardDetailView> creditCards);
 
         [OperationContract]
         void DeleteUser(string id);

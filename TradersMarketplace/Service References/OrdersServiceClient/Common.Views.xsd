@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Common.Views" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Common.Views" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" />
+  <xs:complexType name="InvoiceView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfOrderDetailView" />
+      <xs:element minOccurs="0" name="Subtotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Uv" nillable="true" type="tns:UserView" />
+      <xs:element minOccurs="0" name="VatAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VatRate" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceView" nillable="true" type="tns:InvoiceView" />
+  <xs:complexType name="ArrayOfOrderDetailView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderDetailView" nillable="true" type="tns:OrderDetailView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOrderDetailView" nillable="true" type="tns:ArrayOfOrderDetailView" />
+  <xs:complexType name="OrderDetailView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductQty" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderDetailView" nillable="true" type="tns:OrderDetailView" />
+  <xs:complexType name="UserView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConfirmPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCards" nillable="true" type="tns:ArrayOfCreditCardDetailView" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IbanNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequiresDelivery" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Residence" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Town" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserRoles" nillable="true" type="tns:ArrayOfRoleView" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="UserRolesList" nillable="true" type="q1:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserView" nillable="true" type="tns:UserView" />
+  <xs:complexType name="ArrayOfCreditCardDetailView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditCardDetailView" nillable="true" type="tns:CreditCardDetailView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCreditCardDetailView" nillable="true" type="tns:ArrayOfCreditCardDetailView" />
+  <xs:complexType name="CreditCardDetailView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardHolderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCardType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditCardTypeId" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="CreditCardTypeList" nillable="true" type="q2:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="ExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Month" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="MonthsList" nillable="true" type="q3:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="Year" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="YearsList" nillable="true" type="q4:ArrayOfSelectListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditCardDetailView" nillable="true" type="tns:CreditCardDetailView" />
+  <xs:complexType name="ArrayOfRoleView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleView" nillable="true" type="tns:RoleView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoleView" nillable="true" type="tns:ArrayOfRoleView" />
+  <xs:complexType name="RoleView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RoleId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoleName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoleView" nillable="true" type="tns:RoleView" />
+</xs:schema>

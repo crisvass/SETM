@@ -140,10 +140,13 @@
     <Compile Include="Utilities\GeneralUtitlities.cs" />
     <Compile Include="Views\CartItemView.cs" />
     <Compile Include="Views\CategoryView.cs" />
+    <Compile Include="Views\CheckoutView.cs" />
     <Compile Include="Views\CreditCardDetailView.cs" />
     <Compile Include="Views\CreditCardTypeView.cs" />
+    <Compile Include="Views\InvoiceView.cs" />
     <Compile Include="Views\MenuRolesView.cs" />
     <Compile Include="Views\MenusView.cs" />
+    <Compile Include="Views\OrderDetailView.cs" />
     <Compile Include="Views\ProductDetailsView.cs" />
     <Compile Include="Views\ProductListView.cs" />
     <Compile Include="Views\RoleView.cs" />

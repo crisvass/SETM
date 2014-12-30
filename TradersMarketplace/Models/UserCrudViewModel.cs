@@ -35,5 +35,7 @@ namespace TradersMarketplace.Models
         public System.Data.Entity.DbSet<Common.Views.ProductListView> ProductListViews { get; set; }
 
         public System.Data.Entity.DbSet<Common.Views.CartItemView> CartItemViews { get; set; }
+
+        public System.Data.Entity.DbSet<Common.Views.UserView> UserViews { get; set; }
     }
 }

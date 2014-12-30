@@ -1,0 +1,25 @@
+﻿@model Common.Views.ShoppingCartView
+
+@foreach (var item in Model.CartItems)
+{
+    <tr id="@item.ProductId">
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductImagePath)
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td class="qty">
+            <input type="number" min="1" value="@item.ProductQty" />
+        </td>
+        <td>
+            @if (item.ProductQty > 1)
+            {
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+                <span class="each">@Html.DisplayFor(modelItem => item.ProductPrice) each</span>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            }
+        </td>
+    </tr>
+}

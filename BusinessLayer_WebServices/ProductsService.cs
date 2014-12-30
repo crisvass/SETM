@@ -175,13 +175,13 @@ namespace BusinessLayer_WebServices
                 SettingsRepository sr = new SettingsRepository();
                 pr.Entity = sr.Entity;
 
-                decimal vatRate = Math.Round(sr.GetVatRate() * 100, 2);
+                decimal vatRate = Math.Round(sr.GetVatRate(), 2);
                 decimal subtotal = pr.GetShoppingCartTotal(username);
-                decimal vatAmount = Math.Round(vatRate * subtotal,2);
+                decimal vatAmount = Math.Round(vatRate * subtotal, 2);
                 return new ShoppingCartView()
                 {
                     CartItems = pr.GetShoppingCartItems(username).ToList(),
-                    VatRate = (int)vatRate,
+                    VatRate = (int)(vatRate * 100),
                     Subtotal = subtotal,
                     VatAmount = vatAmount,
                     Total = subtotal + vatAmount

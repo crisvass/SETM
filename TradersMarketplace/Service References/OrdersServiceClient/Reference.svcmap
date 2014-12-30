@@ -25,6 +25,8 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="700c077f-5a43-4c38-ac6b-fb82648d4993" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="03b98d6f-b565-47d0-bb38-2e96b101b979" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="86eac0d5-1661-4b89-91ec-02941e84bca9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="4fed5082-3559-446a-8fce-0f02c5aba6ce" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="System.Web.Mvc.xsd" MetadataType="Schema" ID="2a465f38-58fb-4f1c-ad7c-71be35e94dd1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

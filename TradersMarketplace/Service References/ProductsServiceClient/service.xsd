@@ -82,17 +82,17 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetShoppingCartItems">
+  <xs:element name="GetShoppingCart">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetShoppingCartItemsResponse">
+  <xs:element name="GetShoppingCartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="GetShoppingCartItemsResult" nillable="true" type="q5:ArrayOfCartItemView" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="GetShoppingCartResult" nillable="true" type="q5:ShoppingCartView" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

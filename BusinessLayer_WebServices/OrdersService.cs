@@ -14,7 +14,7 @@ namespace BusinessLayer_WebServices
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "OrdersService" in both code and config file together.
     public class OrdersService : IOrdersService
     {
-        public void PlaceOrder(string username)
+        public Guid PlaceOrder(string username)
         {
             try
             {
@@ -45,6 +45,7 @@ namespace BusinessLayer_WebServices
                     }
 
                     pr.Transaction.Commit();
+                    return id;
                 }
                 catch
                 {
@@ -77,7 +78,33 @@ namespace BusinessLayer_WebServices
             {
                 throw new FaultException("Error! the order status could not be updated. Please contact administrator if error persists.");
             }
-            throw new NotImplementedException();
+        }
+
+        public InvoiceView GetInvoice(string username, Guid orderId){
+            try
+            {
+                OrdersRepository or = new OrdersRepository();
+                UsersRepository ur = new UsersRepository();
+                or.Entity = ur.Entity;
+                
+                decimal vatRate = Math.Round(or.GetVatRate(orderId), 2);
+                decimal subtotal = or.GetOrderTotal(orderId);
+                decimal vatAmount = Math.Round(vatRate * subtotal, 2);
+                return new InvoiceView()
+                {
+                    OrderId = orderId,
+                    Uv = ur.GetUserViewByUsername(username),
+                    Items = or.GetOrderDetails(orderId).ToList(),
+                    VatRate = (int)(vatRate * 100),
+                    Subtotal = subtotal,
+                    VatAmount = vatAmount,
+                    Total = subtotal + vatAmount
+                };
+            }
+            catch
+            {
+                throw new FaultException("Error! the order status could not be updated. Please contact administrator if error persists.");
+            }
         }
     }
 }

@@ -26,6 +26,12 @@
   <wsdl:message name="IUsersService_GetUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsersService_GetUserForCheckout_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserForCheckout" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_GetUserForCheckout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserForCheckoutResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsersService_GetAllUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllUsers" />
   </wsdl:message>
@@ -43,6 +49,12 @@
   </wsdl:message>
   <wsdl:message name="IUsersService_UpdateUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_UpdateUserPartial_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserPartial" />
+  </wsdl:message>
+  <wsdl:message name="IUsersService_UpdateUserPartial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserPartialResponse" />
   </wsdl:message>
   <wsdl:message name="IUsersService_DeleteUser_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUser" />
@@ -63,6 +75,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/GetUser" message="tns:IUsersService_GetUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/GetUserResponse" message="tns:IUsersService_GetUser_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserForCheckout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/GetUserForCheckout" message="tns:IUsersService_GetUserForCheckout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/GetUserForCheckoutResponse" message="tns:IUsersService_GetUserForCheckout_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/GetAllUsers" message="tns:IUsersService_GetAllUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/GetAllUsersResponse" message="tns:IUsersService_GetAllUsers_OutputMessage" />
@@ -74,6 +90,10 @@
     <wsdl:operation name="UpdateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/UpdateUser" message="tns:IUsersService_UpdateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/UpdateUserResponse" message="tns:IUsersService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserPartial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/UpdateUserPartial" message="tns:IUsersService_UpdateUserPartial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsersService/UpdateUserPartialResponse" message="tns:IUsersService_UpdateUserPartial_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsersService/DeleteUser" message="tns:IUsersService_DeleteUser_InputMessage" />
@@ -109,6 +129,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserForCheckout">
+      <soap:operation soapAction="http://tempuri.org/IUsersService/GetUserForCheckout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllUsers">
       <soap:operation soapAction="http://tempuri.org/IUsersService/GetAllUsers" style="document" />
       <wsdl:input>
@@ -129,6 +158,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <soap:operation soapAction="http://tempuri.org/IUsersService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserPartial">
+      <soap:operation soapAction="http://tempuri.org/IUsersService/UpdateUserPartial" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

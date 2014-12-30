@@ -28,9 +28,20 @@
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductPrice" type="xs:decimal" />
       <xs:element minOccurs="0" name="ProductQty" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CartItemView" nillable="true" type="tns:CartItemView" />
+  <xs:complexType name="ShoppingCartView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CartItems" nillable="true" type="tns:ArrayOfCartItemView" />
+      <xs:element minOccurs="0" name="Subtotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VatAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VatRate" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShoppingCartView" nillable="true" type="tns:ShoppingCartView" />
   <xs:complexType name="ProductDetailsView">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />

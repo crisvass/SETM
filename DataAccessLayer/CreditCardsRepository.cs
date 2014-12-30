@@ -15,25 +15,25 @@ namespace DataAccessLayer
 
         public void AddCreditCardDetail(CreditCardDetail cc)
         {
-            //try
-            //{
+            try
+            {
                 Entity.CreditCardDetails.Add(cc);
                 Entity.SaveChanges();
-            //}
-            //catch (DbEntityValidationException e)
-            //{
-            //    foreach (var eve in e.EntityValidationErrors)
-            //    {
-            //        System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-            //            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-            //        foreach (var ve in eve.ValidationErrors)
-            //        {
-            //            System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-            //                ve.PropertyName, ve.ErrorMessage);
-            //        }
-            //    }
-            //    throw;
-            //}
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
 
         public void DeleteCreditCardDetail(int id)
@@ -64,6 +64,11 @@ namespace DataAccessLayer
                     CreditCardNumber = cc.CreditCardNumber,
                     ExpiryDate = cc.ExpiryDate
                 });
+        }
+
+        public IEnumerable<CreditCardDetailView> GetUserNonExpiredCreditCards(string username)
+        {
+            return GetUserCreditCards(username).Where(cc => cc.ExpiryDate >= DateTime.Now);
         }
 
         public void DeleteUserCreditCards(string username)
