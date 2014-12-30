@@ -42,7 +42,24 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                new RolesRepository().AddRole(new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = name });
+                if (!string.IsNullOrEmpty(name))
+                {
+                    RolesRepository rr = new RolesRepository();
+                    if (rr.GetRoles().SingleOrDefault(r => r.RoleName == name) == null)
+                        rr.AddRole(new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = name });
+                    else
+                        throw new ConstraintException("Role name must be unique.");
+                }
+                else
+                    throw new ArgumentNullException("Role name cannot be null.");
+            }
+            catch (ConstraintException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new FaultException(ex.Message);
             }
             catch
             {
