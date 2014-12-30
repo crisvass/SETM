@@ -1,0 +1,65 @@
+﻿/*general*/
+.form-group select:nth-of-type(2) {
+    margin-top: 10px;
+}
+
+/*categories menu*/
+#categoriesMenu ul {
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+    #categoriesMenu ul li > ul {
+        padding-left: 15px;
+    }
+
+/*products*/
+.product img {
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product a {
+    display: block;
+}
+
+    .product a > span {
+        display: block;
+    }
+
+        .product a > span.price {
+            text-align: right;
+        }
+
+#productImageContainer img {
+    width: 100%;
+}
+
+/*shopping cart*/
+span.each {
+    display: block;
+    font-size: 0.85em;
+    padding-top: 5px;
+}
+
+#shoppingCartBottomContainer,
+#shoppingCartOptions {
+    float: right;
+}
+
+/*invoice*/
+#invoiceBottomContainer {
+    float: right;
+}
+
+/*tables*/
+
+select{
+    min-width:100px;
+}
+
+table.table tbody td select{
+    width:100%;
+} 

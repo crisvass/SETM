@@ -30,18 +30,19 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                @Html.Partial("_ShoppingCartItems")
-            <tbody>
+            @Html.Partial("_ShoppingCartItems")
         </table>
 
-        <dl id="shoppingCartTotals">
-            @Html.Partial("_ShoppingCartTotals")
-        </dl>
-        <input type="button" value="Update" id="btnUpdateCart" />
-        @Html.ActionLink("Checkout", "Checkout", "Product", null, new { @class = "btn" })
-        @*<input type="button" value="Checkout" id="btnCheckout" />*@
-
+        <div id="shoppingCartBottomContainer">
+            <dl id="shoppingCartTotals" class="dl-horizontal">
+                @Html.Partial("_ShoppingCartTotals")
+            </dl>
+            <div id="shoppingCartOptions">
+                <input type="button" value="Update" id="btnUpdateCart" />
+                @Html.ActionLink("Checkout", "Checkout", "Product", null, new { @class = "btn" })
+                @*<input type="button" value="Checkout" id="btnCheckout" />*@
+            </div>
+        </div>
         <div id="updateResult"></div>
     }
 </div>

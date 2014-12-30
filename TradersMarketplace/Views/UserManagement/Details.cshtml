@@ -139,7 +139,7 @@
             }
         </dd>
 
-        @if (Model.CreditCards != null)
+        @if (Model.CreditCards != null && Model.CreditCards.Count() > 0)
         {
             <dt>
                 @Html.DisplayNameFor(model => model.CreditCards)

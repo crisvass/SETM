@@ -1,7 +1,8 @@
 ﻿<h4>Categories</h4>
-@foreach (Common.Views.CategoryView cv in ViewBag.Categories)
-{
-    <ul>
+
+<ul>
+    @foreach (Common.Views.CategoryView cv in ViewBag.Categories)
+    {
         <li>
             @Html.ActionLink(cv.CategoryName, "List", new { categoryId = cv.Id })
             @if (cv.SubCategories != null)
@@ -16,5 +17,5 @@
                 </ul>
             }
         </li>
-    </ul>
-}
+    }
+</ul>

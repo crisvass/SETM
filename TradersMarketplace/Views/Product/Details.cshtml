@@ -7,49 +7,43 @@
 
 <h4>@Model.Name</h4>
 
-<div>
+<div class="row">
     @Html.HiddenFor(model => model.Id, htmlAttributes: new { id = "productId" })
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    <div class="col-md-4" id="productImageContainer">
+        @if (Model.ImagePath == null)
+        {
+            <img src="..\..\Images\No_Image_Available.png" alt="No image available" />
+        }
+        else
+        {
+            <img src="..\..\Images\ProductImages\@Model.ImagePath" alt="@Model.Name Image" />
+        }
+    </div>
+    <div class="col-md-8">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @if (Model.ImagePath == null)
-            {
-                <img src="..\..\Images\No_Image_Available.png" alt="No image available" />
-            }
-            else
-            {
-                <img src="..\..\Images\ProductImages\@Model.ImagePath" alt="@Model.Name Image" />
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Quantity")
-        </dt>
-        <dd>
-            @Html.HiddenFor(model => model.QtyAvailable, htmlAttributes: new { id = "qtyAvailable" })
-            <input type="number" id="qtyRequired" min="1" max="@Model.QtyAvailable" value="1" />
-        </dd>
-        <dd>
-            <input type="button" id="btnAddToCart" value="Add to Cart" />
-        </dd>
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt>
+                @Html.DisplayName("Quantity")
+            </dt>
+            <dd>
+                <input type="number" id="qtyRequired" min="1" max="@Model.QtyAvailable" value="1" />
+            </dd>
+            <dd>
+                <input type="button" id="btnAddToCart" value="Add to Cart" />
+            </dd>
+        </dl>
+    </div>
 </div>

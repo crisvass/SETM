@@ -107,7 +107,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BuyerCreditCardType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.BuyerCreditCardType, Model.BuyerCreditCardTypesList, "Select Credit Card")
+                @Html.DropDownListFor(model => model.BuyerCreditCardType, Model.BuyerCreditCardTypesList, "Select Credit Card", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BuyerCreditCardType, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -123,9 +123,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BuyerMonth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.BuyerMonth, Model.BuyerMonthsList, "Select Month")
+                @Html.DropDownListFor(model => model.BuyerMonth, Model.BuyerMonthsList, "Select Month", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BuyerMonth, "", new { @class = "text-danger" })
-                @Html.DropDownListFor(model => model.BuyerYear, Model.BuyerYearsList, "Select Year")
+                @Html.DropDownListFor(model => model.BuyerYear, Model.BuyerYearsList, "Select Year", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BuyerYear, "", new { @class = "text-danger" })
             </div>
         </div>

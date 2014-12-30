@@ -101,7 +101,12 @@ function updateShoppingCart() {
             if (data != null) {
                 if (data != "") {
                     $("#shoppingCartTable tbody").empty();
-                    $("#shoppingCartTable tbody").html(data);
+                    $("#shoppingCartTable tbody").append(data);
+                    //hack to remove extra rows
+                    //var half = $("#shoppingCartTable tbody tr").length;
+                    //for (i = 0; i < half; i++) {
+                    //    $("#shoppingCartTable tbody tr:last").remove();
+                    //}
                 }
                 else {
                     $("#shoppingCartContainer ").html("<p>There are no items in your shopping cart.</p>");
@@ -156,7 +161,7 @@ $("#btnPlaceOrder").click(function () {
         postCode: $("#Uv_PostCode").val(),
         town: $("#Uv_Town").val(),
         country: $("#Uv_Country").val(),
-        creditCards: JSON.stringify(creditCards)        
+        creditCards: JSON.stringify(creditCards)
     };
 
     $.ajax({
@@ -167,6 +172,37 @@ $("#btnPlaceOrder").click(function () {
         dataType: "json",
         success: function (data) {
             window.location.href = data;
+        },
+        error: function (xhr) {
+            var error = JSON.parse(xhr.responseText).message;
+            alert(error);
+        }
+    });
+});
+
+$("body").on("click", "#btnAddCreditCard", function (e) {
+    if ($("#creditCardsList table tbody tr").length <= 0) {
+        $("#creditCardsList table thead").append("<tr><th>Card Holder Name</th><th>Credit Card Number</th><th>Credit Card</th><th>Expiry Date</th><th></th></tr>");
+    }
+
+    $("#creditCardsList table tbody").append("<tr><td class='cardHolderName'>" + $("#cardHolderName").val()
+                                        + "</td><td class='creditCardNumber'>" + $("#creditCardNumber").val()
+                                        + "</td><td class='creditCardType'>" + $("#creditCardType option:selected").text()
+                                        + "<input type='hidden' value='" + $("#creditCardType").val() + "'>"
+                                        + "</td><td class='expiryDate'>" + $("#expiryDateMonth").val() + "/" + $("#expiryDateYear").val()
+                                        + "</td><td><input type='radio' name='radBtnCreditCards'></td></tr>");
+
+    $("#addCreditCardContainer").empty();
+});
+
+$("#addNewCreditCard").click(function () {
+    $.ajax({
+        type: "GET",
+        url: '../../UserManagement/CreateCreditCard',
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        success: function (data) {
+            $("#addCreditCardContainer").html(data);
         },
         error: function (xhr) {
             var error = JSON.parse(xhr.responseText).message;
