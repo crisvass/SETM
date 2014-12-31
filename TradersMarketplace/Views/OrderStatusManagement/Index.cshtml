@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Common.Views.OrderStatusView>
+
+@{
+    ViewBag.Title = "Order Status Management";
+}
+
+<h2>Order Statuses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatusId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatusId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderStatusId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderStatusId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderStatusId })
+        </td>
+    </tr>
+}
+
+</table>

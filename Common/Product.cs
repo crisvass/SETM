@@ -24,7 +24,7 @@ namespace Common
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int ProductCategoryId { get; set; }
+        public System.Guid ProductCategoryId { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime DateAdded { get; set; }
         public int QtyAvailable { get; set; }

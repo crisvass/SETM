@@ -79,10 +79,34 @@ namespace TradersMarketplace.CreditCardsServiceClient {
     public interface ICreditCardsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/GetCreditCardTypes", ReplyAction="http://tempuri.org/ICreditCardsService/GetCreditCardTypesResponse")]
-        System.Collections.ObjectModel.ObservableCollection<TradersMarketplace.CreditCardsServiceClient.CreditCardTypeView> GetCreditCardTypes();
+        System.Collections.Generic.List<Common.Views.CreditCardTypeView> GetCreditCardTypes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/GetCreditCardTypes", ReplyAction="http://tempuri.org/ICreditCardsService/GetCreditCardTypesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<TradersMarketplace.CreditCardsServiceClient.CreditCardTypeView>> GetCreditCardTypesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CreditCardTypeView>> GetCreditCardTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/GetCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/GetCreditCardTypeResponse")]
+        Common.Views.CreditCardTypeView GetCreditCardType(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/GetCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/GetCreditCardTypeResponse")]
+        System.Threading.Tasks.Task<Common.Views.CreditCardTypeView> GetCreditCardTypeAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/AddCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/AddCreditCardTypeResponse")]
+        void AddCreditCardType(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/AddCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/AddCreditCardTypeResponse")]
+        System.Threading.Tasks.Task AddCreditCardTypeAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/UpdateCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/UpdateCreditCardTypeResponse")]
+        void UpdateCreditCardType(int id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/UpdateCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/UpdateCreditCardTypeResponse")]
+        System.Threading.Tasks.Task UpdateCreditCardTypeAsync(int id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/DeleteCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/DeleteCreditCardTypeResponse")]
+        void DeleteCreditCardType(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICreditCardsService/DeleteCreditCardType", ReplyAction="http://tempuri.org/ICreditCardsService/DeleteCreditCardTypeResponse")]
+        System.Threading.Tasks.Task DeleteCreditCardTypeAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -112,12 +136,44 @@ namespace TradersMarketplace.CreditCardsServiceClient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.ObjectModel.ObservableCollection<TradersMarketplace.CreditCardsServiceClient.CreditCardTypeView> GetCreditCardTypes() {
+        public System.Collections.Generic.List<Common.Views.CreditCardTypeView> GetCreditCardTypes() {
             return base.Channel.GetCreditCardTypes();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<TradersMarketplace.CreditCardsServiceClient.CreditCardTypeView>> GetCreditCardTypesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CreditCardTypeView>> GetCreditCardTypesAsync() {
             return base.Channel.GetCreditCardTypesAsync();
+        }
+        
+        public Common.Views.CreditCardTypeView GetCreditCardType(int id) {
+            return base.Channel.GetCreditCardType(id);
+        }
+        
+        public System.Threading.Tasks.Task<Common.Views.CreditCardTypeView> GetCreditCardTypeAsync(int id) {
+            return base.Channel.GetCreditCardTypeAsync(id);
+        }
+        
+        public void AddCreditCardType(string name) {
+            base.Channel.AddCreditCardType(name);
+        }
+        
+        public System.Threading.Tasks.Task AddCreditCardTypeAsync(string name) {
+            return base.Channel.AddCreditCardTypeAsync(name);
+        }
+        
+        public void UpdateCreditCardType(int id, string name) {
+            base.Channel.UpdateCreditCardType(id, name);
+        }
+        
+        public System.Threading.Tasks.Task UpdateCreditCardTypeAsync(int id, string name) {
+            return base.Channel.UpdateCreditCardTypeAsync(id, name);
+        }
+        
+        public void DeleteCreditCardType(int id) {
+            base.Channel.DeleteCreditCardType(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteCreditCardTypeAsync(int id) {
+            return base.Channel.DeleteCreditCardTypeAsync(id);
         }
     }
 }

@@ -23,10 +23,10 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryNameField;
+        private System.Guid CategoryIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
+        private string CategoryNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<Common.Views.CategoryView> SubCategoriesField;
@@ -42,6 +42,19 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid CategoryId {
+            get {
+                return this.CategoryIdField;
+            }
+            set {
+                if ((this.CategoryIdField.Equals(value) != true)) {
+                    this.CategoryIdField = value;
+                    this.RaisePropertyChanged("CategoryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string CategoryName {
             get {
                 return this.CategoryNameField;
@@ -50,19 +63,6 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
                 if ((object.ReferenceEquals(this.CategoryNameField, value) != true)) {
                     this.CategoryNameField = value;
                     this.RaisePropertyChanged("CategoryName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
                 }
             }
         }
@@ -101,10 +101,34 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CategoryView>> GetCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetCategoryName", ReplyAction="http://tempuri.org/IProductCategoriesService/GetCategoryNameResponse")]
-        string GetCategoryName(int categoryId);
+        string GetCategoryName(System.Guid categoryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetCategoryName", ReplyAction="http://tempuri.org/IProductCategoriesService/GetCategoryNameResponse")]
-        System.Threading.Tasks.Task<string> GetCategoryNameAsync(int categoryId);
+        System.Threading.Tasks.Task<string> GetCategoryNameAsync(System.Guid categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/GetCategoryResponse")]
+        Common.Views.CategoryView GetCategory(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/GetCategoryResponse")]
+        System.Threading.Tasks.Task<Common.Views.CategoryView> GetCategoryAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/AddCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/AddCategoryResponse")]
+        void AddCategory(string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/AddCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/AddCategoryResponse")]
+        System.Threading.Tasks.Task AddCategoryAsync(string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/UpdateCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/UpdateCategoryResponse")]
+        void UpdateCategory(System.Guid categoryId, string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/UpdateCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/UpdateCategoryResponse")]
+        System.Threading.Tasks.Task UpdateCategoryAsync(System.Guid categoryId, string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/DeleteCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/DeleteCategoryResponse")]
+        void DeleteCategory(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/DeleteCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/DeleteCategoryResponse")]
+        System.Threading.Tasks.Task DeleteCategoryAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -142,12 +166,44 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
             return base.Channel.GetCategoriesAsync();
         }
         
-        public string GetCategoryName(int categoryId) {
+        public string GetCategoryName(System.Guid categoryId) {
             return base.Channel.GetCategoryName(categoryId);
         }
         
-        public System.Threading.Tasks.Task<string> GetCategoryNameAsync(int categoryId) {
+        public System.Threading.Tasks.Task<string> GetCategoryNameAsync(System.Guid categoryId) {
             return base.Channel.GetCategoryNameAsync(categoryId);
+        }
+        
+        public Common.Views.CategoryView GetCategory(System.Guid id) {
+            return base.Channel.GetCategory(id);
+        }
+        
+        public System.Threading.Tasks.Task<Common.Views.CategoryView> GetCategoryAsync(System.Guid id) {
+            return base.Channel.GetCategoryAsync(id);
+        }
+        
+        public void AddCategory(string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories) {
+            base.Channel.AddCategory(categoryName, subCategories);
+        }
+        
+        public System.Threading.Tasks.Task AddCategoryAsync(string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories) {
+            return base.Channel.AddCategoryAsync(categoryName, subCategories);
+        }
+        
+        public void UpdateCategory(System.Guid categoryId, string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories) {
+            base.Channel.UpdateCategory(categoryId, categoryName, subCategories);
+        }
+        
+        public System.Threading.Tasks.Task UpdateCategoryAsync(System.Guid categoryId, string categoryName, System.Collections.Generic.List<Common.Views.CategoryView> subCategories) {
+            return base.Channel.UpdateCategoryAsync(categoryId, categoryName, subCategories);
+        }
+        
+        public void DeleteCategory(System.Guid id) {
+            base.Channel.DeleteCategory(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteCategoryAsync(System.Guid id) {
+            return base.Channel.DeleteCategoryAsync(id);
         }
     }
 }

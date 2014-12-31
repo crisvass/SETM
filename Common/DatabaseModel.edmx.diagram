@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d7429784bcda41729d9eb502c3b97074" Name="Diagram1">
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.C__MigrationHistory" Width="1.5" PointX="10.75" PointY="5.375" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.C__MigrationHistory" Width="1.5" PointX="3.75" PointY="13.375" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.ApplicationUser" Width="1.5" PointX="5.75" PointY="4.25" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.CommissionType" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.CreditCardDetail" Width="1.5" PointX="13" PointY="1.625" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.CreditCardType" Width="1.5" PointX="10.75" PointY="2" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityRole" Width="1.5" PointX="5.75" PointY="1.25" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityUserClaim" Width="1.5" PointX="8" PointY="11.625" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityUserLogin" Width="1.5" PointX="8" PointY="6.375" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityUserRole" Width="1.5" PointX="8" PointY="3.125" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.Menu" Width="1.5" PointX="8" PointY="14.625" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.CreditCardType" Width="1.5" PointX="10.75" PointY="1.875" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityRole" Width="1.5" PointX="8.75" PointY="9.25" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityUserClaim" Width="1.5" PointX="8" PointY="6" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityUserLogin" Width="1.5" PointX="8" PointY="11.875" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.IdentityUserRole" Width="1.5" PointX="11" PointY="6.125" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.Menu" Width="1.5" PointX="11" PointY="9.75" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.OrderDetail" Width="1.5" PointX="3" PointY="4.5" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.Order" Width="1.5" PointX="0.75" PointY="8.375" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.OrderStatus" Width="1.5" PointX="1.5" PointY="16.75" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.OrderStatus" Width="1.5" PointX="1.5" PointY="16.625" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.ProductCategory" Width="1.5" PointX="1.5" PointY="13.5" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.ProductCommission" Width="1.5" PointX="3" PointY="1.5" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.Product" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.Seller" Width="1.5" PointX="8" PointY="9.125" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.Setting" Width="1.5" PointX="10.75" PointY="8.375" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.Seller" Width="1.5" PointX="8" PointY="3.375" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.Setting" Width="1.5" PointX="10.75" PointY="13.375" />
         <EntityTypeShape EntityType="dbTradersMarketplaceModel.ShoppingCart" Width="1.5" PointX="3" PointY="10.25" />
-        <EntityTypeShape EntityType="dbTradersMarketplaceModel.sysdiagram" Width="1.5" PointX="10.75" PointY="11.375" />
+        <EntityTypeShape EntityType="dbTradersMarketplaceModel.sysdiagram" Width="1.5" PointX="12.75" PointY="13.375" />
         <AssociationConnector Association="dbTradersMarketplaceModel.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" />
         <AssociationConnector Association="dbTradersMarketplaceModel.FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id" />
         <AssociationConnector Association="dbTradersMarketplaceModel.FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id" />

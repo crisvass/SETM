@@ -19,7 +19,7 @@ namespace BusinessLayer_WebServices
         IEnumerable<ProductListView> GetAllProducts();
 
         [OperationContract]
-        IEnumerable<ProductListView> GetProductsByCategory(int categoryId);
+        IEnumerable<ProductListView> GetProductsByCategory(Guid categoryId);
 
         [OperationContract]
         bool IsCartQuantityRequestedAvailable(string username);

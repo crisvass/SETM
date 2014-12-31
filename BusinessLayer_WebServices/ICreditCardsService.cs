@@ -14,5 +14,17 @@ namespace BusinessLayer_WebServices
     {
         [OperationContract]
         IEnumerable<CreditCardTypeView> GetCreditCardTypes();
+
+        [OperationContract]
+        CreditCardTypeView GetCreditCardType(int id);
+
+        [OperationContract]
+        void AddCreditCardType(string name);
+
+        [OperationContract]
+        void UpdateCreditCardType(int id, string name);
+
+        [OperationContract]
+        void DeleteCreditCardType(int id);
     }
 }

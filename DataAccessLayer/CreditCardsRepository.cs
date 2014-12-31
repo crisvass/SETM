@@ -13,6 +13,8 @@ namespace DataAccessLayer
     {
         public CreditCardsRepository() : base() { }
 
+        #region Credit Card Details
+
         public void AddCreditCardDetail(CreditCardDetail cc)
         {
             try
@@ -40,16 +42,6 @@ namespace DataAccessLayer
         {
             Entity.CreditCardDetails.Remove(Entity.CreditCardDetails.SingleOrDefault(cc => cc.Id == id));
             Entity.SaveChanges();
-        }
-
-        public IEnumerable<CreditCardTypeView> GetCardTypes()
-        {
-            return Entity.CreditCardTypes
-                .Select(cct => new CreditCardTypeView()
-                {
-                    CreditCardTypeId = cct.Id,
-                    CreditCardType = cct.CreditCardType1
-                });
         }
 
         public IEnumerable<CreditCardDetailView> GetUserCreditCards(string username)
@@ -80,5 +72,64 @@ namespace DataAccessLayer
             }
             Entity.SaveChanges();
         }
+
+        #endregion
+
+        #region Credit Card Types
+
+        public CreditCardType GetCreditCardType(int id)
+        {
+            return Entity.CreditCardTypes.SingleOrDefault(cct => cct.Id == id);
+        }
+
+        public IEnumerable<CreditCardTypeView> GetCardTypes()
+        {
+            return Entity.CreditCardTypes
+                .Select(cct => new CreditCardTypeView()
+                {
+                    CreditCardTypeId = cct.Id,
+                    CreditCardType = cct.CreditCardType1
+                });
+        }
+
+        public CreditCardTypeView GetCreditCardTypeView(int id)
+        {
+            return Entity.CreditCardTypes.Select(cct => new CreditCardTypeView()
+            {
+                CreditCardTypeId = cct.Id,
+                CreditCardType = cct.CreditCardType1
+            }).SingleOrDefault(cct => cct.CreditCardTypeId == id); ;
+        }
+
+        public void AddCreditCardType(CreditCardType cct)
+        {
+            Entity.CreditCardTypes.Add(cct);
+            Entity.SaveChanges();
+        }
+
+        public void UpdateCreditCardType(CreditCardType cct)
+        {
+            CreditCardType creditCardType = GetCreditCardType(cct.Id);
+            creditCardType.CreditCardType1 = cct.CreditCardType1;
+            Entity.SaveChanges();
+        }
+
+        public void DeleteCreditCardType(int id)
+        {
+            Entity.CreditCardTypes.Remove(GetCreditCardType(id));
+            Entity.SaveChanges();
+        }
+
+        public void DeleteCreditDetailsForCreditCardType(int id)
+        {
+            IEnumerable<CreditCardDetail> details = Entity.CreditCardDetails.Where(ccd => ccd.CreditCardTypeId == id);
+            foreach (CreditCardDetail ccd in details)
+            {
+                Entity.CreditCardDetails.Remove(ccd);
+            }
+            Entity.SaveChanges();
+        }
+
+        #endregion
     }
 }

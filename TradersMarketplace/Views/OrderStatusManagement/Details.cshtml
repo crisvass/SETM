@@ -1,0 +1,24 @@
+﻿@model Common.Views.OrderStatusView
+
+@{
+    ViewBag.Title = "Order Status Management";
+}
+
+<h2>Order Status Details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderStatusId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

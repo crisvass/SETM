@@ -21,7 +21,16 @@ namespace TradersMarketplace.Controllers
         // GET: RoleCruds
         public ActionResult Index()
         {
-            return View(rs.GetRoles());
+            IEnumerable<RoleView> roles = null;
+            try
+            {
+                roles = rs.GetRoles();
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(roles);
         }
 
         public ActionResult Details(string id)

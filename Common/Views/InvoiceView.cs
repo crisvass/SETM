@@ -10,6 +10,8 @@ namespace Common.Views
     public class InvoiceView
     {
         public Guid OrderId { get; set; }
+        [Display(Name="Order Date")]
+        public DateTime OrderDate { get; set; }
         public UserView Uv { get; set; }
         public List<OrderDetailView> Items { get; set; }
         [Display(Name = "Sub-Total")]

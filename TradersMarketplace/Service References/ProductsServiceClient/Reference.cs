@@ -498,10 +498,10 @@ namespace TradersMarketplace.ProductsServiceClient {
         System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetAllProductsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsByCategory", ReplyAction="http://tempuri.org/IProductsService/GetProductsByCategoryResponse")]
-        System.Collections.Generic.List<Common.Views.ProductListView> GetProductsByCategory(int categoryId);
+        System.Collections.Generic.List<Common.Views.ProductListView> GetProductsByCategory(System.Guid categoryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsByCategory", ReplyAction="http://tempuri.org/IProductsService/GetProductsByCategoryResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetProductsByCategoryAsync(int categoryId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetProductsByCategoryAsync(System.Guid categoryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/IsCartQuantityRequestedAvailable", ReplyAction="http://tempuri.org/IProductsService/IsCartQuantityRequestedAvailableResponse")]
         bool IsCartQuantityRequestedAvailable(string username);
@@ -583,11 +583,11 @@ namespace TradersMarketplace.ProductsServiceClient {
             return base.Channel.GetAllProductsAsync();
         }
         
-        public System.Collections.Generic.List<Common.Views.ProductListView> GetProductsByCategory(int categoryId) {
+        public System.Collections.Generic.List<Common.Views.ProductListView> GetProductsByCategory(System.Guid categoryId) {
             return base.Channel.GetProductsByCategory(categoryId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetProductsByCategoryAsync(int categoryId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> GetProductsByCategoryAsync(System.Guid categoryId) {
             return base.Channel.GetProductsByCategoryAsync(categoryId);
         }
         

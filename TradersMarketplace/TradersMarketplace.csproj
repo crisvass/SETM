@@ -174,9 +174,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CreditCardTypeManagementController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuManagementController.cs" />
+    <Compile Include="Controllers\OrderManagementController.cs" />
+    <Compile Include="Controllers\OrderStatusManagementController.cs" />
+    <Compile Include="Controllers\ProductCategoryManagementController.cs" />
     <Compile Include="Controllers\RoleManagementController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="CustomHandleErrorAttribute.cs" />
@@ -184,7 +188,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\UserCrudViewModel.cs" />
+    <Compile Include="Models\ProductCategoriesCrudlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CreditCardsServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +249,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\CommonScript.js" />
     <Content Include="Scripts\Custom\MenuManagementScript.js" />
+    <Content Include="Scripts\Custom\ProductCategoryManagementScript.js" />
     <Content Include="Scripts\Custom\ProductScript.js" />
     <Content Include="Scripts\Custom\UserManagementScript.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -285,6 +290,12 @@
     <None Include="Service References\MenusServiceClient\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\CreditCardsServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\CreditCardsServiceClient\configuration.svcinfo" />
+    <None Include="Service References\CreditCardsServiceClient\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service References\MenusServiceClient\TradersMarketplace.MenusServiceClient.MenusView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -305,6 +316,12 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Service References\OrdersServiceClient\TradersMarketplace.OrdersServiceClient.InvoiceView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\OrdersServiceClient\TradersMarketplace.OrdersServiceClient.OrderStatusView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\OrdersServiceClient\TradersMarketplace.OrdersServiceClient.OrderView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ProductCategoriesServiceClient\Common.Views.xsd">
@@ -332,12 +349,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\CreditCardsServiceClient\configuration91.svcinfo" />
-    <None Include="Service References\CreditCardsServiceClient\configuration.svcinfo" />
-    <None Include="Service References\CreditCardsServiceClient\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\MenusServiceClient\configuration91.svcinfo" />
     <None Include="Service References\MenusServiceClient\configuration.svcinfo" />
     <None Include="Service References\MenusServiceClient\Reference.svcmap">
@@ -354,13 +365,13 @@
     <None Include="Service References\ProductsServiceClient\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ProductDetailsView.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ProductListView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ShoppingCartView.datasource">
+    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ProductDetailsView1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ShoppingCartView1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\RolesServiceClient\Common.Views.xsd">
@@ -458,6 +469,26 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Product\Invoice.cshtml" />
+    <Content Include="Views\CreditCardTypeManagement\Create.cshtml" />
+    <Content Include="Views\CreditCardTypeManagement\Delete.cshtml" />
+    <Content Include="Views\CreditCardTypeManagement\Details.cshtml" />
+    <Content Include="Views\CreditCardTypeManagement\Edit.cshtml" />
+    <Content Include="Views\CreditCardTypeManagement\Index.cshtml" />
+    <Content Include="Views\OrderStatusManagement\Create.cshtml" />
+    <Content Include="Views\OrderStatusManagement\Delete.cshtml" />
+    <Content Include="Views\OrderStatusManagement\Details.cshtml" />
+    <Content Include="Views\OrderStatusManagement\Edit.cshtml" />
+    <Content Include="Views\OrderStatusManagement\Index.cshtml" />
+    <Content Include="Views\OrderManagement\Delete.cshtml" />
+    <Content Include="Views\OrderManagement\Details.cshtml" />
+    <Content Include="Views\OrderManagement\Edit.cshtml" />
+    <Content Include="Views\OrderManagement\Index.cshtml" />
+    <Content Include="Views\ProductCategoryManagement\Create.cshtml" />
+    <Content Include="Views\ProductCategoryManagement\Delete.cshtml" />
+    <Content Include="Views\ProductCategoryManagement\Details.cshtml" />
+    <Content Include="Views\ProductCategoryManagement\Edit.cshtml" />
+    <Content Include="Views\ProductCategoryManagement\Index.cshtml" />
+    <Content Include="Views\ProductCategoryManagement\_CreateSubcategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

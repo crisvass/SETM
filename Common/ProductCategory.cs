@@ -20,9 +20,9 @@ namespace Common
             this.Products = new HashSet<Product>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        public Nullable<System.Guid> ParentId { get; set; }
     
         public virtual ICollection<ProductCategory> ProductCategories1 { get; set; }
         public virtual ProductCategory ProductCategory1 { get; set; }

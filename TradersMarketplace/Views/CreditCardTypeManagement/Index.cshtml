@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Common.Views.CreditCardTypeView>
+
+@{
+    ViewBag.Title = "Payment Methods Management";
+}
+
+<h2>Credit Card Types</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCardTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCardType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCardTypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCardType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CreditCardTypeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CreditCardTypeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CreditCardTypeId })
+        </td>
+    </tr>
+}
+
+</table>

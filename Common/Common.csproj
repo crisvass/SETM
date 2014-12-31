@@ -147,6 +147,8 @@
     <Compile Include="Views\MenuRolesView.cs" />
     <Compile Include="Views\MenusView.cs" />
     <Compile Include="Views\OrderDetailView.cs" />
+    <Compile Include="Views\OrderStatusView.cs" />
+    <Compile Include="Views\OrderView.cs" />
     <Compile Include="Views\ProductDetailsView.cs" />
     <Compile Include="Views\ProductListView.cs" />
     <Compile Include="Views\RoleView.cs" />

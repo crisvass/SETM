@@ -35,6 +35,12 @@
         <br />
         @Html.DisplayFor(model => model.Uv.Country)
     </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.OrderDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.OrderDate.ToShortDateString())
+    </dd>
 </dl>
 
 <table class="table">

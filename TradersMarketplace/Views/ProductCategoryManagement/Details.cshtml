@@ -1,0 +1,63 @@
+﻿@model Common.Views.CategoryView
+
+@{
+    ViewBag.Title = "Product Category Management";
+}
+
+<h2>Product Category Details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        @if (Model.SubCategories != null && Model.SubCategories.Count() > 0)
+        {
+            <dt>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CategoryId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CategoryName)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Common.Views.CategoryView cv in Model.SubCategories)
+                        {
+                            <tr>
+                                <td
+                                @Html.DisplayFor(modelItem => cv.CategoryId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cv.CategoryName)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

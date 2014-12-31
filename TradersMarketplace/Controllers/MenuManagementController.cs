@@ -21,7 +21,16 @@ namespace TradersMarketplace.Controllers
         // GET: MenuManagement
         public ActionResult Index()
         {
-            return View(ms.GetAllMainMenus());
+            List<MenusView> menus = null;
+            try
+            {
+                menus = ms.GetAllMainMenus();
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(menus);
         }
 
         // GET: MenuManagement/Details/5
@@ -65,29 +74,41 @@ namespace TradersMarketplace.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Create(string title, string action, string url, string submenus, string menuRoles)
         {
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<MenusView> submenusList = js.Deserialize<List<MenusView>>(submenus);
-            List<RoleView> menuRolesList = js.Deserialize<List<RoleView>>(menuRoles);
+            MenusView menu = null;
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<MenusView> submenusList = js.Deserialize<List<MenusView>>(submenus);
+                List<RoleView> menuRolesList = js.Deserialize<List<RoleView>>(menuRoles);
 
-            MenusView menu = new MenusView()
-            {
-                Title = title,
-                Action = action,
-                Url = url,
-                Submenus = submenusList.AsEnumerable<MenusView>(),
-                MenuRoles = menuRolesList.AsEnumerable<RoleView>()
-            };
-            if (ModelState.IsValid)
-            {
-                try
+                menu = new MenusView()
                 {
-                    ms.AddMenu(menu.Title, menu.Action, menu.Url, submenusList, menuRolesList);
-                    return Json(Url.Action("Index", "MenuManagement"));
-                }
-                catch (FaultException ex)
+                    Title = title,
+                    Action = action,
+                    Url = url,
+                    Submenus = submenusList.AsEnumerable<MenusView>(),
+                    MenuRoles = menuRolesList.AsEnumerable<RoleView>()
+                };
+                if (ModelState.IsValid)
                 {
-                    throw ex;
+                    try
+                    {
+                        ms.AddMenu(menu.Title, menu.Action, menu.Url, submenusList, menuRolesList);
+                        return Json(Url.Action("Index", "MenuManagement"));
+                    }
+                    catch (FaultException ex)
+                    {
+                        throw ex;
+                    }
                 }
+            }
+            catch (FaultException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return View(menu);
         }

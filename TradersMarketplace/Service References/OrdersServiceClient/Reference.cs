@@ -26,6 +26,12 @@ namespace TradersMarketplace.OrdersServiceClient {
         private TradersMarketplace.OrdersServiceClient.OrderDetailView[] ItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime OrderDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid OrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal SubtotalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -59,6 +65,32 @@ namespace TradersMarketplace.OrdersServiceClient {
                 if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
                     this.ItemsField = value;
                     this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime OrderDate {
+            get {
+                return this.OrderDateField;
+            }
+            set {
+                if ((this.OrderDateField.Equals(value) != true)) {
+                    this.OrderDateField = value;
+                    this.RaisePropertyChanged("OrderDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
                 }
             }
         }
@@ -473,6 +505,9 @@ namespace TradersMarketplace.OrdersServiceClient {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProductQtyField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalPriceField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -518,6 +553,19 @@ namespace TradersMarketplace.OrdersServiceClient {
                 if ((this.ProductQtyField.Equals(value) != true)) {
                     this.ProductQtyField = value;
                     this.RaisePropertyChanged("ProductQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalPrice {
+            get {
+                return this.TotalPriceField;
+            }
+            set {
+                if ((this.TotalPriceField.Equals(value) != true)) {
+                    this.TotalPriceField = value;
+                    this.RaisePropertyChanged("TotalPrice");
                 }
             }
         }
@@ -875,6 +923,240 @@ namespace TradersMarketplace.OrdersServiceClient {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderStatusView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class OrderStatusView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OrderStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OrderStatusIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OrderStatus {
+            get {
+                return this.OrderStatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrderStatusField, value) != true)) {
+                    this.OrderStatusField = value;
+                    this.RaisePropertyChanged("OrderStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrderStatusId {
+            get {
+                return this.OrderStatusIdField;
+            }
+            set {
+                if ((this.OrderStatusIdField.Equals(value) != true)) {
+                    this.OrderStatusIdField = value;
+                    this.RaisePropertyChanged("OrderStatusId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class OrderView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime OrderDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid OrderIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TradersMarketplace.OrdersServiceClient.OrderDetailView[] OrderItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal OrderTotalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TradersMarketplace.OrdersServiceClient.SelectListItem[] StatusListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VatRateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime OrderDate {
+            get {
+                return this.OrderDateField;
+            }
+            set {
+                if ((this.OrderDateField.Equals(value) != true)) {
+                    this.OrderDateField = value;
+                    this.RaisePropertyChanged("OrderDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TradersMarketplace.OrdersServiceClient.OrderDetailView[] OrderItems {
+            get {
+                return this.OrderItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrderItemsField, value) != true)) {
+                    this.OrderItemsField = value;
+                    this.RaisePropertyChanged("OrderItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal OrderTotal {
+            get {
+                return this.OrderTotalField;
+            }
+            set {
+                if ((this.OrderTotalField.Equals(value) != true)) {
+                    this.OrderTotalField = value;
+                    this.RaisePropertyChanged("OrderTotal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatusId {
+            get {
+                return this.StatusIdField;
+            }
+            set {
+                if ((this.StatusIdField.Equals(value) != true)) {
+                    this.StatusIdField = value;
+                    this.RaisePropertyChanged("StatusId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TradersMarketplace.OrdersServiceClient.SelectListItem[] StatusList {
+            get {
+                return this.StatusListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusListField, value) != true)) {
+                    this.StatusListField = value;
+                    this.RaisePropertyChanged("StatusList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VatRate {
+            get {
+                return this.VatRateField;
+            }
+            set {
+                if ((this.VatRateField.Equals(value) != true)) {
+                    this.VatRateField = value;
+                    this.RaisePropertyChanged("VatRate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="OrdersServiceClient.IOrdersService")]
     public interface IOrdersService {
@@ -896,6 +1178,54 @@ namespace TradersMarketplace.OrdersServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetInvoice", ReplyAction="http://tempuri.org/IOrdersService/GetInvoiceResponse")]
         System.Threading.Tasks.Task<Common.Views.InvoiceView> GetInvoiceAsync(string username, System.Guid orderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrderStatuses", ReplyAction="http://tempuri.org/IOrdersService/GetOrderStatusesResponse")]
+        System.Collections.Generic.List<Common.Views.OrderStatusView> GetOrderStatuses();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrderStatuses", ReplyAction="http://tempuri.org/IOrdersService/GetOrderStatusesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.OrderStatusView>> GetOrderStatusesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrderStatus", ReplyAction="http://tempuri.org/IOrdersService/GetOrderStatusResponse")]
+        Common.Views.OrderStatusView GetOrderStatus(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrderStatus", ReplyAction="http://tempuri.org/IOrdersService/GetOrderStatusResponse")]
+        System.Threading.Tasks.Task<Common.Views.OrderStatusView> GetOrderStatusAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/AddOrderStatus", ReplyAction="http://tempuri.org/IOrdersService/AddOrderStatusResponse")]
+        void AddOrderStatus(string status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/AddOrderStatus", ReplyAction="http://tempuri.org/IOrdersService/AddOrderStatusResponse")]
+        System.Threading.Tasks.Task AddOrderStatusAsync(string status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/UpdateOrderStatusItem", ReplyAction="http://tempuri.org/IOrdersService/UpdateOrderStatusItemResponse")]
+        void UpdateOrderStatusItem(int id, string status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/UpdateOrderStatusItem", ReplyAction="http://tempuri.org/IOrdersService/UpdateOrderStatusItemResponse")]
+        System.Threading.Tasks.Task UpdateOrderStatusItemAsync(int id, string status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/DeleteOrderStatus", ReplyAction="http://tempuri.org/IOrdersService/DeleteOrderStatusResponse")]
+        void DeleteOrderStatus(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/DeleteOrderStatus", ReplyAction="http://tempuri.org/IOrdersService/DeleteOrderStatusResponse")]
+        System.Threading.Tasks.Task DeleteOrderStatusAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrders", ReplyAction="http://tempuri.org/IOrdersService/GetOrdersResponse")]
+        System.Collections.Generic.List<Common.Views.OrderView> GetOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrders", ReplyAction="http://tempuri.org/IOrdersService/GetOrdersResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.OrderView>> GetOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrder", ReplyAction="http://tempuri.org/IOrdersService/GetOrderResponse")]
+        Common.Views.OrderView GetOrder(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrder", ReplyAction="http://tempuri.org/IOrdersService/GetOrderResponse")]
+        System.Threading.Tasks.Task<Common.Views.OrderView> GetOrderAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/CancelOrder", ReplyAction="http://tempuri.org/IOrdersService/CancelOrderResponse")]
+        void CancelOrder(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/CancelOrder", ReplyAction="http://tempuri.org/IOrdersService/CancelOrderResponse")]
+        System.Threading.Tasks.Task CancelOrderAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -947,6 +1277,70 @@ namespace TradersMarketplace.OrdersServiceClient {
         
         public System.Threading.Tasks.Task<Common.Views.InvoiceView> GetInvoiceAsync(string username, System.Guid orderId) {
             return base.Channel.GetInvoiceAsync(username, orderId);
+        }
+        
+        public System.Collections.Generic.List<Common.Views.OrderStatusView> GetOrderStatuses() {
+            return base.Channel.GetOrderStatuses();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.OrderStatusView>> GetOrderStatusesAsync() {
+            return base.Channel.GetOrderStatusesAsync();
+        }
+        
+        public Common.Views.OrderStatusView GetOrderStatus(int id) {
+            return base.Channel.GetOrderStatus(id);
+        }
+        
+        public System.Threading.Tasks.Task<Common.Views.OrderStatusView> GetOrderStatusAsync(int id) {
+            return base.Channel.GetOrderStatusAsync(id);
+        }
+        
+        public void AddOrderStatus(string status) {
+            base.Channel.AddOrderStatus(status);
+        }
+        
+        public System.Threading.Tasks.Task AddOrderStatusAsync(string status) {
+            return base.Channel.AddOrderStatusAsync(status);
+        }
+        
+        public void UpdateOrderStatusItem(int id, string status) {
+            base.Channel.UpdateOrderStatusItem(id, status);
+        }
+        
+        public System.Threading.Tasks.Task UpdateOrderStatusItemAsync(int id, string status) {
+            return base.Channel.UpdateOrderStatusItemAsync(id, status);
+        }
+        
+        public void DeleteOrderStatus(int id) {
+            base.Channel.DeleteOrderStatus(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteOrderStatusAsync(int id) {
+            return base.Channel.DeleteOrderStatusAsync(id);
+        }
+        
+        public System.Collections.Generic.List<Common.Views.OrderView> GetOrders() {
+            return base.Channel.GetOrders();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.OrderView>> GetOrdersAsync() {
+            return base.Channel.GetOrdersAsync();
+        }
+        
+        public Common.Views.OrderView GetOrder(System.Guid id) {
+            return base.Channel.GetOrder(id);
+        }
+        
+        public System.Threading.Tasks.Task<Common.Views.OrderView> GetOrderAsync(System.Guid id) {
+            return base.Channel.GetOrderAsync(id);
+        }
+        
+        public void CancelOrder(System.Guid id) {
+            base.Channel.CancelOrder(id);
+        }
+        
+        public System.Threading.Tasks.Task CancelOrderAsync(System.Guid id) {
+            return base.Channel.CancelOrderAsync(id);
         }
     }
 }

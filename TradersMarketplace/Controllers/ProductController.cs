@@ -20,7 +20,7 @@ namespace TradersMarketplace.Views
         private CreditCardsServiceClient.CreditCardsServiceClient ccs = new CreditCardsServiceClient.CreditCardsServiceClient();
         private OrdersServiceClient.OrdersServiceClient os = new OrdersServiceClient.OrdersServiceClient();
 
-        public ActionResult List(int? categoryId)
+        public ActionResult List(Guid categoryId)
         {
             if (categoryId == null)
             {
@@ -30,9 +30,9 @@ namespace TradersMarketplace.Views
             else
             {
                 ViewBag.Title = new ProductCategoriesServiceClient
-                    .ProductCategoriesServiceClient().GetCategoryName((int)categoryId);
+                    .ProductCategoriesServiceClient().GetCategoryName(categoryId);
                 return View("List", new ProductsServiceClient.ProductsServiceClient()
-                    .GetProductsByCategory((int)categoryId).ToList());
+                    .GetProductsByCategory(categoryId).ToList());
             }
         }
 
@@ -242,6 +242,7 @@ namespace TradersMarketplace.Views
             return Json(Url.Action("Checkout", "Product"));
         }
 
+        [Authorize(Roles = "Buyer")]
         [HttpGet]
         public ActionResult Invoice(Guid orderId)
         {

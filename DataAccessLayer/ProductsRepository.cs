@@ -43,7 +43,7 @@ namespace DataAccessLayer
                 });
         }
 
-        public IEnumerable<ProductListView> GetProductsByCategory(int categoryId)
+        public IEnumerable<ProductListView> GetProductsByCategory(Guid categoryId)
         {
             return (from p in Entity.Products
                     join c in Entity.ProductCategories on p.ProductCategoryId equals c.Id

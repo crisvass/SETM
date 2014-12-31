@@ -16,6 +16,18 @@ namespace BusinessLayer_WebServices
         IEnumerable<CategoryView> GetCategories();
 
         [OperationContract]
-        string GetCategoryName(int categoryId);
+        string GetCategoryName(Guid categoryId);
+
+        [OperationContract]
+        CategoryView GetCategory(Guid id);
+
+        [OperationContract]
+        void AddCategory(string categoryName, List<CategoryView> subCategories);
+
+        [OperationContract]
+        void UpdateCategory(Guid categoryId, string categoryName, List<CategoryView> subCategories);
+
+        [OperationContract]
+        void DeleteCategory(Guid id);
     }
 }

@@ -26,6 +26,54 @@
   <wsdl:message name="IOrdersService_GetInvoice_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetInvoiceResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrderStatuses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderStatuses" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrderStatuses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_AddOrderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_AddOrderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_UpdateOrderStatusItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderStatusItem" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_UpdateOrderStatusItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderStatusItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_DeleteOrderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_DeleteOrderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrders" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_GetOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_CancelOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrdersService_CancelOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelOrderResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrdersService">
     <wsdl:operation name="PlaceOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/PlaceOrder" message="tns:IOrdersService_PlaceOrder_InputMessage" />
@@ -38,6 +86,38 @@
     <wsdl:operation name="GetInvoice">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/GetInvoice" message="tns:IOrdersService_GetInvoice_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/GetInvoiceResponse" message="tns:IOrdersService_GetInvoice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderStatuses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/GetOrderStatuses" message="tns:IOrdersService_GetOrderStatuses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/GetOrderStatusesResponse" message="tns:IOrdersService_GetOrderStatuses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/GetOrderStatus" message="tns:IOrdersService_GetOrderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/GetOrderStatusResponse" message="tns:IOrdersService_GetOrderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOrderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/AddOrderStatus" message="tns:IOrdersService_AddOrderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/AddOrderStatusResponse" message="tns:IOrdersService_AddOrderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderStatusItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/UpdateOrderStatusItem" message="tns:IOrdersService_UpdateOrderStatusItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/UpdateOrderStatusItemResponse" message="tns:IOrdersService_UpdateOrderStatusItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/DeleteOrderStatus" message="tns:IOrdersService_DeleteOrderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/DeleteOrderStatusResponse" message="tns:IOrdersService_DeleteOrderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/GetOrders" message="tns:IOrdersService_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/GetOrdersResponse" message="tns:IOrdersService_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/GetOrder" message="tns:IOrdersService_GetOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/GetOrderResponse" message="tns:IOrdersService_GetOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrdersService/CancelOrder" message="tns:IOrdersService_CancelOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrdersService/CancelOrderResponse" message="tns:IOrdersService_CancelOrder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrdersService" type="tns:IOrdersService">
@@ -62,6 +142,78 @@
     </wsdl:operation>
     <wsdl:operation name="GetInvoice">
       <soap:operation soapAction="http://tempuri.org/IOrdersService/GetInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderStatuses">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/GetOrderStatuses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/GetOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/AddOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderStatusItem">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/UpdateOrderStatusItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/DeleteOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/GetOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/GetOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <soap:operation soapAction="http://tempuri.org/IOrdersService/CancelOrder" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

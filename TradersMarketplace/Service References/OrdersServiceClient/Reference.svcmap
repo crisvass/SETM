@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="06ead41d-c051-4a15-8106-42a04a9e37f6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9a10fab7-04d8-43ff-a71a-4c2ea3427505" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="700c077f-5a43-4c38-ac6b-fb82648d4993" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="03b98d6f-b565-47d0-bb38-2e96b101b979" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="86eac0d5-1661-4b89-91ec-02941e84bca9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
-    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="4fed5082-3559-446a-8fce-0f02c5aba6ce" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
-    <MetadataFile FileName="System.Web.Mvc.xsd" MetadataType="Schema" ID="2a465f38-58fb-4f1c-ad7c-71be35e94dd1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="9aeaa5fe-51c9-4940-860d-453fc9385008" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="15b19b6a-4285-4495-9ae0-788b895821d7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="1b99a928-2d83-420e-a898-d3fd964ab8ba" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="2f671d6b-7ca1-474f-a24d-0465c11cbdf8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
+    <MetadataFile FileName="System.Web.Mvc.xsd" MetadataType="Schema" ID="009aa9e5-453f-4e8d-9ee0-1671a5f001d5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/OrdersService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

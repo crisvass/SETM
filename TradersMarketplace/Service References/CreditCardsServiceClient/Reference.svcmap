@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="71a71827-c45a-464c-ae86-53a4f7237a04" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9f4a6719-d1ea-413c-8083-5453d06be886" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -9,9 +9,7 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionsMappings>
-      <CollectionsMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
-    </CollectionsMappings>
+    <CollectionMappings />
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -24,10 +22,10 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="89fdc248-5acf-4398-af31-c67a954517a4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="9b90d7e5-4bf5-4edf-9216-0e1203897db7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="44e77b41-35a1-4f85-af76-2ee3b78d2de4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
-    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="0ed00069-bd39-4139-9876-07aebee509d1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="fb8e3d83-3666-4073-9106-5eeb424a7402" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b044d090-dd80-4d22-8629-413835b82fbf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="caf5ac53-28dd-4ff6-b386-85cd595f344a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
+    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="0d9dca3a-e4c8-42b5-8d5f-e95a4f79c7d7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/CreditCardsService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

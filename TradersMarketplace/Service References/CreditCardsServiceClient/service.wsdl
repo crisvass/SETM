@@ -13,16 +13,92 @@
   <wsdl:message name="ICreditCardsService_GetCreditCardTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCreditCardTypesResponse" />
   </wsdl:message>
+  <wsdl:message name="ICreditCardsService_GetCreditCardType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreditCardType" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_GetCreditCardType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreditCardTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_AddCreditCardType_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCreditCardType" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_AddCreditCardType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCreditCardTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_UpdateCreditCardType_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCreditCardType" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_UpdateCreditCardType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCreditCardTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_DeleteCreditCardType_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCreditCardType" />
+  </wsdl:message>
+  <wsdl:message name="ICreditCardsService_DeleteCreditCardType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCreditCardTypeResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICreditCardsService">
     <wsdl:operation name="GetCreditCardTypes">
       <wsdl:input wsaw:Action="http://tempuri.org/ICreditCardsService/GetCreditCardTypes" message="tns:ICreditCardsService_GetCreditCardTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICreditCardsService/GetCreditCardTypesResponse" message="tns:ICreditCardsService_GetCreditCardTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICreditCardsService/GetCreditCardType" message="tns:ICreditCardsService_GetCreditCardType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICreditCardsService/GetCreditCardTypeResponse" message="tns:ICreditCardsService_GetCreditCardType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCreditCardType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICreditCardsService/AddCreditCardType" message="tns:ICreditCardsService_AddCreditCardType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICreditCardsService/AddCreditCardTypeResponse" message="tns:ICreditCardsService_AddCreditCardType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICreditCardsService/UpdateCreditCardType" message="tns:ICreditCardsService_UpdateCreditCardType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICreditCardsService/UpdateCreditCardTypeResponse" message="tns:ICreditCardsService_UpdateCreditCardType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreditCardType">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICreditCardsService/DeleteCreditCardType" message="tns:ICreditCardsService_DeleteCreditCardType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICreditCardsService/DeleteCreditCardTypeResponse" message="tns:ICreditCardsService_DeleteCreditCardType_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICreditCardsService" type="tns:ICreditCardsService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetCreditCardTypes">
       <soap:operation soapAction="http://tempuri.org/ICreditCardsService/GetCreditCardTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardType">
+      <soap:operation soapAction="http://tempuri.org/ICreditCardsService/GetCreditCardType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCreditCardType">
+      <soap:operation soapAction="http://tempuri.org/ICreditCardsService/AddCreditCardType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardType">
+      <soap:operation soapAction="http://tempuri.org/ICreditCardsService/UpdateCreditCardType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreditCardType">
+      <soap:operation soapAction="http://tempuri.org/ICreditCardsService/DeleteCreditCardType" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

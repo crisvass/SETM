@@ -38,7 +38,7 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        public IEnumerable<ProductListView> GetProductsByCategory(int categoryId)
+        public IEnumerable<ProductListView> GetProductsByCategory(Guid categoryId)
         {
             try
             {

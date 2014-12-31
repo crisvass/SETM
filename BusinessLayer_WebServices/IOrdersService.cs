@@ -20,5 +20,29 @@ namespace BusinessLayer_WebServices
 
         [OperationContract]
         InvoiceView GetInvoice(string username, Guid orderId);
+
+        [OperationContract]
+        IEnumerable<OrderStatusView> GetOrderStatuses();
+
+        [OperationContract]
+        OrderStatusView GetOrderStatus(int id);
+
+        [OperationContract]
+        void AddOrderStatus(string status);
+
+        [OperationContract(Name="UpdateOrderStatusItem")]
+        void UpdateOrderStatus(int id, string status);
+
+        [OperationContract]
+        void DeleteOrderStatus(int id);
+
+        [OperationContract]
+        IEnumerable<OrderView> GetOrders();
+
+        [OperationContract]
+        OrderView GetOrder(Guid id);
+
+        [OperationContract]
+        void CancelOrder(Guid id);
     }
 }

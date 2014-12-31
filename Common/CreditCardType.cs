@@ -21,6 +21,7 @@ namespace Common
     
         public int Id { get; set; }
         public string CreditCardType1 { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ICollection<CreditCardDetail> CreditCardDetails { get; set; }
     }

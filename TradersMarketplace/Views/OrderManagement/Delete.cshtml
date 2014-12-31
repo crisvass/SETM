@@ -1,0 +1,90 @@
+﻿@model Common.Views.OrderView
+
+@{
+    ViewBag.Title = "Order Management";
+}
+
+<h2>Cancel Order</h2>
+
+<h3>Are you sure you want to cancel this order?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VatRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VatRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderItems)
+        </dt>
+        <dd>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderItems.First().ProductName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderItems.First().ProductQty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderItems.First().ProductPrice)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Common.Views.OrderDetailView oi in Model.OrderItems)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => oi.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => oi.ProductQty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => oi.TotalPrice)
+                    </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Cancel" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
