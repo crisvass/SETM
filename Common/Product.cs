@@ -17,7 +17,6 @@ namespace Common
         public Product()
         {
             this.OrderDetails = new HashSet<OrderDetail>();
-            this.ProductCommissions = new HashSet<ProductCommission>();
             this.ShoppingCarts = new HashSet<ShoppingCart>();
         }
     
@@ -34,7 +33,8 @@ namespace Common
     
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
-        public virtual ICollection<ProductCommission> ProductCommissions { get; set; }
+        public virtual ProductCommission ProductCommission { get; set; }
+        public virtual Seller Seller { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

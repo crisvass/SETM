@@ -29,5 +29,11 @@ namespace BusinessLayer_WebServices
 
         [OperationContract]
         void DeleteCategory(Guid id);
+
+        [OperationContract]
+        IEnumerable<CategoryView> GetMainCategories();
+
+        [OperationContract]
+        IEnumerable<CategoryView> GetSubcategories(Guid id);
     }
 }

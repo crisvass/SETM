@@ -44,9 +44,9 @@ namespace DataAccessLayer
             Entity.SaveChanges();
         }
 
-        public IEnumerable<CreditCardDetailView> GetUserCreditCards(string username)
+        public IEnumerable<CreditCardDetailView> GetUserCreditCards(string userId)
         {
-            return Entity.CreditCardDetails.Where(cc => cc.Username == username)
+            return Entity.CreditCardDetails.Where(cc => cc.UserId == userId)
                 .Select(cc => new CreditCardDetailView()
                 {
                     Id = cc.Id,
@@ -58,14 +58,14 @@ namespace DataAccessLayer
                 });
         }
 
-        public IEnumerable<CreditCardDetailView> GetUserNonExpiredCreditCards(string username)
+        public IEnumerable<CreditCardDetailView> GetUserNonExpiredCreditCards(string userId)
         {
-            return GetUserCreditCards(username).Where(cc => cc.ExpiryDate >= DateTime.Now);
+            return GetUserCreditCards(userId).Where(cc => cc.ExpiryDate >= DateTime.Now);
         }
 
-        public void DeleteUserCreditCards(string username)
+        public void DeleteUserCreditCards(string userId)
         {
-            IEnumerable<CreditCardDetail> creditCards = Entity.CreditCardDetails.Where(cc => cc.Username == username);
+            IEnumerable<CreditCardDetail> creditCards = Entity.CreditCardDetails.Where(cc => cc.UserId == userId);
             foreach (CreditCardDetail cc in creditCards)
             {
                 Entity.CreditCardDetails.Remove(cc);

@@ -55,14 +55,16 @@ namespace BusinessLayer_WebServices
             try
             {
                 ProductsRepository pr = new ProductsRepository();
+                UsersRepository ur = new UsersRepository();
+                pr.Entity = ur.Entity;
                 bool qtyAvailable = true;
-                IEnumerable<CartItemView> cartItems = pr.GetShoppingCartItems(username);
+                IEnumerable<CartItemView> cartItems = pr.GetShoppingCartItems(ur.GetUser(username).Id);
                 foreach (CartItemView cv in cartItems)
                 {
                     if (!pr.IsQuantityAvailable(cv.ProductQty, cv.ProductId))
                     {
                         qtyAvailable = false;
-                        pr.DeleteCartItem(username, cv.ProductId);
+                        pr.DeleteCartItem(ur.GetUser(username).Id, cv.ProductId);
                     }
                 }
                 return qtyAvailable;
@@ -80,17 +82,19 @@ namespace BusinessLayer_WebServices
                 try
                 {
                     ProductsRepository pr = new ProductsRepository();
+                    UsersRepository ur = new UsersRepository();
+                    pr.Entity = ur.Entity;
 
-                    if (pr.GetShoppingCart(username, productId) == null)
+                    if (pr.GetShoppingCart(ur.GetUser(username).Id, productId) == null)
                     {
                         if (pr.IsQuantityAvailable(qtyRequested, productId))
-                            pr.AddProductToCart(new ShoppingCart() { Username = username, ProductId = productId, ProductQty = qtyRequested });
+                            pr.AddProductToCart(new ShoppingCart() { UserId = ur.GetUser(username).Id, ProductId = productId, ProductQty = qtyRequested });
                         else
                             throw new ProductQuantityNotAvailable();
                     }
                     else
                     {
-                        pr.UpdateCartItemQty(new ShoppingCart() { Username = username, ProductId = productId, ProductQty = qtyRequested });
+                        pr.UpdateCartItemQty(new ShoppingCart() { UserId = ur.GetUser(username).Id, ProductId = productId, ProductQty = qtyRequested });
                     }
                 }
                 catch (ProductQuantityNotAvailable ex)
@@ -111,18 +115,20 @@ namespace BusinessLayer_WebServices
             {
                 ProductsRepository pr = new ProductsRepository();
                 ShoppingCart sc = new ShoppingCart();
+                UsersRepository ur = new UsersRepository();
+                pr.Entity = ur.Entity;
                 try
                 {
                     pr.Entity.Database.Connection.Open();
-                    pr.Transaction = pr.Entity.Database.BeginTransaction();
+                    pr.Transaction = ur.Transaction = pr.Entity.Database.BeginTransaction();
 
                     foreach (CartItemView civ in cartItems)
                     {
-                        sc = pr.GetShoppingCart(username, civ.ProductId);
+                        sc = pr.GetShoppingCart(ur.GetUser(username).Id, civ.ProductId);
                         if (pr.IsQuantityAvailable(civ.ProductQty, civ.ProductId))
                         {
                             if (sc.ProductQty == 0)
-                                pr.DeleteCartItem(username, civ.ProductId);
+                                pr.DeleteCartItem(ur.GetUser(username).Id, civ.ProductId);
                             else
                             {
                                 sc.ProductQty = civ.ProductQty;
@@ -173,14 +179,15 @@ namespace BusinessLayer_WebServices
             {
                 ProductsRepository pr = new ProductsRepository();
                 SettingsRepository sr = new SettingsRepository();
-                pr.Entity = sr.Entity;
+                UsersRepository ur = new UsersRepository();
+                pr.Entity = sr.Entity = ur.Entity;
 
                 decimal vatRate = Math.Round(sr.GetVatRate(), 2);
-                decimal subtotal = pr.GetShoppingCartTotal(username);
+                decimal subtotal = pr.GetShoppingCartTotal(ur.GetUser(username).Id);
                 decimal vatAmount = Math.Round(vatRate * subtotal, 2);
                 return new ShoppingCartView()
                 {
-                    CartItems = pr.GetShoppingCartItems(username).ToList(),
+                    CartItems = pr.GetShoppingCartItems(ur.GetUser(username).Id).ToList(),
                     VatRate = (int)(vatRate * 100),
                     Subtotal = subtotal,
                     VatAmount = vatAmount,
@@ -202,11 +209,196 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                return new ProductsRepository().GetCartTotalNumberOfItems(username);
+                ProductsRepository pr = new ProductsRepository();
+                UsersRepository ur = new UsersRepository();
+                pr.Entity = ur.Entity;
+                return pr.GetCartTotalNumberOfItems(ur.GetUser(username).Id);
             }
             catch
             {
                 throw new FaultException("Error whilst retrieving number of items in shopping cart. Please contact administrator if error persists.");
+            }
+        }
+
+
+        public IEnumerable<ProductView> GetProductsBySeller(string username)
+        {
+            try
+            {
+                ProductsRepository pr = new ProductsRepository();
+                UsersRepository ur = new UsersRepository();
+                pr.Entity = ur.Entity;
+                return pr.GetProductsBySeller(ur.GetSeller(ur.GetUser(username).Id));
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving products. Please contact administrator if error persists.");
+            }
+        }
+
+        public ProductView GetProduct(int id)
+        {
+            try
+            {
+                ProductsRepository pr = new ProductsRepository();
+                CategoriesRepository cr = new CategoriesRepository();
+                ProductView product = pr.GetProductView(id);
+                ProductCategory category = pr.GetProductCategory(id);
+                if (cr.IsSubcategory(category))
+                {
+                    ProductCategory pc = cr.GetParentCategory(category);
+                    product.CategoryId = pc.Id;
+                    product.Category = pc.Name;
+                    product.SubcategoryId = category.Id;
+                    product.Subcategory = category.Name;
+                }
+                else
+                {
+                    product.CategoryId = category.Id;
+                    product.Category = category.Name;
+                }
+                return product;
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving product. Please contact administrator if error persists.");
+            }
+        }
+
+        public void AddProduct(string name, string description, Guid categoryId, int qtyAvailable,
+            decimal price, string imagePath, string sellerUsername, int commissionTypeId,
+            decimal commissionAmount)
+        {
+            ProductsRepository pr = new ProductsRepository();
+            UsersRepository ur = new UsersRepository();
+            pr.Entity = ur.Entity;
+
+            try
+            {
+                Product p = new Product()
+                {
+                    Name = name,
+                    Description = description,
+                    ProductCategoryId = categoryId,
+                    QtyAvailable = qtyAvailable,
+                    Price = price,
+                    Image = imagePath,
+                    SellerId = ur.GetUser(sellerUsername).Id,
+                    ProductCommission = new ProductCommission()
+                    {
+                        CommissionTypeId = commissionTypeId,
+                        Amount = commissionAmount
+                    },
+                    DateAdded = DateTime.Now
+                };
+
+                try
+                {
+                    pr.Entity.Database.Connection.Open();
+                    pr.Transaction = ur.Transaction = ur.Entity.Database.BeginTransaction();
+                    pr.AddProduct(p);
+
+                    pr.Transaction.Commit();
+                }
+                catch
+                {
+                    pr.Transaction.Rollback();
+                    throw new TransactionFailedException("Adding a new product failed. Please try again or contact administrator if error persists.");
+                }
+                finally
+                {
+                    pr.Entity.Database.Connection.Close();
+                }
+            }
+            catch (TransactionFailedException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch
+            {
+                throw new FaultException("Error whilst adding a new product. Please try again or contact administrator if error persists.");
+            }
+        }
+
+        public void UpdateProduct(int id, string name, string description, Guid categoryId, int qtyAvailable,
+            decimal price, string imagePath, int commissionTypeId, decimal commissionAmount)
+        {
+            ProductsRepository pr = new ProductsRepository();
+            UsersRepository ur = new UsersRepository();
+            pr.Entity = ur.Entity;
+
+            try
+            {
+                Product p = new Product()
+                {
+                    Id = id,
+                    Name = name,
+                    Description = description,
+                    ProductCategoryId = categoryId,
+                    QtyAvailable = qtyAvailable,
+                    Price = price,
+                    Image = imagePath
+                };
+
+                ProductCommission pc = new ProductCommission()
+                {
+                    ProductId = id,
+                    CommissionTypeId = commissionTypeId,
+                    Amount = commissionAmount
+                };
+
+                try
+                {
+                    pr.Entity.Database.Connection.Open();
+                    pr.Transaction = ur.Transaction = ur.Entity.Database.BeginTransaction();
+
+                    pr.UpdateProduct(p);
+                    pr.UpdateProductCommission(pc);
+
+                    pr.Transaction.Commit();
+                }
+                catch
+                {
+                    pr.Transaction.Rollback();
+                    throw new TransactionFailedException("Updating product failed. Please try again or contact administrator if error persists.");
+                }
+                finally
+                {
+                    pr.Entity.Database.Connection.Close();
+                }
+            }
+            catch (TransactionFailedException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch
+            {
+                throw new FaultException("Error whilst updating the product. Please try again or contact administrator if error persists.");
+            }
+        }
+
+        public void DeleteProduct(int id)
+        {
+            try
+            {
+                new ProductsRepository().DeleteProduct(id);
+            }
+            catch
+            {
+                throw new FaultException("Error whilst deleting the product. Please try again or contact administrator if error persists.");
+            }
+        }
+
+
+        public IEnumerable<CommissionTypeView> GetCommissionTypes()
+        {
+            try
+            {
+                return new ProductsRepository().GetCommissionTypes();
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving product commission types. Please try again or contact administrator if error persists.");
             }
         }
     }

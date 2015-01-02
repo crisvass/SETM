@@ -75,7 +75,7 @@ namespace DataAccessLayer
             {
                 OrderId = o.Id,
                 OrderDate = o.Date,
-                Username = o.Username,
+                Username = o.ApplicationUser.UserName,
                 VatRate = (int)(o.VatRate * 100),
                 StatusId = o.OrderStatusId,
                 Status = o.OrderStatus.Status
@@ -88,7 +88,7 @@ namespace DataAccessLayer
             {
                 OrderId = o.Id,
                 OrderDate = o.Date,
-                Username = o.Username,
+                Username = o.ApplicationUser.UserName,
                 VatRate = (int)(o.VatRate * 100),
                 StatusId = o.OrderStatusId,
                 Status = o.OrderStatus.Status

@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="f3fcf2bb-bfac-45f7-8ea1-6fa3d905b1a9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/ProductsService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f52cc8eb-c2f8-4544-b524-ac6246186dbc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/ProductsService/mex" />
     <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="7fab2f3a-b804-422a-8f3f-153125070198" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/ProductsService/mex" />
+    <MetadataFile FileName="System.Web.Mvc.xsd" MetadataType="Schema" ID="ffffb84b-fd65-4fec-86e6-511b3679284b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/ProductsService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

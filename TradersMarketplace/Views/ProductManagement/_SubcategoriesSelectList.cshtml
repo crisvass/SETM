@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Common.Views.CategoryView>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <option value="">Select Subcategory</option>
+    foreach (Common.Views.CategoryView cv in Model)
+    {
+
+        <option value="@cv.CategoryId">@cv.CategoryName</option>
+    }
+}
+else
+{
+    
+}
+
+

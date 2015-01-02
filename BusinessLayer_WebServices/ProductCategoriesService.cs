@@ -229,5 +229,30 @@ namespace BusinessLayer_WebServices
                 throw new FaultException("Error whilst retrieving categories. Please contact administrator if error persists.");
             }
         }
+
+
+        public IEnumerable<CategoryView> GetMainCategories()
+        {
+            try
+            {
+                return new CategoriesRepository().GetMainCategories();
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving categories. Please contact administrator if error persists.");
+            } 
+        }
+
+        public IEnumerable<CategoryView> GetSubcategories(Guid id)
+        {
+            try
+            {
+                return new CategoriesRepository().GetSubCategories(id);
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving categories. Please contact administrator if error persists.");
+            }
+        }
     }
 }

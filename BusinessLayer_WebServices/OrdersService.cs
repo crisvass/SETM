@@ -21,7 +21,9 @@ namespace BusinessLayer_WebServices
                 ProductsRepository pr = new ProductsRepository();
                 OrdersRepository or = new OrdersRepository();
                 SettingsRepository sr = new SettingsRepository();
+                UsersRepository ur = new UsersRepository();
                 pr.Entity = or.Entity = sr.Entity;
+                string userId = ur.GetUser(username).Id;
 
                 Guid id = Guid.NewGuid();
                 try
@@ -31,13 +33,13 @@ namespace BusinessLayer_WebServices
                     or.AddOrder(new Order()
                     {
                         Id = id,
-                        Username = username,
+                        UserId = userId,
                         Date = DateTime.Now,
                         OrderStatusId = or.GetProcessingStatusId(),
                         VatRate = sr.GetVatRate()
                     });
 
-                    foreach (CartItemView sc in pr.GetShoppingCartItems(username))
+                    foreach (CartItemView sc in pr.GetShoppingCartItems(userId))
                     {
                         or.AddOrderDetail(new OrderDetail()
                         {
@@ -49,10 +51,10 @@ namespace BusinessLayer_WebServices
 
                         pr.ReduceStock(sc.ProductId, sc.ProductQty);
                     }
-                    IEnumerable<CartItemView> items = pr.GetShoppingCartItems(username);
+                    IEnumerable<CartItemView> items = pr.GetShoppingCartItems(userId);
                     foreach (CartItemView cv in items)
                     {
-                        pr.DeleteCartItem(username, cv.ProductId);
+                        pr.DeleteCartItem(userId, cv.ProductId);
                     }
 
                     pr.Transaction.Commit();

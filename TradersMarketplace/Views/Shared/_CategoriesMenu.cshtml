@@ -4,14 +4,14 @@
     @foreach (Common.Views.CategoryView cv in ViewBag.Categories)
     {
         <li>
-            @Html.ActionLink(cv.CategoryName, "List", new { categoryId = cv.Id })
+            @Html.ActionLink(cv.CategoryName, "List", new { categoryId = cv.CategoryId })
             @if (cv.SubCategories != null)
             {
                 <ul>
                     @foreach (Common.Views.CategoryView sub in cv.SubCategories)
                     {
                         <li>
-                            @Html.ActionLink(sub.CategoryName, "List", new { categoryId = sub.Id })
+                            @Html.ActionLink(sub.CategoryName, "List", new { categoryId = sub.CategoryId })
                         </li>
                     }
                 </ul>

@@ -10,6 +10,7 @@ namespace Common.Views
     public class InvoiceView
     {
         public Guid OrderId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         [Display(Name="Order Date")]
         public DateTime OrderDate { get; set; }
         public UserView Uv { get; set; }

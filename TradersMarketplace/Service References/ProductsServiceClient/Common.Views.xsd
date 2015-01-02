@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Common.Views" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Common.Views" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Common.Views" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Common.Views" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArrayOfProductListView">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductListView" nillable="true" type="tns:ProductListView" />
@@ -54,4 +56,45 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductDetailsView" nillable="true" type="tns:ProductDetailsView" />
+  <xs:complexType name="ArrayOfProductView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductView" nillable="true" type="tns:ProductView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductView" nillable="true" type="tns:ArrayOfProductView" />
+  <xs:complexType name="ProductView">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="CategoriesList" nillable="true" type="q1:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CategoryId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CommissionAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CommissionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommissionTypeId" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="CommissionTypesList" nillable="true" type="q2:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="DateAdded" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      <xs:element minOccurs="0" name="QtyAvailable" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Web.Mvc" minOccurs="0" name="SubcategoriesList" nillable="true" type="q3:ArrayOfSelectListItem" />
+      <xs:element minOccurs="0" name="Subcategory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubcategoryId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductView" nillable="true" type="tns:ProductView" />
+  <xs:complexType name="ArrayOfCommissionTypeView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommissionTypeView" nillable="true" type="tns:CommissionTypeView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommissionTypeView" nillable="true" type="tns:ArrayOfCommissionTypeView" />
+  <xs:complexType name="CommissionTypeView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommissionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommissionTypeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommissionTypeView" nillable="true" type="tns:CommissionTypeView" />
 </xs:schema>

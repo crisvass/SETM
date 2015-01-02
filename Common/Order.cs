@@ -21,10 +21,11 @@ namespace Common
     
         public System.Guid Id { get; set; }
         public System.DateTime Date { get; set; }
-        public string Username { get; set; }
+        public string UserId { get; set; }
         public decimal VatRate { get; set; }
         public int OrderStatusId { get; set; }
     
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
     }

@@ -14,10 +14,11 @@ namespace Common
     
     public partial class ShoppingCart
     {
-        public string Username { get; set; }
+        public string UserId { get; set; }
         public int ProductId { get; set; }
         public int ProductQty { get; set; }
     
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Product Product { get; set; }
     }
 }

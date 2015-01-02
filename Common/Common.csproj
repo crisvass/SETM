@@ -141,6 +141,7 @@
     <Compile Include="Views\CartItemView.cs" />
     <Compile Include="Views\CategoryView.cs" />
     <Compile Include="Views\CheckoutView.cs" />
+    <Compile Include="Views\CommissionTypeView.cs" />
     <Compile Include="Views\CreditCardDetailView.cs" />
     <Compile Include="Views\CreditCardTypeView.cs" />
     <Compile Include="Views\InvoiceView.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Views\OrderView.cs" />
     <Compile Include="Views\ProductDetailsView.cs" />
     <Compile Include="Views\ProductListView.cs" />
+    <Compile Include="Views\ProductView.cs" />
     <Compile Include="Views\RoleView.cs" />
     <Compile Include="Views\ShoppingCartView.cs" />
     <Compile Include="Views\UserView.cs" />

@@ -14,10 +14,16 @@ namespace Common
     
     public partial class Seller
     {
+        public Seller()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public string Id { get; set; }
         public bool RequiresDelivery { get; set; }
         public string IBANNumber { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

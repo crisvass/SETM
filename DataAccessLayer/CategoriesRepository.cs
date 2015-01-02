@@ -114,5 +114,25 @@ namespace DataAccessLayer
             }
             return subcategoryIsUsed;
         }
+        
+        public bool IsSubcategory(ProductCategory pc)
+        {
+            return pc.ParentId != null;
+        }
+
+        public ProductCategory GetParentCategory(ProductCategory pc)
+        {   
+            return GetCategory((Guid)pc.ParentId);
+        }
+
+        public IEnumerable<CategoryView> GetMainCategories()
+        {
+            return Entity.ProductCategories.Where(pc => pc.ParentId == null)
+                .Select(pc => new CategoryView() 
+                {
+                    CategoryId = pc.Id,
+                    CategoryName = pc.Name
+                });
+        }
     }
 }

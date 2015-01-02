@@ -16,9 +16,12 @@ namespace Common
     {
         public ApplicationUser()
         {
+            this.CreditCardDetails = new HashSet<CreditCardDetail>();
             this.IdentityUserClaims = new HashSet<IdentityUserClaim>();
             this.IdentityUserLogins = new HashSet<IdentityUserLogin>();
             this.IdentityUserRoles = new HashSet<IdentityUserRole>();
+            this.Orders = new HashSet<Order>();
+            this.ShoppingCarts = new HashSet<ShoppingCart>();
         }
     
         public string Id { get; set; }
@@ -43,9 +46,12 @@ namespace Common
         public string Country { get; set; }
         public bool IsDeleted { get; set; }
     
+        public virtual ICollection<CreditCardDetail> CreditCardDetails { get; set; }
         public virtual ICollection<IdentityUserClaim> IdentityUserClaims { get; set; }
         public virtual ICollection<IdentityUserLogin> IdentityUserLogins { get; set; }
         public virtual ICollection<IdentityUserRole> IdentityUserRoles { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public virtual Seller Seller { get; set; }
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

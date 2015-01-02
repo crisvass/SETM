@@ -181,6 +181,7 @@
     <Compile Include="Controllers\OrderManagementController.cs" />
     <Compile Include="Controllers\OrderStatusManagementController.cs" />
     <Compile Include="Controllers\ProductCategoryManagementController.cs" />
+    <Compile Include="Controllers\ProductManagementController.cs" />
     <Compile Include="Controllers\RoleManagementController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="CustomHandleErrorAttribute.cs" />
@@ -227,6 +228,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Utilities\ImageUpload.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -262,6 +264,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\Custom\ProductManagementScript.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -374,6 +377,9 @@
     <Content Include="Service References\ProductsServiceClient\TradersMarketplace.ProductsServiceClient.ShoppingCartView1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\ProductsServiceClient\System.Web.Mvc.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RolesServiceClient\Common.Views.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -489,9 +495,16 @@
     <Content Include="Views\ProductCategoryManagement\Edit.cshtml" />
     <Content Include="Views\ProductCategoryManagement\Index.cshtml" />
     <Content Include="Views\ProductCategoryManagement\_CreateSubcategory.cshtml" />
+    <Content Include="Views\ProductManagement\Create.cshtml" />
+    <Content Include="Views\ProductManagement\Delete.cshtml" />
+    <Content Include="Views\ProductManagement\Details.cshtml" />
+    <Content Include="Views\ProductManagement\Edit.cshtml" />
+    <Content Include="Views\ProductManagement\Index.cshtml" />
+    <Content Include="Views\ProductManagement\_SubcategoriesSelectList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\ProductImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

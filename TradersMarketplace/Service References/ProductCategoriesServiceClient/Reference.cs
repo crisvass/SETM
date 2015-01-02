@@ -129,6 +129,18 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/DeleteCategory", ReplyAction="http://tempuri.org/IProductCategoriesService/DeleteCategoryResponse")]
         System.Threading.Tasks.Task DeleteCategoryAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetMainCategories", ReplyAction="http://tempuri.org/IProductCategoriesService/GetMainCategoriesResponse")]
+        System.Collections.Generic.List<Common.Views.CategoryView> GetMainCategories();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetMainCategories", ReplyAction="http://tempuri.org/IProductCategoriesService/GetMainCategoriesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CategoryView>> GetMainCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetSubcategories", ReplyAction="http://tempuri.org/IProductCategoriesService/GetSubcategoriesResponse")]
+        System.Collections.Generic.List<Common.Views.CategoryView> GetSubcategories(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductCategoriesService/GetSubcategories", ReplyAction="http://tempuri.org/IProductCategoriesService/GetSubcategoriesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CategoryView>> GetSubcategoriesAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -204,6 +216,22 @@ namespace TradersMarketplace.ProductCategoriesServiceClient {
         
         public System.Threading.Tasks.Task DeleteCategoryAsync(System.Guid id) {
             return base.Channel.DeleteCategoryAsync(id);
+        }
+        
+        public System.Collections.Generic.List<Common.Views.CategoryView> GetMainCategories() {
+            return base.Channel.GetMainCategories();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CategoryView>> GetMainCategoriesAsync() {
+            return base.Channel.GetMainCategoriesAsync();
+        }
+        
+        public System.Collections.Generic.List<Common.Views.CategoryView> GetSubcategories(System.Guid id) {
+            return base.Channel.GetSubcategories(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CategoryView>> GetSubcategoriesAsync(System.Guid id) {
+            return base.Channel.GetSubcategoriesAsync(id);
         }
     }
 }

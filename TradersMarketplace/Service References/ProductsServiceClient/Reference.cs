@@ -481,6 +481,445 @@ namespace TradersMarketplace.ProductsServiceClient {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class ProductView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TradersMarketplace.ProductsServiceClient.SelectListItem[] CategoriesListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid CategoryIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal CommissionAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CommissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CommissionTypeIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TradersMarketplace.ProductsServiceClient.SelectListItem[] CommissionTypesListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImagePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QtyAvailableField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TradersMarketplace.ProductsServiceClient.SelectListItem[] SubcategoriesListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SubcategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid SubcategoryIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TradersMarketplace.ProductsServiceClient.SelectListItem[] CategoriesList {
+            get {
+                return this.CategoriesListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoriesListField, value) != true)) {
+                    this.CategoriesListField = value;
+                    this.RaisePropertyChanged("CategoriesList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid CategoryId {
+            get {
+                return this.CategoryIdField;
+            }
+            set {
+                if ((this.CategoryIdField.Equals(value) != true)) {
+                    this.CategoryIdField = value;
+                    this.RaisePropertyChanged("CategoryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal CommissionAmount {
+            get {
+                return this.CommissionAmountField;
+            }
+            set {
+                if ((this.CommissionAmountField.Equals(value) != true)) {
+                    this.CommissionAmountField = value;
+                    this.RaisePropertyChanged("CommissionAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommissionType {
+            get {
+                return this.CommissionTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommissionTypeField, value) != true)) {
+                    this.CommissionTypeField = value;
+                    this.RaisePropertyChanged("CommissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CommissionTypeId {
+            get {
+                return this.CommissionTypeIdField;
+            }
+            set {
+                if ((this.CommissionTypeIdField.Equals(value) != true)) {
+                    this.CommissionTypeIdField = value;
+                    this.RaisePropertyChanged("CommissionTypeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TradersMarketplace.ProductsServiceClient.SelectListItem[] CommissionTypesList {
+            get {
+                return this.CommissionTypesListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommissionTypesListField, value) != true)) {
+                    this.CommissionTypesListField = value;
+                    this.RaisePropertyChanged("CommissionTypesList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImagePath {
+            get {
+                return this.ImagePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagePathField, value) != true)) {
+                    this.ImagePathField = value;
+                    this.RaisePropertyChanged("ImagePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int QtyAvailable {
+            get {
+                return this.QtyAvailableField;
+            }
+            set {
+                if ((this.QtyAvailableField.Equals(value) != true)) {
+                    this.QtyAvailableField = value;
+                    this.RaisePropertyChanged("QtyAvailable");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TradersMarketplace.ProductsServiceClient.SelectListItem[] SubcategoriesList {
+            get {
+                return this.SubcategoriesListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubcategoriesListField, value) != true)) {
+                    this.SubcategoriesListField = value;
+                    this.RaisePropertyChanged("SubcategoriesList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Subcategory {
+            get {
+                return this.SubcategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubcategoryField, value) != true)) {
+                    this.SubcategoryField = value;
+                    this.RaisePropertyChanged("Subcategory");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid SubcategoryId {
+            get {
+                return this.SubcategoryIdField;
+            }
+            set {
+                if ((this.SubcategoryIdField.Equals(value) != true)) {
+                    this.SubcategoryIdField = value;
+                    this.RaisePropertyChanged("SubcategoryId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SelectListItem", Namespace="http://schemas.datacontract.org/2004/07/System.Web.Mvc")]
+    [System.SerializableAttribute()]
+    public partial class SelectListItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SelectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValueField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Selected {
+            get {
+                return this.SelectedField;
+            }
+            set {
+                if ((this.SelectedField.Equals(value) != true)) {
+                    this.SelectedField = value;
+                    this.RaisePropertyChanged("Selected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text {
+            get {
+                return this.TextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextField, value) != true)) {
+                    this.TextField = value;
+                    this.RaisePropertyChanged("Text");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CommissionTypeView", Namespace="http://schemas.datacontract.org/2004/07/Common.Views")]
+    [System.SerializableAttribute()]
+    public partial class CommissionTypeView : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CommissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CommissionTypeIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommissionType {
+            get {
+                return this.CommissionTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommissionTypeField, value) != true)) {
+                    this.CommissionTypeField = value;
+                    this.RaisePropertyChanged("CommissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CommissionTypeId {
+            get {
+                return this.CommissionTypeIdField;
+            }
+            set {
+                if ((this.CommissionTypeIdField.Equals(value) != true)) {
+                    this.CommissionTypeIdField = value;
+                    this.RaisePropertyChanged("CommissionTypeId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProductsServiceClient.IProductsService")]
     public interface IProductsService {
@@ -538,6 +977,42 @@ namespace TradersMarketplace.ProductsServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetNumberOfItems", ReplyAction="http://tempuri.org/IProductsService/GetNumberOfItemsResponse")]
         System.Threading.Tasks.Task<int> GetNumberOfItemsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsBySeller", ReplyAction="http://tempuri.org/IProductsService/GetProductsBySellerResponse")]
+        System.Collections.Generic.List<Common.Views.ProductView> GetProductsBySeller(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProductsBySeller", ReplyAction="http://tempuri.org/IProductsService/GetProductsBySellerResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductView>> GetProductsBySellerAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProduct", ReplyAction="http://tempuri.org/IProductsService/GetProductResponse")]
+        Common.Views.ProductView GetProduct(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProduct", ReplyAction="http://tempuri.org/IProductsService/GetProductResponse")]
+        System.Threading.Tasks.Task<Common.Views.ProductView> GetProductAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/AddProduct", ReplyAction="http://tempuri.org/IProductsService/AddProductResponse")]
+        void AddProduct(string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, string sellerUsername, int commissionTypeId, decimal commissionAmount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/AddProduct", ReplyAction="http://tempuri.org/IProductsService/AddProductResponse")]
+        System.Threading.Tasks.Task AddProductAsync(string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, string sellerUsername, int commissionTypeId, decimal commissionAmount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/UpdateProduct", ReplyAction="http://tempuri.org/IProductsService/UpdateProductResponse")]
+        void UpdateProduct(int id, string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, int commissionTypeId, decimal commissionAmount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/UpdateProduct", ReplyAction="http://tempuri.org/IProductsService/UpdateProductResponse")]
+        System.Threading.Tasks.Task UpdateProductAsync(int id, string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, int commissionTypeId, decimal commissionAmount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/DeleteProduct", ReplyAction="http://tempuri.org/IProductsService/DeleteProductResponse")]
+        void DeleteProduct(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/DeleteProduct", ReplyAction="http://tempuri.org/IProductsService/DeleteProductResponse")]
+        System.Threading.Tasks.Task DeleteProductAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetCommissionTypes", ReplyAction="http://tempuri.org/IProductsService/GetCommissionTypesResponse")]
+        System.Collections.Generic.List<Common.Views.CommissionTypeView> GetCommissionTypes();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetCommissionTypes", ReplyAction="http://tempuri.org/IProductsService/GetCommissionTypesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CommissionTypeView>> GetCommissionTypesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -637,6 +1112,54 @@ namespace TradersMarketplace.ProductsServiceClient {
         
         public System.Threading.Tasks.Task<int> GetNumberOfItemsAsync(string username) {
             return base.Channel.GetNumberOfItemsAsync(username);
+        }
+        
+        public System.Collections.Generic.List<Common.Views.ProductView> GetProductsBySeller(string username) {
+            return base.Channel.GetProductsBySeller(username);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductView>> GetProductsBySellerAsync(string username) {
+            return base.Channel.GetProductsBySellerAsync(username);
+        }
+        
+        public Common.Views.ProductView GetProduct(int id) {
+            return base.Channel.GetProduct(id);
+        }
+        
+        public System.Threading.Tasks.Task<Common.Views.ProductView> GetProductAsync(int id) {
+            return base.Channel.GetProductAsync(id);
+        }
+        
+        public void AddProduct(string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, string sellerUsername, int commissionTypeId, decimal commissionAmount) {
+            base.Channel.AddProduct(name, description, categoryId, qtyAvailable, price, imagePath, sellerUsername, commissionTypeId, commissionAmount);
+        }
+        
+        public System.Threading.Tasks.Task AddProductAsync(string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, string sellerUsername, int commissionTypeId, decimal commissionAmount) {
+            return base.Channel.AddProductAsync(name, description, categoryId, qtyAvailable, price, imagePath, sellerUsername, commissionTypeId, commissionAmount);
+        }
+        
+        public void UpdateProduct(int id, string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, int commissionTypeId, decimal commissionAmount) {
+            base.Channel.UpdateProduct(id, name, description, categoryId, qtyAvailable, price, imagePath, commissionTypeId, commissionAmount);
+        }
+        
+        public System.Threading.Tasks.Task UpdateProductAsync(int id, string name, string description, System.Guid categoryId, int qtyAvailable, decimal price, string imagePath, int commissionTypeId, decimal commissionAmount) {
+            return base.Channel.UpdateProductAsync(id, name, description, categoryId, qtyAvailable, price, imagePath, commissionTypeId, commissionAmount);
+        }
+        
+        public void DeleteProduct(int id) {
+            base.Channel.DeleteProduct(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteProductAsync(int id) {
+            return base.Channel.DeleteProductAsync(id);
+        }
+        
+        public System.Collections.Generic.List<Common.Views.CommissionTypeView> GetCommissionTypes() {
+            return base.Channel.GetCommissionTypes();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CommissionTypeView>> GetCommissionTypesAsync() {
+            return base.Channel.GetCommissionTypesAsync();
         }
     }
 }

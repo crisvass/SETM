@@ -27,6 +27,7 @@ namespace Common.Views
         [Display(Name = "Credit Card Number")]
         public string CreditCardNumber { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         [Display(Name = "Expiry Date")]
         public DateTime ExpiryDate { get; set; }
         [Required]

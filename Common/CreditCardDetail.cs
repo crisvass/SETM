@@ -19,8 +19,9 @@ namespace Common
         public string CreditCardNumber { get; set; }
         public string CardHolderName { get; set; }
         public System.DateTime ExpiryDate { get; set; }
-        public string Username { get; set; }
+        public string UserId { get; set; }
     
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual CreditCardType CreditCardType { get; set; }
     }
 }

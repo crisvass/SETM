@@ -57,7 +57,7 @@
           <Property Name="CreditCardNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CardHolderName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ExpiryDate" Type="date" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="CreditCardTypes">
           <Key>
@@ -138,7 +138,7 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="VatRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="OrderStatusId" Type="int" Nullable="false" />
         </EntityType>
@@ -161,7 +161,6 @@
         <EntityType Name="ProductCommissions">
           <Key>
             <PropertyRef Name="ProductId" />
-            <PropertyRef Name="CommissionTypeId" />
           </Key>
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="CommissionTypeId" Type="int" Nullable="false" />
@@ -180,7 +179,7 @@
           <Property Name="QtyAvailable" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Image" Type="varchar(max)" />
-          <Property Name="SellerId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SellerId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Sellers">
           <Key>
@@ -203,10 +202,10 @@
         </EntityType>
         <EntityType Name="ShoppingCarts">
           <Key>
-            <PropertyRef Name="Username" />
+            <PropertyRef Name="UserId" />
             <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ProductQty" Type="int" Nullable="false" />
         </EntityType>
@@ -220,9 +219,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_CreditCardDetails_ApplicationUsers' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_CreditCardDetails_ApplicationUsers" />-->
+        <Association Name="FK_CreditCardDetails_ApplicationUsers">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1" />
+          <End Role="CreditCardDetails" Type="Self.CreditCardDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CreditCardDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CreditCardDetails_CreditCardTypes">
           <End Role="CreditCardTypes" Type="Self.CreditCardTypes" Multiplicity="1" />
           <End Role="CreditCardDetails" Type="Self.CreditCardDetails" Multiplicity="*" />
@@ -343,9 +351,18 @@ warning 6035: The relationship 'FK_CreditCardDetails_ApplicationUsers' has colum
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Orders_ApplicationUsers' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Orders_ApplicationUsers" />-->
+        <Association Name="FK_Orders_ApplicationUsers">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_OrderStatuses">
           <End Role="OrderStatuses" Type="Self.OrderStatuses" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -384,7 +401,7 @@ warning 6035: The relationship 'FK_Orders_ApplicationUsers' has columns that are
         </Association>
         <Association Name="FK_ProductCommissions_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="ProductCommissions" Type="Self.ProductCommissions" Multiplicity="*" />
+          <End Role="ProductCommissions" Type="Self.ProductCommissions" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="Id" />
@@ -406,6 +423,18 @@ warning 6035: The relationship 'FK_Orders_ApplicationUsers' has columns that are
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Products_Sellers">
+          <End Role="Sellers" Type="Self.Sellers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sellers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sellers_ApplicationUsers">
           <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1" />
           <End Role="Sellers" Type="Self.Sellers" Multiplicity="0..1" />
@@ -418,9 +447,18 @@ warning 6035: The relationship 'FK_Orders_ApplicationUsers' has columns that are
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_ShoppingCarts_ApplicationUsers" />-->
+        <Association Name="FK_ShoppingCarts_ApplicationUsers">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1" />
+          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingCarts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ShoppingCarts_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
@@ -455,6 +493,10 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShoppingCarts" EntityType="Self.ShoppingCarts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CreditCardDetails_ApplicationUsers" Association="Self.FK_CreditCardDetails_ApplicationUsers">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="CreditCardDetails" EntitySet="CreditCardDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_CreditCardDetails_CreditCardTypes" Association="Self.FK_CreditCardDetails_CreditCardTypes">
             <End Role="CreditCardTypes" EntitySet="CreditCardTypes" />
             <End Role="CreditCardDetails" EntitySet="CreditCardDetails" />
@@ -495,6 +537,10 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_ApplicationUsers" Association="Self.FK_Orders_ApplicationUsers">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_OrderStatuses" Association="Self.FK_Orders_OrderStatuses">
             <End Role="OrderStatuses" EntitySet="OrderStatuses" />
             <End Role="Orders" EntitySet="Orders" />
@@ -515,9 +561,17 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             <End Role="ProductCategories" EntitySet="ProductCategories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_Products_Sellers" Association="Self.FK_Products_Sellers">
+            <End Role="Sellers" EntitySet="Sellers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sellers_ApplicationUsers" Association="Self.FK_Sellers_ApplicationUsers">
             <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
             <End Role="Sellers" EntitySet="Sellers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCarts_ApplicationUsers" Association="Self.FK_ShoppingCarts_ApplicationUsers">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
           </AssociationSet>
           <AssociationSet Name="FK_ShoppingCarts_Products" Association="Self.FK_ShoppingCarts_Products">
             <End Role="Products" EntitySet="Products" />
@@ -549,6 +603,10 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <EntitySet Name="Settings" EntityType="dbTradersMarketplaceModel.Setting" />
           <EntitySet Name="ShoppingCarts" EntityType="dbTradersMarketplaceModel.ShoppingCart" />
           <EntitySet Name="sysdiagrams" EntityType="dbTradersMarketplaceModel.sysdiagram" />
+          <AssociationSet Name="FK_CreditCardDetails_ApplicationUsers" Association="dbTradersMarketplaceModel.FK_CreditCardDetails_ApplicationUsers">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="CreditCardDetail" EntitySet="CreditCardDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" Association="dbTradersMarketplaceModel.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id">
             <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
             <End Role="IdentityUserClaim" EntitySet="IdentityUserClaims" />
@@ -561,9 +619,17 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
             <End Role="IdentityUserRole" EntitySet="IdentityUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_ApplicationUsers" Association="dbTradersMarketplaceModel.FK_Orders_ApplicationUsers">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sellers_ApplicationUsers" Association="dbTradersMarketplaceModel.FK_Sellers_ApplicationUsers">
             <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
             <End Role="Seller" EntitySet="Sellers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShoppingCarts_ApplicationUsers" Association="dbTradersMarketplaceModel.FK_ShoppingCarts_ApplicationUsers">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductCommissions_CommissionTypes" Association="dbTradersMarketplaceModel.FK_ProductCommissions_CommissionTypes">
             <End Role="CommissionType" EntitySet="CommissionTypes" />
@@ -604,6 +670,10 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <AssociationSet Name="FK_ProductCommissions_Products" Association="dbTradersMarketplaceModel.FK_ProductCommissions_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductCommission" EntitySet="ProductCommissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Sellers" Association="dbTradersMarketplaceModel.FK_Products_Sellers">
+            <End Role="Seller" EntitySet="Sellers" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_ShoppingCarts_Products" Association="dbTradersMarketplaceModel.FK_ShoppingCarts_Products">
             <End Role="Product" EntitySet="Products" />
@@ -649,10 +719,13 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <Property Name="Town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CreditCardDetails" Relationship="dbTradersMarketplaceModel.FK_CreditCardDetails_ApplicationUsers" FromRole="ApplicationUser" ToRole="CreditCardDetail" />
           <NavigationProperty Name="IdentityUserClaims" Relationship="dbTradersMarketplaceModel.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="ApplicationUser" ToRole="IdentityUserClaim" />
           <NavigationProperty Name="IdentityUserLogins" Relationship="dbTradersMarketplaceModel.FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="ApplicationUser" ToRole="IdentityUserLogin" />
           <NavigationProperty Name="IdentityUserRoles" Relationship="dbTradersMarketplaceModel.FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="ApplicationUser" ToRole="IdentityUserRole" />
+          <NavigationProperty Name="Orders" Relationship="dbTradersMarketplaceModel.FK_Orders_ApplicationUsers" FromRole="ApplicationUser" ToRole="Order" />
           <NavigationProperty Name="Seller" Relationship="dbTradersMarketplaceModel.FK_Sellers_ApplicationUsers" FromRole="ApplicationUser" ToRole="Seller" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="dbTradersMarketplaceModel.FK_ShoppingCarts_ApplicationUsers" FromRole="ApplicationUser" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="CommissionType">
           <Key>
@@ -671,7 +744,8 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <Property Name="CreditCardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CardHolderName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ApplicationUser" Relationship="dbTradersMarketplaceModel.FK_CreditCardDetails_ApplicationUsers" FromRole="CreditCardDetail" ToRole="ApplicationUser" />
           <NavigationProperty Name="CreditCardType" Relationship="dbTradersMarketplaceModel.FK_CreditCardDetails_CreditCardTypes" FromRole="CreditCardDetail" ToRole="CreditCardType" />
         </EntityType>
         <EntityType Name="CreditCardType">
@@ -757,9 +831,10 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="VatRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="OrderStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ApplicationUser" Relationship="dbTradersMarketplaceModel.FK_Orders_ApplicationUsers" FromRole="Order" ToRole="ApplicationUser" />
           <NavigationProperty Name="OrderDetails" Relationship="dbTradersMarketplaceModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
           <NavigationProperty Name="OrderStatus" Relationship="dbTradersMarketplaceModel.FK_Orders_OrderStatuses" FromRole="Order" ToRole="OrderStatus" />
         </EntityType>
@@ -786,7 +861,6 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
         <EntityType Name="ProductCommission">
           <Key>
             <PropertyRef Name="ProductId" />
-            <PropertyRef Name="CommissionTypeId" />
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="CommissionTypeId" Type="Int32" Nullable="false" />
@@ -807,10 +881,11 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <Property Name="QtyAvailable" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SellerId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SellerId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="OrderDetails" Relationship="dbTradersMarketplaceModel.FK_OrderDetails_Products" FromRole="Product" ToRole="OrderDetail" />
           <NavigationProperty Name="ProductCategory" Relationship="dbTradersMarketplaceModel.FK_Products_ProductCategories" FromRole="Product" ToRole="ProductCategory" />
-          <NavigationProperty Name="ProductCommissions" Relationship="dbTradersMarketplaceModel.FK_ProductCommissions_Products" FromRole="Product" ToRole="ProductCommission" />
+          <NavigationProperty Name="ProductCommission" Relationship="dbTradersMarketplaceModel.FK_ProductCommissions_Products" FromRole="Product" ToRole="ProductCommission" />
+          <NavigationProperty Name="Seller" Relationship="dbTradersMarketplaceModel.FK_Products_Sellers" FromRole="Product" ToRole="Seller" />
           <NavigationProperty Name="ShoppingCarts" Relationship="dbTradersMarketplaceModel.FK_ShoppingCarts_Products" FromRole="Product" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="Seller">
@@ -821,6 +896,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <Property Name="RequiresDelivery" Type="Boolean" Nullable="false" />
           <Property Name="IBANNumber" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ApplicationUser" Relationship="dbTradersMarketplaceModel.FK_Sellers_ApplicationUsers" FromRole="Seller" ToRole="ApplicationUser" />
+          <NavigationProperty Name="Products" Relationship="dbTradersMarketplaceModel.FK_Products_Sellers" FromRole="Seller" ToRole="Product" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
@@ -835,12 +911,13 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
-            <PropertyRef Name="Username" />
+            <PropertyRef Name="UserId" />
             <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="ProductQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ApplicationUser" Relationship="dbTradersMarketplaceModel.FK_ShoppingCarts_ApplicationUsers" FromRole="ShoppingCart" ToRole="ApplicationUser" />
           <NavigationProperty Name="Product" Relationship="dbTradersMarketplaceModel.FK_ShoppingCarts_Products" FromRole="ShoppingCart" ToRole="Product" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -853,6 +930,18 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_CreditCardDetails_ApplicationUsers">
+          <End Type="dbTradersMarketplaceModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="dbTradersMarketplaceModel.CreditCardDetail" Role="CreditCardDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CreditCardDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id">
           <End Type="dbTradersMarketplaceModel.ApplicationUser" Role="ApplicationUser" Multiplicity="0..1" />
           <End Type="dbTradersMarketplaceModel.IdentityUserClaim" Role="IdentityUserClaim" Multiplicity="*" />
@@ -889,6 +978,18 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_ApplicationUsers">
+          <End Type="dbTradersMarketplaceModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="dbTradersMarketplaceModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sellers_ApplicationUsers">
           <End Type="dbTradersMarketplaceModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
           <End Type="dbTradersMarketplaceModel.Seller" Role="Seller" Multiplicity="0..1" />
@@ -898,6 +999,18 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
             </Principal>
             <Dependent Role="Seller">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShoppingCarts_ApplicationUsers">
+          <End Type="dbTradersMarketplaceModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="dbTradersMarketplaceModel.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1011,13 +1124,25 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
         </Association>
         <Association Name="FK_ProductCommissions_Products">
           <End Type="dbTradersMarketplaceModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="dbTradersMarketplaceModel.ProductCommission" Role="ProductCommission" Multiplicity="*" />
+          <End Type="dbTradersMarketplaceModel.ProductCommission" Role="ProductCommission" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProductCommission">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Sellers">
+          <End Type="dbTradersMarketplaceModel.Seller" Role="Seller" Multiplicity="1" />
+          <End Type="dbTradersMarketplaceModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SellerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1091,7 +1216,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
           <EntitySetMapping Name="CreditCardDetails">
             <EntityTypeMapping TypeName="dbTradersMarketplaceModel.CreditCardDetail">
               <MappingFragment StoreEntitySet="CreditCardDetails">
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
                 <ScalarProperty Name="CardHolderName" ColumnName="CardHolderName" />
                 <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
@@ -1175,7 +1300,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
                 <ScalarProperty Name="VatRate" ColumnName="VatRate" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1250,7 +1375,7 @@ warning 6035: The relationship 'FK_ShoppingCarts_ApplicationUsers' has columns t
               <MappingFragment StoreEntitySet="ShoppingCarts">
                 <ScalarProperty Name="ProductQty" ColumnName="ProductQty" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

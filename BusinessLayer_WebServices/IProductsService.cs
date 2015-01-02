@@ -38,5 +38,26 @@ namespace BusinessLayer_WebServices
 
         [OperationContract]
         int GetNumberOfItems(string username);
+
+        [OperationContract]
+        IEnumerable<ProductView> GetProductsBySeller(string username);
+
+        [OperationContract]
+        ProductView GetProduct(int id);
+
+        [OperationContract]
+        void AddProduct(string name, string description, Guid categoryId, int qtyAvailable,
+            decimal price, string imagePath, string sellerUsername, int commissionTypeId,
+            decimal commissionAmount);
+
+        [OperationContract]
+        void UpdateProduct(int id, string name, string description, Guid categoryId, int qtyAvailable,
+            decimal price, string imagePath, int commissionTypeId, decimal commissionAmount);
+
+        [OperationContract]
+        void DeleteProduct(int id);
+
+        [OperationContract]
+        IEnumerable<CommissionTypeView> GetCommissionTypes();
     }
 }

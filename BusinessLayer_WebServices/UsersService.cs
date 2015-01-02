@@ -152,7 +152,7 @@ namespace BusinessLayer_WebServices
             {
                 UserView user = ur.GetUserView(id);
                 user.UserRoles = rr.GetUserRoles(user.Username).ToList<RoleView>();
-                user.CreditCards = ccr.GetUserCreditCards(user.Username).ToList<CreditCardDetailView>();
+                user.CreditCards = ccr.GetUserCreditCards(user.Id).ToList<CreditCardDetailView>();
                 Seller s;
                 if ((s = ur.GetSeller(id)) != null)
                 {
@@ -178,7 +178,7 @@ namespace BusinessLayer_WebServices
             try
             {
                 UserView user = ur.GetUserViewByUsername(id);
-                user.CreditCards = ccr.GetUserNonExpiredCreditCards(user.Username).ToList<CreditCardDetailView>();
+                user.CreditCards = ccr.GetUserNonExpiredCreditCards(user.Id).ToList<CreditCardDetailView>();
                 return user;
             }
             catch
@@ -267,7 +267,7 @@ namespace BusinessLayer_WebServices
                         {
                             ccr.AddCreditCardDetail(new CreditCardDetail()
                             {
-                                Username = username,
+                                UserId = userId.ToString(),
                                 CreditCardTypeId = ccd.CreditCardTypeId,
                                 CreditCardNumber = ccd.CreditCardNumber,
                                 CardHolderName = ccd.CardHolderName,
@@ -380,7 +380,7 @@ namespace BusinessLayer_WebServices
                             rr.AllocateRole(u, id);
                     }
 
-                    IEnumerable<CreditCardDetailView> creditCardsOriginal = ccr.GetUserCreditCards(username);
+                    IEnumerable<CreditCardDetailView> creditCardsOriginal = ccr.GetUserCreditCards(id);
                     if (buyer)
                     {
                         //delete removed credit cards
@@ -416,7 +416,7 @@ namespace BusinessLayer_WebServices
                             {
                                 ccr.AddCreditCardDetail(new CreditCardDetail()
                                 {
-                                    Username = username,
+                                    UserId = id,
                                     CreditCardTypeId = ccd.CreditCardTypeId,
                                     CreditCardNumber = ccd.CreditCardNumber,
                                     CardHolderName = ccd.CardHolderName,
@@ -458,7 +458,7 @@ namespace BusinessLayer_WebServices
                 catch
                 {
                     ur.Transaction.Rollback();
-                    throw new TransactionFailedException("Adding a new user failed. Please try again or contact administrator if error persists.");
+                    throw new TransactionFailedException("Updating user details failed. Please try again or contact administrator if error persists.");
                 }
                 finally
                 {
@@ -471,7 +471,7 @@ namespace BusinessLayer_WebServices
             }
             catch
             {
-                throw new FaultException("Error whilst adding a new user. Please try again or contact administrator if error persists.");
+                throw new FaultException("Error whilst updating user details. Please try again or contact administrator if error persists.");
             }
         }
 
@@ -481,12 +481,13 @@ namespace BusinessLayer_WebServices
             UsersRepository ur = new UsersRepository();
             CreditCardsRepository ccr = new CreditCardsRepository();
             ur.Entity = ccr.Entity;
+            string userId = ur.GetUser(username).Id;
 
             try
             {
                 ApplicationUser u = new ApplicationUser()
                 {
-                    UserName = username,
+                    Id = userId,
                     Email = email,
                     ContactNumber = contactNumber,
                     Residence = residence,
@@ -504,7 +505,7 @@ namespace BusinessLayer_WebServices
 
                     bool found;
 
-                    IEnumerable<CreditCardDetailView> creditCardsOriginal = ccr.GetUserNonExpiredCreditCards(username);
+                    IEnumerable<CreditCardDetailView> creditCardsOriginal = ccr.GetUserNonExpiredCreditCards(userId);
                     
                     //add new credit cards
                     foreach (CreditCardDetailView ccd in creditCards)
@@ -521,7 +522,7 @@ namespace BusinessLayer_WebServices
                         {
                             ccr.AddCreditCardDetail(new CreditCardDetail()
                             {
-                                Username = username,
+                                UserId = userId,
                                 CreditCardTypeId = ccd.CreditCardTypeId,
                                 CreditCardNumber = ccd.CreditCardNumber,
                                 CardHolderName = ccd.CardHolderName,
@@ -535,7 +536,7 @@ namespace BusinessLayer_WebServices
                 catch
                 {
                     ur.Transaction.Rollback();
-                    throw new TransactionFailedException("Adding a new user failed. Please try again or contact administrator if error persists.");
+                    throw new TransactionFailedException("Updating user details failed. Please try again or contact administrator if error persists.");
                 }
                 finally
                 {
@@ -548,7 +549,7 @@ namespace BusinessLayer_WebServices
             }
             catch
             {
-                throw new FaultException("Error whilst adding a new user. Please try again or contact administrator if error persists.");
+                throw new FaultException("Error whilst updating user details. Please try again or contact administrator if error persists.");
             }
         }
 

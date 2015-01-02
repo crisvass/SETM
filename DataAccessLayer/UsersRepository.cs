@@ -58,7 +58,7 @@ namespace DataAccessLayer
 
         public void UpdateUserPartial(ApplicationUser u)
         {
-            ApplicationUser user = Entity.ApplicationUsers.SingleOrDefault(us=> us.UserName == u.UserName);
+            ApplicationUser user = Entity.ApplicationUsers.SingleOrDefault(us=> us.Id == u.Id);
             user.Email = u.Email;
             user.ContactNumber = u.ContactNumber;
             user.Residence = u.Residence;

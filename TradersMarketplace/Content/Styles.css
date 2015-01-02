@@ -49,6 +49,11 @@ span.each {
     float: right;
 }
 
+#shoppingCartTable tbody td img {
+    width: 100px;
+    margin-right: 10px;
+}
+
 /*invoice*/
 #invoiceBottomContainer {
     float: right;
@@ -56,10 +61,10 @@ span.each {
 
 /*tables*/
 
-select{
-    min-width:100px;
+select {
+    min-width: 100px;
 }
 
-table.table tbody td select{
-    width:100%;
-} 
+table.table tbody td select {
+    width: 100%;
+}

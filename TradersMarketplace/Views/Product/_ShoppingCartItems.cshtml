@@ -4,7 +4,7 @@
 {
     <tr id="@item.ProductId">
         <td>
-            @Html.DisplayFor(modelItem => item.ProductImagePath)
+            <img src="@item.ProductImagePath" alt="Image for product @item.ProductName" />
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td class="qty">
