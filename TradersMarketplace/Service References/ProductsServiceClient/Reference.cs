@@ -1013,6 +1013,12 @@ namespace TradersMarketplace.ProductsServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetCommissionTypes", ReplyAction="http://tempuri.org/IProductsService/GetCommissionTypesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CommissionTypeView>> GetCommissionTypesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/AdvancedSearch", ReplyAction="http://tempuri.org/IProductsService/AdvancedSearchResponse")]
+        System.Collections.Generic.List<Common.Views.ProductListView> AdvancedSearch(string nameKeyword, string descKeyword, System.Guid categoryId, System.Guid subcategoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/AdvancedSearch", ReplyAction="http://tempuri.org/IProductsService/AdvancedSearchResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> AdvancedSearchAsync(string nameKeyword, string descKeyword, System.Guid categoryId, System.Guid subcategoryId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1160,6 +1166,14 @@ namespace TradersMarketplace.ProductsServiceClient {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.CommissionTypeView>> GetCommissionTypesAsync() {
             return base.Channel.GetCommissionTypesAsync();
+        }
+        
+        public System.Collections.Generic.List<Common.Views.ProductListView> AdvancedSearch(string nameKeyword, string descKeyword, System.Guid categoryId, System.Guid subcategoryId) {
+            return base.Channel.AdvancedSearch(nameKeyword, descKeyword, categoryId, subcategoryId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Common.Views.ProductListView>> AdvancedSearchAsync(string nameKeyword, string descKeyword, System.Guid categoryId, System.Guid subcategoryId) {
+            return base.Channel.AdvancedSearchAsync(nameKeyword, descKeyword, categoryId, subcategoryId);
         }
     }
 }

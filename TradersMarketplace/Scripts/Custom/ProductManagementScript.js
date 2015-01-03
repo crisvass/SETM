@@ -19,12 +19,7 @@ function getProductSubCategories(parentId, categoryId) {
             else {
                 $("#SubcategoryId").prop("disabled", true);
                 $("#SubcategoryId").html("<option value=''>Select Subcategory</option>");
-            }
-
-            if (categoryId != null) {
-                //setSubcategory(categoryId);
-            }
-            
+            }            
         },
         error: function (xhr) {
             var error = JSON.parse(xhr.responseText).message;

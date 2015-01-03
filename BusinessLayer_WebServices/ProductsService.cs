@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using BusinessLayer_WebServices.AdvancedSearchDecorator;
 using Common;
 using Common.CustomExceptions;
 using Common.Views;
@@ -399,6 +400,37 @@ namespace BusinessLayer_WebServices
             catch
             {
                 throw new FaultException("Error whilst retrieving product commission types. Please try again or contact administrator if error persists.");
+            }
+        }
+
+
+        public IEnumerable<ProductListView> AdvancedSearch(string nameKeyword, string descKeyword, Guid categoryId, Guid subcategoryId)
+        {
+            try
+            {
+                ProductsRepository pr = new ProductsRepository();
+                IEnumerable<Product> products = pr.GetAllProducts();
+
+                AdvancedSearchDecorator.AdvancedSearchDecorator search =
+                    new ByNameKeywordSearch(
+                        new ByDescriptionKeywordSearch(
+                                new ByCategorySearch(
+                                        new BySubcategorySearch() { SubcategoryId = subcategoryId }
+                                    ) { CategoryId = categoryId }
+                            ) { Keyword = descKeyword }
+                        ) { Keyword = nameKeyword };
+
+                return search.Search(products).Select(p => new ProductListView()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    ImagePath = p.Image,
+                    Price = p.Price
+                });
+            }
+            catch
+            {
+                throw new FaultException("Error whilst retrieving search results. Please try again or contact administrator if error persists.");
             }
         }
     }

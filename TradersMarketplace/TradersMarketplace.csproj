@@ -189,7 +189,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ProductCategoriesCrudlViewModel.cs" />
+    <Compile Include="Models\ProductSearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CreditCardsServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -501,6 +501,7 @@
     <Content Include="Views\ProductManagement\Edit.cshtml" />
     <Content Include="Views\ProductManagement\Index.cshtml" />
     <Content Include="Views\ProductManagement\_SubcategoriesSelectList.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

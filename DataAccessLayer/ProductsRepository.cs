@@ -199,6 +199,14 @@ namespace DataAccessLayer
             return GetProduct(id).ProductCategory;
         }
 
+        public IEnumerable<Product> SearchByCategory(IEnumerable<Product> products, Guid categoryId)
+        {
+            return (from p in products
+                    join c in Entity.ProductCategories on p.ProductCategoryId equals c.Id
+                    where (p.ProductCategoryId == categoryId || c.ParentId == categoryId)
+                    select p);
+        }
+
         #endregion
 
         #region Shopping Carts
@@ -247,5 +255,7 @@ namespace DataAccessLayer
         }
 
         #endregion
+
+
     }
 }

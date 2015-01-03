@@ -76,6 +76,7 @@ namespace TradersMarketplace.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles="Seller, Administrator, Buyer, Guest")]
         public PartialViewResult GetProductSubcategories(Guid parentId)
         {
             return PartialView("_SubcategoriesSelectList", pcs.GetSubcategories(parentId));

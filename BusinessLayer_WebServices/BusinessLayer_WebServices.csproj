@@ -58,6 +58,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedSearchDecorator\AdvancedSearchComponent.cs" />
+    <Compile Include="AdvancedSearchDecorator\AdvancedSearchDecorator.cs" />
+    <Compile Include="AdvancedSearchDecorator\ByCategorySearch.cs" />
+    <Compile Include="AdvancedSearchDecorator\ByDescriptionKeywordSearch.cs" />
+    <Compile Include="AdvancedSearchDecorator\ByNameKeywordSearch.cs" />
+    <Compile Include="AdvancedSearchDecorator\BySubcategorySearch.cs" />
     <Compile Include="DbContext\ApplicationDBContext.cs" />
     <Compile Include="CreditCardsService.cs" />
     <Compile Include="ICreditCardsService.cs" />

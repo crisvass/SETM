@@ -59,5 +59,8 @@ namespace BusinessLayer_WebServices
 
         [OperationContract]
         IEnumerable<CommissionTypeView> GetCommissionTypes();
+
+        [OperationContract]
+        IEnumerable<ProductListView> AdvancedSearch(string nameKeyword, string descKeyword, Guid categoryId, Guid subcategoryId);
     }
 }

@@ -217,4 +217,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AdvancedSearch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nameKeyword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="descKeyword" nillable="true" type="xs:string" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="categoryId" type="q13:guid" />
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="subcategoryId" type="q14:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdvancedSearchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Common.Views" minOccurs="0" name="AdvancedSearchResult" nillable="true" type="q15:ArrayOfProductListView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -261,5 +261,30 @@ namespace TradersMarketplace.Views
             }
             return View(iv);
         }
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View(new ProductSearchViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Search(ProductSearchViewModel model)
+        {
+            try
+            {
+                List<ProductListView> searchResult = ps.AdvancedSearch(model.NameKeyword, model.DescKeyword, model.CategoryId, model.SubcategoryId);
+                return View("List", "Product", searchResult);
+            }
+            catch (FaultException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            return View(model);
+        }
     }
 }
