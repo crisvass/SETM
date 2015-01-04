@@ -20,20 +20,34 @@ namespace TradersMarketplace.Views
         private CreditCardsServiceClient.CreditCardsServiceClient ccs = new CreditCardsServiceClient.CreditCardsServiceClient();
         private OrdersServiceClient.OrdersServiceClient os = new OrdersServiceClient.OrdersServiceClient();
 
-        public ActionResult List(Guid categoryId)
+        public ActionResult List()
         {
-            if (categoryId == null)
+            List<ProductListView> products = new List<ProductListView>();
+            try
             {
                 ViewBag.Title = "All Products";
-                return View("List", new ProductsServiceClient.ProductsServiceClient().GetAllProducts().ToList());
+                products = ps.GetAllProducts().ToList();
             }
-            else
+            catch (CommunicationException ex)
             {
-                ViewBag.Title = new ProductCategoriesServiceClient
-                    .ProductCategoriesServiceClient().GetCategoryName(categoryId);
-                return View("List", new ProductsServiceClient.ProductsServiceClient()
-                    .GetProductsByCategory(categoryId).ToList());
+                ModelState.AddModelError("", ex.Message);
             }
+            return View("List", products);
+        }
+
+        public ActionResult ListCategory(Guid categoryId)
+        {
+            ViewBag.Title = new ProductCategoriesServiceClient
+                .ProductCategoriesServiceClient().GetCategoryName(categoryId);
+            return View("List", new ProductsServiceClient.ProductsServiceClient()
+                .GetProductsByCategory(categoryId).ToList());
+        }
+
+        public ActionResult ListSearch()
+        {
+            ViewBag.Title = "Search Results";
+            List<ProductListView> products = TempData["searchResult"] as List<ProductListView>;
+            return View("List", products);
         }
 
         [HttpGet]
@@ -274,7 +288,8 @@ namespace TradersMarketplace.Views
             try
             {
                 List<ProductListView> searchResult = ps.AdvancedSearch(model.NameKeyword, model.DescKeyword, model.CategoryId, model.SubcategoryId);
-                return View("List", "Product", searchResult);
+                TempData["searchResult"] = searchResult;
+                return RedirectToAction("ListSearch", "Product");
             }
             catch (FaultException ex)
             {
