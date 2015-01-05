@@ -28,16 +28,16 @@ namespace TradersMarketplaceTestProject.RolesServiceClient {
         System.Threading.Tasks.Task<Common.Views.RoleView[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/AddRole", ReplyAction="http://tempuri.org/IRolesService/AddRoleResponse")]
-        void AddRole(string name);
+        Common.IdentityRole AddRole(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/AddRole", ReplyAction="http://tempuri.org/IRolesService/AddRoleResponse")]
-        System.Threading.Tasks.Task AddRoleAsync(string name);
+        System.Threading.Tasks.Task<Common.IdentityRole> AddRoleAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/UpdateRole", ReplyAction="http://tempuri.org/IRolesService/UpdateRoleResponse")]
-        void UpdateRole(string id, string name);
+        Common.IdentityRole UpdateRole(string id, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/UpdateRole", ReplyAction="http://tempuri.org/IRolesService/UpdateRoleResponse")]
-        System.Threading.Tasks.Task UpdateRoleAsync(string id, string name);
+        System.Threading.Tasks.Task<Common.IdentityRole> UpdateRoleAsync(string id, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRole", ReplyAction="http://tempuri.org/IRolesService/GetRoleResponse")]
         Common.Views.RoleView GetRole(string id);
@@ -107,19 +107,19 @@ namespace TradersMarketplaceTestProject.RolesServiceClient {
             return base.Channel.GetRolesAsync();
         }
         
-        public void AddRole(string name) {
-            base.Channel.AddRole(name);
+        public Common.IdentityRole AddRole(string name) {
+            return base.Channel.AddRole(name);
         }
         
-        public System.Threading.Tasks.Task AddRoleAsync(string name) {
+        public System.Threading.Tasks.Task<Common.IdentityRole> AddRoleAsync(string name) {
             return base.Channel.AddRoleAsync(name);
         }
         
-        public void UpdateRole(string id, string name) {
-            base.Channel.UpdateRole(id, name);
+        public Common.IdentityRole UpdateRole(string id, string name) {
+            return base.Channel.UpdateRole(id, name);
         }
         
-        public System.Threading.Tasks.Task UpdateRoleAsync(string id, string name) {
+        public System.Threading.Tasks.Task<Common.IdentityRole> UpdateRoleAsync(string id, string name) {
             return base.Channel.UpdateRoleAsync(id, name);
         }
         

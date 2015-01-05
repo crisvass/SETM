@@ -19,10 +19,10 @@ namespace BusinessLayer_WebServices
         IEnumerable<RoleView> GetRoles();
 
         [OperationContract]
-        void AddRole(string name);
+        IdentityRole AddRole(string name);
 
         [OperationContract]
-        void UpdateRole(string id, string name);
+        IdentityRole UpdateRole(string id, string name);
 
         [OperationContract]
         RoleView GetRole(string id);

@@ -59,17 +59,19 @@ namespace DataAccessLayer
                 .Where(r => r.RoleName.ToLower() != "guest");
         }
 
-        public void AddRole(IdentityRole r)
+        public IdentityRole AddRole(IdentityRole r)
         {
-            Entity.IdentityRoles.Add(r);
+            IdentityRole role = Entity.IdentityRoles.Add(r);
             Entity.SaveChanges();
+            return role;
         }
 
-        public void UpdateRole(IdentityRole updatedRole)
+        public IdentityRole UpdateRole(IdentityRole updatedRole)
         {
             IdentityRole role = Entity.IdentityRoles.SingleOrDefault(r => r.Id == updatedRole.Id);
             role.Name = updatedRole.Name;
             Entity.SaveChanges();
+            return new IdentityRole() { Id = role.Id, Name = role.Name };
         }
 
         public IdentityRole GetRole(string id)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Text.RegularExpressions;
 using Common;
 using Common.CustomExceptions;
 using Common.Views;
@@ -38,20 +39,33 @@ namespace BusinessLayer_WebServices
             }
         }
 
-        public void AddRole(string name)
+        public IdentityRole AddRole(string name)
         {
             try
             {
                 if (!string.IsNullOrEmpty(name))
                 {
-                    RolesRepository rr = new RolesRepository();
-                    if (rr.GetRoles().SingleOrDefault(r => r.RoleName == name) == null)
-                        rr.AddRole(new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = name });
+                    if (name.Length >= 1 && name.Length <= 25)
+                    {
+                        Regex regexItem = new Regex("[a-zA-Z]$");
+                        if (regexItem.IsMatch(name))
+                        {
+                            RolesRepository rr = new RolesRepository();
+                            if (rr.GetRoles().SingleOrDefault(r => r.RoleName == name) == null)
+                                return rr.AddRole(new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = name });
+                            else
+                                throw new ConstraintException("Role name must be unique.");
+                        }
+                        else
+                            throw new ArgumentException("Role name can contain only alphabet letters.");
+                    }
                     else
-                        throw new ConstraintException("Role name must be unique.");
+                    {
+                        throw new ArgumentException("Role name must be between 1 and 25 characters long.");
+                    }
                 }
                 else
-                    throw new ArgumentNullException("Role name cannot be null.");
+                    throw new ArgumentNullException("Role name cannot be null or empty.");
             }
             catch (ConstraintException ex)
             {
@@ -61,21 +75,82 @@ namespace BusinessLayer_WebServices
             {
                 throw new FaultException(ex.Message);
             }
+            catch (ArgumentException ex)
+            {
+                throw new FormatException(ex.Message);
+            }
             catch
             {
                 throw new FaultException("An error occurred whilst adding the new role.");
             }
         }
 
-        public void UpdateRole(string id, string name)
+        public IdentityRole UpdateRole(string id, string name)
         {
             try
             {
-                new RolesRepository().UpdateRole(new IdentityRole() { Id = id, Name = name });
+                if (!string.IsNullOrEmpty(id))
+                {
+                    Guid roleId = Guid.Parse(id);
+                    if (roleId != Guid.Empty)
+                    {
+                        RolesRepository rr = new RolesRepository();
+                        IEnumerable<RoleView> roles = rr.GetRoles();
+
+                        if (roles.SingleOrDefault(r => r.RoleId == id) != null)
+                        {
+                            if (!string.IsNullOrEmpty(name))
+                            {
+                                if (name.Length >= 1 && name.Length <= 25)
+                                {
+                                    Regex regexItem = new Regex("[a-zA-Z]$");
+                                    if (regexItem.IsMatch(name))
+                                    {
+
+                                        if (roles.SingleOrDefault(r => r.RoleName == name) == null)
+                                            return rr.UpdateRole(new IdentityRole() { Id = id, Name = name });
+                                        else
+                                            throw new ConstraintException("Role name must be unique.");
+                                    }
+                                    else
+                                        throw new ArgumentException("Role name can contain only alphabet letters.");
+                                }
+                                else
+                                {
+                                    throw new ArgumentException("Role name must be between 1 and 25 characters long.");
+                                }
+                            }
+                            else
+                                throw new ArgumentNullException("Role name cannot be null or empty.");
+                        }
+                        else
+                            throw new ConstraintException("Role ID does not exist.");
+                    }
+                    else
+                        throw new ArgumentException("Role ID cannot be an empty GUID.");
+                }
+                else
+                    throw new ArgumentNullException("Role ID cannot be null or empty.");
+            }
+            catch (FormatException ex)
+            {
+                throw new FaultException("Role ID was not a valid GUID value.");
+            }
+            catch (ConstraintException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new FormatException(ex.Message);
             }
             catch
             {
-                throw new FaultException("An error occurred whilst updating role.");
+                throw new FaultException("An error occurred whilst adding the new role.");
             }
         }
 
@@ -83,12 +158,46 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                return new RolesRepository().GetRoleView(id);
-            }
+                if (!string.IsNullOrEmpty(id))
+                {
+                    Guid roleId = Guid.Parse(id);
+                    if (roleId != Guid.Empty)
+                    {
+                        RolesRepository rr = new RolesRepository();
+                        IEnumerable<RoleView> roles = rr.GetRoles();
 
+                        if (roles.SingleOrDefault(r => r.RoleId == id) != null)
+                        {
+                            return rr.GetRoleView(id);
+                        }
+                        else
+                            throw new ConstraintException("Role ID does not exist.");
+                    }
+                    else
+                        throw new ArgumentException("Role ID cannot be an empty GUID.");
+                }
+                else
+                    throw new ArgumentNullException("Role ID cannot be null or empty.");
+            }
+            catch (FormatException ex)
+            {
+                throw new FaultException("Role ID was not a valid GUID value.");
+            }
+            catch (ConstraintException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new FormatException(ex.Message);
+            }
             catch
             {
-                throw new FaultException("An error occurred whilst getting the role's details.");
+                throw new FaultException("An error occurred whilst adding the new role.");
             }
         }
 
