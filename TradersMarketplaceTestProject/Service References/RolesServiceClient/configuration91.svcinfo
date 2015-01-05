@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="oFWaj8ZKei/+5BTkHmiDgj1piJM=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="OP8DxbNZz0FE4ikac/lXrXkubCo=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRolesService">
       <properties>
@@ -31,10 +31,10 @@
           <serializedValue />
         </property>
         <property path="/maxBufferSize" isComplexType="false" isExplicitlyDefined="false" clrType="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>2147483647</serializedValue>
+          <serializedValue>65536</serializedValue>
         </property>
         <property path="/maxReceivedMessageSize" isComplexType="false" isExplicitlyDefined="true" clrType="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-            <serializedValue>2147483647</serializedValue>
+          <serializedValue />
         </property>
         <property path="/proxyAddress" isComplexType="false" isExplicitlyDefined="false" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRolesService" contract="RoleServiceClient.IRolesService" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/" bindingConfiguration="BasicHttpBinding_IRolesService">
+    <endpoint name="BasicHttpBinding_IRolesService" contract="RolesServiceClient.IRolesService" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/" bindingConfiguration="BasicHttpBinding_IRolesService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/</serializedValue>
@@ -127,7 +127,7 @@
           <serializedValue>BasicHttpBinding_IRolesService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>RoleServiceClient.IRolesService</serializedValue>
+          <serializedValue>RolesServiceClient.IRolesService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

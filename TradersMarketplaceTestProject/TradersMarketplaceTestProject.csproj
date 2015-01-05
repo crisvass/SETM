@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="RolesServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\RoleServiceClient\Reference.cs">
+    <Compile Include="Service References\RolesServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -85,31 +85,31 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Common.Views.RoleView.datasource" />
-    <None Include="Service References\RoleServiceClient\Common.Views.xsd">
+    <None Include="Service References\RolesServiceClient\Common.Views.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoleServiceClient\service.wsdl" />
-    <None Include="Service References\RoleServiceClient\service.xsd">
+    <None Include="Service References\RolesServiceClient\service.wsdl" />
+    <None Include="Service References\RolesServiceClient\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoleServiceClient\service1.xsd">
+    <None Include="Service References\RolesServiceClient\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\RoleServiceClient\" />
+    <WCFMetadataStorage Include="Service References\RolesServiceClient\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RoleServiceClient\configuration91.svcinfo" />
+    <None Include="Service References\RolesServiceClient\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RoleServiceClient\configuration.svcinfo" />
+    <None Include="Service References\RolesServiceClient\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RoleServiceClient\Reference.svcmap">
+    <None Include="Service References\RolesServiceClient\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

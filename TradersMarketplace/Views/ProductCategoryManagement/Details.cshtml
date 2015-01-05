@@ -25,6 +25,9 @@
         @if (Model.SubCategories != null && Model.SubCategories.Count() > 0)
         {
             <dt>
+                @Html.DisplayNameFor(model => model.SubCategories)
+            </dt>
+            <dd>
                 <table class="table">
                     <thead>
                         <tr>
@@ -40,8 +43,8 @@
                         @foreach (Common.Views.CategoryView cv in Model.SubCategories)
                         {
                             <tr>
-                                <td
-                                @Html.DisplayFor(modelItem => cv.CategoryId)
+                                <td>
+                                    @Html.DisplayFor(modelItem => cv.CategoryId)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => cv.CategoryName)
@@ -50,9 +53,6 @@
                         }
                     </tbody>
                 </table>
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CategoryName)
             </dd>
         }
     </dl>

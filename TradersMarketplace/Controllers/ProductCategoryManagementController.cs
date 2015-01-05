@@ -10,6 +10,7 @@ using TradersMarketplace.Models;
 using Common.Views;
 using System.ServiceModel;
 using System.Web.Script.Serialization;
+using System.Diagnostics;
 
 namespace TradersMarketplace.Controllers
 {
@@ -124,6 +125,15 @@ namespace TradersMarketplace.Controllers
             catch (FaultException ex)
             {
                 ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Get stack trace for the exception with source file information
+                var st = new StackTrace(ex, true);
+                // Get the top stack frame
+                var frame = st.GetFrame(0);
+                // Get the line number from the stack frame
+                var line = frame.GetFileLineNumber();
             }
             return View(category);
         }

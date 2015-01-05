@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-using TradersMarketplaceTestProject.RoleServiceClient;
+using TradersMarketplaceTestProject.RolesServiceClient;
 using Common;
 using Common.Views;
 using System.Data;
@@ -17,13 +17,15 @@ namespace TradersMarketplaceTestProject
     public class RolesServiceTest
     {
         private TransactionScope tScope;
-        private RolesServiceClient roleService;
+        private RolesServiceClient.RolesServiceClient roleService;
 
         [TestInitialize]
         public void Initialize()
         {
-            tScope = new TransactionScope();
-            roleService = new RolesServiceClient();
+            TransactionOptions transactionOptions = new TransactionOptions();
+            transactionOptions.IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted;
+            tScope = new TransactionScope(TransactionScopeOption.Required, transactionOptions);
+            roleService = new RolesServiceClient.RolesServiceClient();
         }
 
         [TestCleanup]
@@ -79,7 +81,8 @@ namespace TradersMarketplaceTestProject
 
         [TestMethod]
         [ExpectedException(typeof(FaultException))]
-        public void Test_ReadRole_DoesNotExist() {
+        public void Test_ReadRole_DoesNotExist()
+        {
             string id = "8aeeb638-5bee-48f5-a2e9-7f1f18b74a24";
             RoleView role = null;
             try
@@ -93,7 +96,8 @@ namespace TradersMarketplaceTestProject
         }
 
         [TestMethod]
-        public void Test_UpdateRole_Success() {
+        public void Test_UpdateRole_Success()
+        {
             string id = "9384c793-84df-4576-bddd-f7ed02aae6b9";
             string roleName = "TestingUpdateRole";
             roleService.UpdateRole(id, roleName);
@@ -105,7 +109,7 @@ namespace TradersMarketplaceTestProject
         {
             string id = "0d09dcda-bbc6-40bb-9398-8c72d46819e6";
             roleService.DeleteRole(id);
-            Assert.IsNull(roleService.GetRoles().SingleOrDefault(r=> r.RoleId == id));
+            Assert.IsNull(roleService.GetRoles().SingleOrDefault(r => r.RoleId == id));
         }
 
         [TestMethod]
@@ -125,13 +129,9 @@ namespace TradersMarketplaceTestProject
         }
 
         [TestMethod]
-        public void Test_ListRoles_Success() {
+        public void Test_ListRoles_Success()
+        {
             RoleView[] roles = roleService.GetRoles();
-        }
-
-        [TestMethod]
-        public void Test_ListRoles_Filtered() { 
-            
         }
     }
 }

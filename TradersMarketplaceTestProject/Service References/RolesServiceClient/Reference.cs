@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TradersMarketplaceTestProject.RoleServiceClient {
+namespace TradersMarketplaceTestProject.RolesServiceClient {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RoleServiceClient.IRolesService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RolesServiceClient.IRolesService")]
     public interface IRolesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetUserRoles", ReplyAction="http://tempuri.org/IRolesService/GetUserRolesResponse")]
@@ -65,12 +65,12 @@ namespace TradersMarketplaceTestProject.RoleServiceClient {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRolesServiceChannel : TradersMarketplaceTestProject.RoleServiceClient.IRolesService, System.ServiceModel.IClientChannel {
+    public interface IRolesServiceChannel : TradersMarketplaceTestProject.RolesServiceClient.IRolesService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RolesServiceClient : System.ServiceModel.ClientBase<TradersMarketplaceTestProject.RoleServiceClient.IRolesService>, TradersMarketplaceTestProject.RoleServiceClient.IRolesService {
+    public partial class RolesServiceClient : System.ServiceModel.ClientBase<TradersMarketplaceTestProject.RolesServiceClient.IRolesService>, TradersMarketplaceTestProject.RolesServiceClient.IRolesService {
         
         public RolesServiceClient() {
         }
