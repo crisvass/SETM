@@ -45,7 +45,7 @@ namespace BusinessLayer_WebServices
             {
                 if (!string.IsNullOrEmpty(name))
                 {
-                    if (name.Length >= 1 && name.Length <= 25)
+                    if (name.Length >= 1 && name.Length >= 25)
                     {
                         Regex regexItem = new Regex("[a-zA-Z]$");
                         if (regexItem.IsMatch(name))
@@ -99,7 +99,7 @@ namespace BusinessLayer_WebServices
 
                         if (roles.SingleOrDefault(r => r.RoleId == id) != null)
                         {
-                            if (!string.IsNullOrEmpty(name))
+                            if (name != null)
                             {
                                 if (name.Length >= 1 && name.Length <= 25)
                                 {
@@ -166,12 +166,7 @@ namespace BusinessLayer_WebServices
                         RolesRepository rr = new RolesRepository();
                         IEnumerable<RoleView> roles = rr.GetRoles();
 
-                        if (roles.SingleOrDefault(r => r.RoleId == id) != null)
-                        {
-                            return rr.GetRoleView(id);
-                        }
-                        else
-                            throw new ConstraintException("Role ID does not exist.");
+                        return rr.GetRoleView(id);
                     }
                     else
                         throw new ArgumentException("Role ID cannot be an empty GUID.");
