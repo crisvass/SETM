@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="460741a2-ede1-45c8-9cde-a4362cca7694" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5344c447-a65a-4dce-a276-89e7197f16cc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="510da099-7b68-471f-b3b0-03d9049b089a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="8b69af67-4915-423c-b349-4cc21f4d26c8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="220bffd2-4333-4ff7-9883-80303cdb6718" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
-    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="4a128e57-96bf-4fcb-8b36-36605533fcf0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
-    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="164a8680-2a94-43bc-ac57-fd5ff7fbeaa8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f35df600-04ea-4de7-916f-88b37932e9c7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="aecd1696-4f40-4bec-8547-415874dd8c00" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e9d04843-7ffd-4842-8671-9933ebd90c34" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
+    <MetadataFile FileName="Common.Views.xsd" MetadataType="Schema" ID="7d3bdd0f-d0fd-4035-aaa0-6507ff345fd0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
+    <MetadataFile FileName="Common.xsd" MetadataType="Schema" ID="f8b8381a-ceb4-42db-969c-80318ce4ea10" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BusinessLayer_WebServices/RolesService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

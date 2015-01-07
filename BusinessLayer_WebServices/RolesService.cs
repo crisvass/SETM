@@ -45,19 +45,25 @@ namespace BusinessLayer_WebServices
             {
                 if (!string.IsNullOrEmpty(name))
                 {
-                    if (name.Length >= 1 && name.Length >= 25)
+                    if (name.Length >= 1 && name.Length <= 25)
                     {
                         Regex regexItem = new Regex("[a-zA-Z]$");
                         if (regexItem.IsMatch(name))
                         {
                             RolesRepository rr = new RolesRepository();
                             if (rr.GetRoles().SingleOrDefault(r => r.RoleName == name) == null)
+                            {
                                 return rr.AddRole(new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = name });
+                            }
                             else
+                            {
                                 throw new ConstraintException("Role name must be unique.");
+                            }
                         }
                         else
+                        {
                             throw new ArgumentException("Role name can contain only alphabet letters.");
+                        }
                     }
                     else
                     {
@@ -65,7 +71,9 @@ namespace BusinessLayer_WebServices
                     }
                 }
                 else
+                {
                     throw new ArgumentNullException("Role name cannot be null or empty.");
+                }
             }
             catch (ConstraintException ex)
             {
@@ -77,7 +85,7 @@ namespace BusinessLayer_WebServices
             }
             catch (ArgumentException ex)
             {
-                throw new FormatException(ex.Message);
+                throw new FaultException(ex.Message);
             }
             catch
             {
@@ -99,21 +107,26 @@ namespace BusinessLayer_WebServices
 
                         if (roles.SingleOrDefault(r => r.RoleId == id) != null)
                         {
-                            if (name != null)
+                            if (!string.IsNullOrEmpty(name))
                             {
                                 if (name.Length >= 1 && name.Length <= 25)
                                 {
                                     Regex regexItem = new Regex("[a-zA-Z]$");
                                     if (regexItem.IsMatch(name))
                                     {
-
                                         if (roles.SingleOrDefault(r => r.RoleName == name) == null)
+                                        {
                                             return rr.UpdateRole(new IdentityRole() { Id = id, Name = name });
+                                        }
                                         else
+                                        {
                                             throw new ConstraintException("Role name must be unique.");
+                                        }
                                     }
                                     else
+                                    {
                                         throw new ArgumentException("Role name can contain only alphabet letters.");
+                                    }
                                 }
                                 else
                                 {
@@ -121,16 +134,24 @@ namespace BusinessLayer_WebServices
                                 }
                             }
                             else
+                            {
                                 throw new ArgumentNullException("Role name cannot be null or empty.");
+                            }
                         }
                         else
+                        {
                             throw new ConstraintException("Role ID does not exist.");
+                        }
                     }
                     else
+                    {
                         throw new ArgumentException("Role ID cannot be an empty GUID.");
+                    }
                 }
                 else
+                {
                     throw new ArgumentNullException("Role ID cannot be null or empty.");
+                }
             }
             catch (FormatException ex)
             {
@@ -146,7 +167,7 @@ namespace BusinessLayer_WebServices
             }
             catch (ArgumentException ex)
             {
-                throw new FormatException(ex.Message);
+                throw new FaultException(ex.Message);
             }
             catch
             {
@@ -166,13 +187,25 @@ namespace BusinessLayer_WebServices
                         RolesRepository rr = new RolesRepository();
                         IEnumerable<RoleView> roles = rr.GetRoles();
 
-                        return rr.GetRoleView(id);
+                        if (roles.SingleOrDefault(r => r.RoleId == id) != null)
+                        {
+                            return rr.GetRoleView(id);
+                        }
+                        else
+                        {
+                            throw new ConstraintException("Role ID does not exist.");
+                        }
+
                     }
                     else
+                    {
                         throw new ArgumentException("Role ID cannot be an empty GUID.");
+                    }
                 }
                 else
+                {
                     throw new ArgumentNullException("Role ID cannot be null or empty.");
+                }
             }
             catch (FormatException ex)
             {
@@ -188,7 +221,7 @@ namespace BusinessLayer_WebServices
             }
             catch (ArgumentException ex)
             {
-                throw new FormatException(ex.Message);
+                throw new FaultException(ex.Message);
             }
             catch
             {
@@ -200,33 +233,62 @@ namespace BusinessLayer_WebServices
         {
             try
             {
-                RolesRepository rr = new RolesRepository();
-                if (!rr.RoleIsAssigned(id))
+                if (!string.IsNullOrEmpty(id))
                 {
-                    try
+                    Guid roleId = Guid.Parse(id);
+                    if (roleId != Guid.Empty)
                     {
-                        rr.Entity.Database.Connection.Open();
-                        rr.Transaction = rr.Entity.Database.BeginTransaction();
+                        RolesRepository rr = new RolesRepository();
+                        IEnumerable<RoleView> roles = rr.GetRoles();
 
-                        rr.DeleteMenuRoles(id);
-                        rr.DeleteRole(id);
+                        if (roles.SingleOrDefault(r => r.RoleId == id) != null)
+                        {
+                            if (!rr.RoleIsAssigned(id))
+                            {
+                                try
+                                {
+                                    rr.Entity.Database.Connection.Open();
+                                    rr.Transaction = rr.Entity.Database.BeginTransaction();
 
-                        rr.Transaction.Commit();
+                                    rr.DeleteMenuRoles(id);
+                                    rr.DeleteRole(id);
+
+                                    rr.Transaction.Commit();
+                                }
+                                catch
+                                {
+                                    rr.Transaction.Rollback();
+                                    throw new TransactionFailedException("Role Deletion Failed. Please try again or contact administrator if error persists.");
+                                }
+                                finally
+                                {
+                                    rr.Entity.Database.Connection.Close();
+                                }
+                            }
+                            else
+                            {
+                                throw new ConstraintException("Role cannot be deleted because it is assigned to a user.");
+                            }
+                        }
+                        else
+                        {
+                            throw new ConstraintException("Role ID does not exist.");
+                        }
+
                     }
-                    catch
+                    else
                     {
-                        rr.Transaction.Rollback();
-                        throw new TransactionFailedException("Role Deletion Failed. Please try again or contact administrator if error persists.");
-                    }
-                    finally
-                    {
-                        rr.Entity.Database.Connection.Close();
+                        throw new ArgumentException("Role ID cannot be an empty GUID.");
                     }
                 }
                 else
                 {
-                    throw new ConstraintException("Role cannot be deleted because it is assigned to a user.");
+                    throw new ArgumentNullException("Role ID cannot be null or empty.");
                 }
+            }
+            catch (FormatException ex)
+            {
+                throw new FaultException("Role ID was not a valid GUID value.");
             }
             catch (TransactionFailedException ex)
             {
@@ -236,10 +298,18 @@ namespace BusinessLayer_WebServices
             {
                 throw new FaultException(ex.Message);
             }
+            catch (ArgumentNullException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new FaultException(ex.Message);
+            }
             catch
             {
-                throw new FaultException("An error occurred whilst deleting the role.");
-            }
+                throw new FaultException("An error occurred whilst adding the new role.");
+            }            
         }
 
         public IEnumerable<RoleView> GetNonMenuAssignedRoles(Guid id)
