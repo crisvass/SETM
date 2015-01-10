@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using BusinessLayer_WebServices.DataContracts;
 using Common;
 using Common.Views;
 
@@ -25,6 +26,7 @@ namespace BusinessLayer_WebServices
         IdentityRole UpdateRole(string id, string name);
 
         [OperationContract]
+        [FaultContract(typeof(ConstraintFail))]
         RoleView GetRole(string id);
 
         [OperationContract]

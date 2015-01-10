@@ -64,6 +64,7 @@
     <Compile Include="AdvancedSearchDecorator\ByDescriptionKeywordSearch.cs" />
     <Compile Include="AdvancedSearchDecorator\ByNameKeywordSearch.cs" />
     <Compile Include="AdvancedSearchDecorator\BySubcategorySearch.cs" />
+    <Compile Include="DataContracts\ConstraintFail.cs" />
     <Compile Include="DbContext\ApplicationDBContext.cs" />
     <Compile Include="CreditCardsService.cs" />
     <Compile Include="ICreditCardsService.cs" />

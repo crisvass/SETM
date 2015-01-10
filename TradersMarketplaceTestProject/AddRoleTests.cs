@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-using TradersMarketplaceTestProject.RolesServiceClient;
 using Common;
 using Common.Views;
-using System.Data;
-using System.ServiceModel;
-using System.Data.SqlClient;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TradersMarketplaceTestProject.RolesServiceClient;
 
 namespace TradersMarketplaceTestProject
 {

@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Text.RegularExpressions;
+using BusinessLayer_WebServices.DataContracts;
 using Common;
 using Common.CustomExceptions;
 using Common.Views;
@@ -195,7 +196,6 @@ namespace BusinessLayer_WebServices
                         {
                             throw new ConstraintException("Role ID does not exist.");
                         }
-
                     }
                     else
                     {
@@ -213,7 +213,7 @@ namespace BusinessLayer_WebServices
             }
             catch (ConstraintException ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException<ConstraintFail>(new ConstraintFail(ex.Message));
             }
             catch (ArgumentNullException ex)
             {

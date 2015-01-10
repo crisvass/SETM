@@ -40,6 +40,7 @@ namespace TradersMarketplaceTestProject.RolesServiceClient {
         System.Threading.Tasks.Task<Common.IdentityRole> UpdateRoleAsync(string id, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRole", ReplyAction="http://tempuri.org/IRolesService/GetRoleResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(BusinessLayer_WebServices.DataContracts.ConstraintFail), Action="http://tempuri.org/IRolesService/GetRoleConstraintFailFault", Name="ConstraintFail", Namespace="http://schemas.datacontract.org/2004/07/BusinessLayer_WebServices.DataContracts")]
         Common.Views.RoleView GetRole(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRolesService/GetRole", ReplyAction="http://tempuri.org/IRolesService/GetRoleResponse")]

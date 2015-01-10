@@ -6,6 +6,7 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Common.Views" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Common" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/BusinessLayer_WebServices.DataContracts" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IRolesService_GetUserRoles_InputMessage">
@@ -37,6 +38,9 @@
   </wsdl:message>
   <wsdl:message name="IRolesService_GetRole_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRolesService_GetRole_ConstraintFailFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/BusinessLayer_WebServices.DataContracts" name="detail" element="q1:ConstraintFail" />
   </wsdl:message>
   <wsdl:message name="IRolesService_DeleteRole_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRole" />
@@ -76,6 +80,7 @@
     <wsdl:operation name="GetRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/GetRole" message="tns:IRolesService_GetRole_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRolesService/GetRoleResponse" message="tns:IRolesService_GetRole_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRolesService/GetRoleConstraintFailFault" name="ConstraintFailFault" message="tns:IRolesService_GetRole_ConstraintFailFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IRolesService/DeleteRole" message="tns:IRolesService_DeleteRole_InputMessage" />
@@ -136,6 +141,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ConstraintFailFault">
+        <soap:fault use="literal" name="ConstraintFailFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteRole">
       <soap:operation soapAction="http://tempuri.org/IRolesService/DeleteRole" style="document" />

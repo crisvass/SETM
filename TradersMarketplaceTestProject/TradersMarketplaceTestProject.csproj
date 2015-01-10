@@ -93,6 +93,9 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Common.IdentityRole.datasource" />
     <None Include="Properties\DataSources\Common.Views.RoleView.datasource" />
+    <None Include="Service References\RolesServiceClient\BusinessLayer_WebServices.DataContracts.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RolesServiceClient\Common.Views.xsd">
       <SubType>Designer</SubType>
     </None>
