@@ -49,7 +49,6 @@ namespace TradersMarketplaceTestProject
                     addedRole = RoleService.AddRole(roleName);
 
                     List<IdentityRole> expectedRolesAfter = new List<IdentityRole>();
-                    //expected: rolesBefore + new role
                     expectedRolesAfter.AddRange(rolesBefore);
                     IdentityRole expectedRoleAfter = new IdentityRole()
                     {
