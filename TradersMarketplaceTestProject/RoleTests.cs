@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -20,7 +21,6 @@ namespace TradersMarketplaceTestProject
             RoleService = new RolesServiceClient.RolesServiceClient();
             ConnectionString = "Data Source='CRISTINA-VAIO';Initial Catalog='dbTradersMarketplace';Integrated Security=True";
         }
-
 
         public void AreRolesListEqual(List<IdentityRole> expected, List<IdentityRole> actual)
         {

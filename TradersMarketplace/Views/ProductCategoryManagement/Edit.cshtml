@@ -40,10 +40,12 @@
                             @if (Model.SubCategories != null && Model.SubCategories.Count() > 0)
                             {
                                 foreach (Common.Views.CategoryView cv in Model.SubCategories)
+                                {
                                     <tr>
                                         <td>@Html.DisplayFor(model => model.CategoryName)</td>
                                         <td><a href="#" class="remove-table-item">X</a></td>
                                     </tr>
+                                }
                             }
                         </tbody>
                     </table>
