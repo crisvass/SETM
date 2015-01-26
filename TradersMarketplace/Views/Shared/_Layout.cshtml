@@ -23,7 +23,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*@foreach (Common.Views.MenusView men in ViewBag.Menus)
+                    @foreach (Common.Views.MenusView men in ViewBag.Menus)
                     {
                         <li>
                             @if (men.HasSubmenus)
@@ -41,7 +41,7 @@
                                 @Html.ActionLink(@men.Title, @men.Action, @men.Url)
                             }
                         </li>
-                    }*@
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
